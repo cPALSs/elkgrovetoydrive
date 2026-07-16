@@ -18,7 +18,7 @@
     "headline": "Help build the 10th Annual Toy Drive",
     "intro": "The Elk Grove Christmas Toy Drive gathers unwrapped toys for children served by local charities \u2014 and hosts a joyful evening celebration with Santa photos, dinner, crafts, and entertainment. Sponsors fund the fete. Volunteers make the magic.",
     "subhead": "We're looking for directors \u2014 one owner per piece of the celebration. Pick the lane you want to lead.",
-    "body": "We need directors \u2014 people who own an outcome, build a small team, and see it through with chair support. Chair Vivian (cPALSs) backs every lane."
+    "body": "We need directors \u2014 people who own an outcome, build a small team, and see it through with chair support. Chairs Vivian and Mamie (cPALSs) back every lane."
   },
   "cta": {
     "primaryLabel": "Join the team",
@@ -36,21 +36,21 @@
     "steps": [
       "Pick one role (or two if they're closely related \u2014 we'll talk). See the full list on Team.",
       "Apply on Idealist \u2014 name your role, preferred contact method (email, text, or phone), and any events you're already committed to this season.",
-      "We'll follow up within a few business days \u2014 introduce you to the chair, share last year's runbooks, and set a first check-in."
+      "We'll follow up within a few business days \u2014 introduce you to the chairs, share last year's runbooks, and set a first check-in."
     ],
     "idealistFallback": "Can't use Idealist? Email contact@elkgrovetoydrive.com with the role name and one sentence on why you're interested."
   },
   "directorIntro": {
     "title": "What is a director?",
     "paragraphs": [
-      "A director is the go-to person for one celebration lane. You don't have to do every task yourself \u2014 you own the plan, coordinate vendors and volunteers, and report status to the chair. Most roles are planning now through December 2026; peak workload is the two weeks before and event day.",
-      "Already covered: Event chair \u2014 Vivian (cPALSs). She holds decision authority for the season; every lane director is open for 2026 recruitment.",
+      "A director is the go-to person for one celebration lane. You don't have to do every task yourself \u2014 you own the plan, coordinate vendors and volunteers, and report status to the chairs. Most roles are planning now through December 2026; peak workload is the two weeks before and event day.",
+      "Already covered: Event chairs \u2014 Vivian and Mamie (cPALSs). Chairs hold decision authority for the season; every lane director is open for 2026 recruitment.",
       "14 director roles are open across guest experience, toys & partners, and outreach & production. Member and support roles fill in behind each director. Returning volunteers are welcome to apply \u2014 nothing is assumed until confirmed."
     ],
     "notes": [
       "Fund the Fete at /fund-the-fete/ is the interactive sponsorship registry \u2014 named celebration gifts with slot counts.",
       "Toy collection for charities is the mission; the celebration evening is how the community gathers and sponsors fund hospitality.",
-      "Volunteers Director owns shifts; the chair helps cover gaps when a lane is still filling."
+      "Volunteers Director owns shifts; chairs help cover gaps when a lane is still filling."
     ]
   },
   "productionMeetings": {
@@ -63,6 +63,10 @@
   "coChairs": [
     {
       "name": "Vivian",
+      "title": "Toy Drive Chair (cPALSs)"
+    },
+    {
+      "name": "Mamie",
       "title": "Toy Drive Chair (cPALSs)"
     }
   ],
@@ -171,7 +175,7 @@
   "faq": [
     {
       "q": "Do I need event experience?",
-      "a": "Helpful, not required. Prior Toy Drive runbooks and the chair backs you up."
+      "a": "Helpful, not required. Prior Toy Drive runbooks and chairs back you up."
     },
     {
       "q": "Is this paid?",
