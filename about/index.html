@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
+  <script src="../analytics.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="About the Elk Grove Christmas Toy Drive — free celebration and toys for local charities." />
+  <link rel="canonical" href="https://elkgrovetoydrive.com/about/" />
+  <meta property="og:title" content="About — Elk Grove Christmas Toy Drive" />
+  <meta property="og:description" content="About the Elk Grove Christmas Toy Drive — free celebration and toys for local charities." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://elkgrovetoydrive.com/about/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="About — Elk Grove Christmas Toy Drive" />
+  <meta name="twitter:description" content="About the Elk Grove Christmas Toy Drive." />
+
+  <title>About — Elk Grove Christmas Toy Drive</title>
+  <script src="../clean-urls.js"></script>
+  <script>
+    (function () {
+      try {
+        var t = sessionStorage.getItem("toydrive-theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main class="page-wrap page-wrap--doc" id="main">
+    <div id="seo-prerender" class="seo-prerender">
+      <section class="hero">
+        <h1>About Elk Grove Christmas Toy Drive</h1>
+      </section>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="../doc-scroll.js"></script>
+  <script src="../site.js"></script>
+  <script>
+    (async function () {
+      const { initPageShell, loadSiteData, mountFooter, renderAboutSections, renderPosterWall, buildAboutToc, renderDocToc, wrapDocLayout, initDocToc, escapeHtml } =
+        window.ToyDriveSite;
+      initPageShell("about");
+      try {
+        const site = await loadSiteData();
+        document.title = "About — Elk Grove Christmas Toy Drive";
+        const about = site.about;
+        document.getElementById("main").innerHTML = `
+          <section class="hero">
+            <h1>${escapeHtml(about.headline)}</h1>
+          </section>
+          ${wrapDocLayout(
+            renderDocToc(buildAboutToc(about)),
+            `${renderAboutSections(about)}${renderPosterWall(about.posterWall)}`,
+          )}
+        `;
+        initDocToc();
+        mountFooter(site);
+      } catch (err) {
+        document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
+      }
+    })();
+  </script>
+</body>
+</html>

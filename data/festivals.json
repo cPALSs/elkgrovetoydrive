@@ -1,0 +1,18 @@
+{
+  "festivals": [
+    {
+      "id": "toydrive2026",
+      "label": "Elk Grove Christmas Toy Drive 2026",
+      "file": "../data/toydrive-2026.json",
+      "registryImpactSort": "desc",
+      "cashOffsetLabel": "Celebration ops",
+      "sections": {
+        "core": "Celebration hospitality is sponsor-funded. Use the gift registry below to underwrite the evening — dinner, Santa, crafts, entertainment, and more.",
+        "registry": "Named gifts from our sponsorship packet — each card is a slot you can fund. Pick the story you want to own for the 10th annual celebration.",
+        "tiers": "Recognition levels based on your total sponsorship. Tier benefits stack with naming credit on any Fund the Fete gifts you fund.",
+        "options": "Presenting-level sponsorships unlock the strongest logo placement and stage recognition."
+      }
+    }
+  ],
+  "default": "toydrive2026"
+}

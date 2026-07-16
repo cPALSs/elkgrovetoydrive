@@ -1,0 +1,384 @@
+{
+  "event": {
+    "name": "Elk Grove Christmas Toy Drive",
+    "venue": "District 56, Elk Grove, California",
+    "dates": "Mid-December 2026 \u00b7 Sunday afternoon\u2013evening \u00b7 date to be finalized",
+    "mvpCap": 35000,
+    "vendorRev100": 0,
+    "registryFull": 54100,
+    "vendorSlots": 0,
+    "attendance": 800
+  },
+  "scenario": {
+    "id": "planning",
+    "label": "Planning baseline",
+    "fillRate": 1.0,
+    "attendance": 800,
+    "mvpCap": 35000,
+    "vendorRevenue": 0,
+    "headroomOrGap": 35000,
+    "vendorSlots": 0,
+    "estimatedRevenue": {
+      "total": 0,
+      "summary": "Celebration funded by sponsors \u00b7 toy gifts collected separately",
+      "lines": [
+        {
+          "label": "Sponsor registry (Fund the Fete)",
+          "amount": 0,
+          "note": "Interactive build on elkgrovetoydrive.com/fund-the-fete/"
+        }
+      ]
+    }
+  },
+  "gifts": [
+    {
+      "id": "raffle_items",
+      "name": "Raffle Items",
+      "amount": 100,
+      "category": "registry",
+      "sortOrder": 11,
+      "impactOrder": 1,
+      "slots": 20,
+      "tagline": "20 slots \u00b7 $100\u2013$250 value \u00b7 in-kind welcome.",
+      "description": "Stock the raffle with gift items families want to win. Cash underwrites purchase; in-kind donations of new items are welcome (email contact@elkgrovetoydrive.com).",
+      "benefits": [
+        "Raffle sponsor recognition on site signage",
+        "Name on website sponsor roll",
+        "MC thank-you during raffle"
+      ],
+      "lineItems": [
+        {
+          "label": "Raffle prize underwrite (per slot)",
+          "amount": 100
+        }
+      ]
+    },
+    {
+      "id": "kids_game",
+      "name": "Kids Game",
+      "amount": 350,
+      "category": "registry",
+      "sortOrder": 10,
+      "impactOrder": 2,
+      "slots": 5,
+      "tagline": "5 slots \u00b7 game stations with prizes for kids.",
+      "description": "Fund a kids game station \u2014 prizes, staffing support, and materials so every child can play and win something during the celebration.",
+      "benefits": [
+        "Game station naming credit",
+        "Name on website sponsor roll",
+        "MC thank-you"
+      ],
+      "lineItems": [
+        {
+          "label": "Kids game station (per slot)",
+          "amount": 350
+        }
+      ]
+    },
+    {
+      "id": "performance",
+      "name": "Performance",
+      "amount": 550,
+      "category": "registry",
+      "sortOrder": 9,
+      "impactOrder": 3,
+      "slots": 6,
+      "tagline": "6 slots \u00b7 live entertainment for the evening.",
+      "description": "Underwrite live performances and stage programming \u2014 magic, dance, music, and other family entertainment that fills the District 56 celebration.",
+      "benefits": [
+        "Performance sponsor recognition",
+        "Name on website sponsor roll",
+        "MC thank-you"
+      ],
+      "lineItems": [
+        {
+          "label": "Performance underwrite (per slot)",
+          "amount": 550
+        }
+      ]
+    },
+    {
+      "id": "chocolate_bar",
+      "name": "Chocolate Bar",
+      "amount": 550,
+      "category": "registry",
+      "sortOrder": 8,
+      "impactOrder": 4,
+      "slots": 1,
+      "tagline": "1 slot \u00b7 sweet station for guests.",
+      "description": "Fund the chocolate / sweet bar hospitality station for families throughout the celebration.",
+      "benefits": [
+        "Chocolate bar naming credit",
+        "Name on website sponsor roll",
+        "MC thank-you"
+      ],
+      "lineItems": [
+        {
+          "label": "Chocolate bar station",
+          "amount": 550
+        }
+      ]
+    },
+    {
+      "id": "crafts_table",
+      "name": "Crafts Table",
+      "amount": 750,
+      "category": "registry",
+      "sortOrder": 7,
+      "impactOrder": 5,
+      "slots": 12,
+      "tagline": "12 slots \u00b7 hands-on crafts for kids.",
+      "description": "Supply arts-and-crafts tables \u2014 materials, volunteers support, and take-home activities kids create during the fete.",
+      "benefits": [
+        "Crafts table naming credit",
+        "Name on website sponsor roll",
+        "MC thank-you"
+      ],
+      "lineItems": [
+        {
+          "label": "Crafts table underwrite (per slot)",
+          "amount": 750
+        }
+      ]
+    },
+    {
+      "id": "dinner",
+      "name": "Dinner",
+      "amount": 950,
+      "category": "registry",
+      "sortOrder": 6,
+      "impactOrder": 6,
+      "slots": 10,
+      "tagline": "10 slots \u00b7 free community dinner for guests.",
+      "description": "Help serve a free dinner for families at the celebration. Dinner service is a signature moment of hospitality for the Elk Grove community.",
+      "benefits": [
+        "Dinner sponsor recognition on menu signage",
+        "Name on website sponsor roll",
+        "MC thank-you during dinner service"
+      ],
+      "lineItems": [
+        {
+          "label": "Dinner underwrite (per slot)",
+          "amount": 950
+        }
+      ]
+    },
+    {
+      "id": "video_photographer",
+      "name": "Video & Photographer",
+      "amount": 1000,
+      "category": "registry",
+      "sortOrder": 5,
+      "impactOrder": 7,
+      "slots": 2,
+      "tagline": "2 slots \u00b7 capture the evening for families and partners.",
+      "description": "Fund professional video and photography so families, sponsors, and charities have lasting images from the celebration.",
+      "benefits": [
+        "Media sponsor recognition in highlight reel credits",
+        "Name on website sponsor roll",
+        "Logo option on select photo backdrops"
+      ],
+      "lineItems": [
+        {
+          "label": "Video & photography (per slot)",
+          "amount": 1000
+        }
+      ]
+    },
+    {
+      "id": "volunteers",
+      "name": "Volunteers",
+      "amount": 1500,
+      "category": "registry",
+      "sortOrder": 4,
+      "impactOrder": 8,
+      "slots": 2,
+      "tagline": "2 slots \u00b7 hospitality for the volunteer corps.",
+      "description": "Support the volunteer team \u2014 meals, shirts, hydration, and appreciation so 50\u201360 day-of volunteers can serve guests and charities well.",
+      "benefits": [
+        "Volunteer hospitality naming credit",
+        "Name on website sponsor roll",
+        "Mention in volunteer thank-you message"
+      ],
+      "lineItems": [
+        {
+          "label": "Volunteer hospitality (per slot)",
+          "amount": 1500
+        }
+      ]
+    },
+    {
+      "id": "santa_photo",
+      "name": "Santa Photo",
+      "amount": 2000,
+      "category": "registry",
+      "sortOrder": 3,
+      "impactOrder": 9,
+      "slots": 1,
+      "tagline": "1 slot \u00b7 free professional photos with Santa.",
+      "description": "Underwrite free professional photography with Santa \u2014 a highlight for Christmas cards and family keepsakes. Includes photographer, staging, and Santa hospitality.",
+      "benefits": [
+        "Santa photo station presenting credit",
+        "Featured logo on photo backdrop (when available)",
+        "Name on website sponsor roll",
+        "MC thank-you"
+      ],
+      "lineItems": [
+        {
+          "label": "Santa photo experience",
+          "amount": 2000
+        }
+      ]
+    },
+    {
+      "id": "presenting",
+      "name": "Presenting",
+      "amount": 2500,
+      "category": "registry",
+      "sortOrder": 2,
+      "impactOrder": 10,
+      "slots": 2,
+      "tagline": "2 slots \u00b7 co-presenting partner recognition.",
+      "description": "Co-present the 10th Annual Elk Grove Toy Drive celebration with prominent logo placement, stage recognition, and partner messaging across digital channels.",
+      "benefits": [
+        "Presenting partner title on key materials",
+        "Featured logo on website",
+        "Instagram / Facebook feature",
+        "Opening MC thank-you",
+        "Name on website sponsor roll"
+      ],
+      "lineItems": [
+        {
+          "label": "Presenting partnership (per slot)",
+          "amount": 2500
+        }
+      ]
+    },
+    {
+      "id": "christmas_decorations",
+      "name": "Christmas Decorations",
+      "amount": 3000,
+      "category": "registry",
+      "sortOrder": 1,
+      "impactOrder": 11,
+      "slots": 2,
+      "tagline": "2 slots \u00b7 turn District 56 into a winter wonderland.",
+      "description": "Fund immersive Christmas d\u00e9cor \u2014 trees, lighting, themed zones \u2014 so guests feel the holiday spirit the moment they walk in.",
+      "benefits": [
+        "Decor naming credit on entrance / main hall",
+        "Featured logo on website",
+        "Instagram / Facebook feature",
+        "MC thank-you"
+      ],
+      "lineItems": [
+        {
+          "label": "Christmas d\u00e9cor package (per slot)",
+          "amount": 3000
+        }
+      ]
+    },
+    {
+      "id": "event",
+      "name": "Event",
+      "amount": 5000,
+      "category": "registry",
+      "sortOrder": 0,
+      "impactOrder": 12,
+      "slots": 2,
+      "tagline": "2 slots \u00b7 flagship title sponsor of the celebration.",
+      "description": "Title-level underwrite for the full celebration evening \u2014 venue impact, hospitality, and the mission of 1,000+ toys delivered to local charities.",
+      "benefits": [
+        "Event sponsor title on primary materials",
+        "Hero logo on website",
+        "Headline Instagram / Facebook coverage",
+        "Opening and closing MC thank-you",
+        "Speaking opportunity (when scheduled)"
+      ],
+      "lineItems": [
+        {
+          "label": "Event title sponsorship (per slot)",
+          "amount": 5000
+        }
+      ]
+    }
+  ],
+  "sponsorRules": {
+    "boothUnlockThreshold": 2500,
+    "boothTierLabel": "Presenting"
+  },
+  "sponsorTiers": [
+    {
+      "label": "Friend",
+      "min": 100,
+      "tagline": "Name on the celebration website",
+      "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any Fund the Fete gifts you fund.",
+      "benefits": [
+        "Name on website sponsor roll",
+        "MC thank-you"
+      ]
+    },
+    {
+      "label": "Community",
+      "min": 750,
+      "tagline": "Logo + digital shout-out",
+      "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any Fund the Fete gifts you fund.",
+      "benefits": [
+        "Name on website sponsor roll",
+        "Logo on website",
+        "Instagram / Facebook tag",
+        "MC thank-you"
+      ]
+    },
+    {
+      "label": "Celebration",
+      "min": 1500,
+      "tagline": "Strong digital recognition",
+      "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any Fund the Fete gifts you fund.",
+      "benefits": [
+        "Name on website sponsor roll",
+        "Logo on website",
+        "Instagram / Facebook post",
+        "MC thank-you",
+        "Mention in email to mailing list"
+      ]
+    },
+    {
+      "label": "Presenting",
+      "min": 2500,
+      "tagline": "Co-presenting partner recognition",
+      "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any Fund the Fete gifts you fund.",
+      "benefits": [
+        "Presenting-level website placement",
+        "Featured logo",
+        "Instagram / Facebook feature",
+        "Opening MC thank-you",
+        "Mention in email to mailing list"
+      ]
+    },
+    {
+      "label": "Event",
+      "min": 5000,
+      "tagline": "Flagship title recognition",
+      "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any Fund the Fete gifts you fund.",
+      "benefits": [
+        "Event title on primary materials",
+        "Hero logo on website",
+        "Headline Instagram / Facebook coverage",
+        "Opening and closing MC thank-you",
+        "Speaking opportunity (when scheduled)"
+      ]
+    }
+  ],
+  "globalPerks": [
+    {
+      "id": "stage_mentions",
+      "label": "Stage recognition",
+      "description": "MC thank-yous for sponsors during the celebration."
+    },
+    {
+      "id": "web_logo",
+      "label": "Website logo roll",
+      "description": "Sponsor logos and names on elkgrovetoydrive.com."
+    }
+  ]
+}

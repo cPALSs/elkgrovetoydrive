@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
+  <script src="analytics.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Official site for the Elk Grove Christmas Toy Drive — free family celebration at District 56. Volunteer directors, Fund the Fete sponsors, and toy collection for local charities." />
+  <link rel="canonical" href="https://elkgrovetoydrive.com/" />
+  <meta property="og:title" content="Elk Grove Christmas Toy Drive" />
+  <meta property="og:description" content="10th Annual — free celebration, unwrapped toys for local charities. Join the team or Fund the Fete." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://elkgrovetoydrive.com/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Elk Grove Christmas Toy Drive" />
+  <meta name="twitter:description" content="10th Annual — free celebration, unwrapped toys for local charities." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Event",
+      "@id": "https://elkgrovetoydrive.com/#event",
+      "name": "Elk Grove Christmas Toy Drive & Celebration",
+      "url": "https://elkgrovetoydrive.com/",
+      "description": "Free family celebration with Santa photos, dinner, crafts, and collection of unwrapped toys for children served by local charities.",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "isAccessibleForFree": true,
+      "location": {
+        "@type": "Place",
+        "name": "District 56",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8230 Civic Center Drive, Suite 100",
+          "addressLocality": "Elk Grove",
+          "addressRegion": "CA",
+          "postalCode": "95757",
+          "addressCountry": "US"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Community Partners Advocate of Little Saigon Sacramento",
+        "url": "https://www.cpalss.com"
+      }
+    }
+  ]
+}
+  </script>
+
+  <title>Elk Grove Christmas Toy Drive</title>
+  <script src="clean-urls.js"></script>
+  <script>
+    (function () {
+      try {
+        var t = sessionStorage.getItem("toydrive-theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="site.css" />
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main class="page-wrap" id="main">
+    <div id="seo-prerender" class="seo-prerender">
+      <section class="hero">
+        <h1>Elk Grove Christmas Toy Drive</h1>
+        <p>Mid-December 2026 · District 56 · free celebration · toys for local charities</p>
+      </section>
+      <p>Help build the 10th Annual Toy Drive — join as a director or Fund the Fete.</p>
+      <section>
+        <p><a href="/team/">Join the team</a> · <a href="/fund-the-fete/">Fund the Fete</a></p>
+      </section>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="doc-scroll.js"></script>
+  <script src="site.js"></script>
+  <script>
+    (async function () {
+      const { initPageShell, loadSiteData, mountFooter, renderEventSummary, setPageTitle, escapeHtml } = window.ToyDriveSite;
+      initPageShell("home");
+      try {
+        const site = await loadSiteData();
+        setPageTitle(site);
+        const e = site.event;
+        const h = site.hero;
+        const c = site.cta;
+        document.getElementById("main").innerHTML = `
+          <section class="hero">
+            <h1>${escapeHtml(e.name)}</h1>
+            ${renderEventSummary(site)}
+          </section>
+          <p class="home-intro">${escapeHtml(h.intro)}</p>
+          <section class="content-section">
+            <h2>${escapeHtml(h.headline)}</h2>
+            <p>${escapeHtml(h.subhead)}</p>
+            <p class="muted">${escapeHtml(h.body)}</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="${escapeHtml(c.primaryHref)}">${escapeHtml(c.primaryLabel)}</a>
+              <a class="btn btn-tertiary" href="${escapeHtml(c.archiveHref)}">${escapeHtml(c.archiveLabel)}</a>
+            </div>
+          </section>
+          <section class="content-section">
+            <h2>Fund the Fete</h2>
+            <p>Sponsors underwrite dinner, Santa photos, crafts, entertainment, and more — so guests can focus on bringing unwrapped toys for local charities.</p>
+            <div class="cta-row">
+              <a class="btn btn-secondary" href="${escapeHtml(c.buildHref)}">${escapeHtml(c.buildLabel)}</a>
+            </div>
+          </section>
+        `;
+        mountFooter(site);
+      } catch (err) {
+        document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
+      }
+    })();
+  </script>
+</body>
+</html>
