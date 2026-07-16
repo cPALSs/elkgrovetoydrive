@@ -128,6 +128,16 @@
           { id: "build", label: "Fund the Fete", navLabel: "Fund the Fete", href: "/fund-the-fete/" },
         ],
       },
+      {
+        id: "resources",
+        label: "Resources",
+        href: "/resources/",
+        children: [
+          { id: "sponsors", label: "Sponsors", href: "/sponsors/" },
+          { id: "media", label: "Media", href: "/resources/media/" },
+          { id: "archive2025", label: "2025 archive", href: "https://toydrive.cpalss.com/", external: true },
+        ],
+      },
     ];
   }
 

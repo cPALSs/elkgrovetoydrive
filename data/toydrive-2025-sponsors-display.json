@@ -1,0 +1,111 @@
+{
+  "eventYear": 2025,
+  "tierOrder": [
+    "Sponsors & Donors",
+    "Volunteers"
+  ],
+  "sponsors": [
+    {
+      "name": "TOTALCARE Property Services",
+      "tier": "Sponsors & Donors",
+      "url": null,
+      "logo": "2025/totalcare-property-services.png"
+    },
+    {
+      "name": "Vivian Vu | Realtor",
+      "tier": "Sponsors & Donors",
+      "url": null,
+      "logo": "2025/vivian-vu-realtor.jpg"
+    },
+    {
+      "name": "MV NORCAL",
+      "tier": "Sponsors & Donors",
+      "url": null,
+      "logo": "2025/mv-norcal.jpg"
+    },
+    {
+      "name": "Miss & Miss Teen Vietnam Northern California",
+      "tier": "Sponsors & Donors",
+      "url": null,
+      "logo": "2025/miss-miss-teen-vietnam-nc.jpg"
+    },
+    {
+      "name": "AROS",
+      "tier": "Sponsors & Donors",
+      "url": null,
+      "logo": "2025/aros.png"
+    },
+    {
+      "name": "Nikki Win Team",
+      "tier": "Sponsors & Donors",
+      "url": null,
+      "logo": "2025/nikki-win.jpg"
+    },
+    {
+      "name": "American Furniture Galleries",
+      "tier": "Sponsors & Donors",
+      "url": "https://www.americanfurnituregalleries.net/",
+      "logo": "2025/american-furniture-gallery.png"
+    },
+    {
+      "name": "Parkwest Casino Lotus",
+      "tier": "Sponsors & Donors",
+      "url": null,
+      "logo": "2025/parkwest-casino-lotus.png"
+    },
+    {
+      "name": "Cali Saigon Mall",
+      "tier": "Sponsors & Donors",
+      "url": null,
+      "logo": "2025/cali-saigon-mall.png"
+    },
+    {
+      "name": "Shun Fat Supermarket",
+      "tier": "Sponsors & Donors",
+      "url": null,
+      "logo": "2025/shun-fat-supermarket.png"
+    },
+    {
+      "name": "Mamie's Administrative Services",
+      "tier": "Sponsors & Donors",
+      "url": null,
+      "logo": "2025/mamies-administrative-services.png"
+    },
+    {
+      "name": "Curriculum Vitae Staffing Solutions",
+      "tier": "Sponsors & Donors",
+      "url": null,
+      "logo": "2025/curriculum-vitae-staffing.jpg"
+    },
+    {
+      "name": "Lazzarini Whiteford Young LLP",
+      "tier": "Sponsors & Donors",
+      "url": null,
+      "logo": "2025/lw-y.svg"
+    },
+    {
+      "name": "Equity Zone Mortgage",
+      "tier": "Sponsors & Donors",
+      "url": null,
+      "logo": "2025/equity-zone-mortgage.jpg"
+    },
+    {
+      "name": "Sacramento County",
+      "tier": "Sponsors & Donors",
+      "url": null,
+      "logo": null
+    },
+    {
+      "name": "SeniorCare Spectrum",
+      "tier": "Sponsors & Donors",
+      "url": null,
+      "logo": "2025/seniorcare-spectrum.svg"
+    },
+    {
+      "name": "Florin High School Vietnamese Student Association",
+      "tier": "Volunteers",
+      "url": null,
+      "logo": null
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
+  <script src="../analytics.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Elk Grove Toy Drive Celebration resources — sponsors, media, and the 2025 archive." />
+  <link rel="canonical" href="https://elkgrovetoydrive.com/resources/" />
+  <meta property="og:title" content="Resources — Elk Grove Toy Drive Celebration" />
+  <meta property="og:description" content="Elk Grove Toy Drive Celebration resources — sponsors, media, and the 2025 archive." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://elkgrovetoydrive.com/resources/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Resources — Elk Grove Toy Drive Celebration" />
+  <meta name="twitter:description" content="Elk Grove Toy Drive Celebration resources — sponsors, media, and the 2025 archive." />
+
+  <title>Resources — Elk Grove Toy Drive Celebration</title>
+  <script src="../clean-urls.js"></script>
+  <script>
+    (function () {
+      try {
+        var t = sessionStorage.getItem("toydrive-theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main class="page-wrap page-wrap--doc" id="main">
+    <div id="seo-prerender" class="seo-prerender">
+      <section class="hero">
+        <h1>Resources</h1>
+        <p>Past sponsors, celebration media, and the 2025 archive site.</p>
+      </section>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="../doc-scroll.js"></script>
+  <script src="../site.js"></script>
+  <script>
+    (async function () {
+      const { initPageShell, loadSiteData, mountFooter, renderResourcesPage, setPageTitle, escapeHtml } =
+        window.ToyDriveSite;
+      initPageShell("resources");
+      try {
+        const site = await loadSiteData();
+        setPageTitle(site, "Resources");
+        document.getElementById("main").innerHTML = renderResourcesPage(site.resources);
+        mountFooter(site);
+      } catch (err) {
+        document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
+      }
+    })();
+  </script>
+</body>
+</html>

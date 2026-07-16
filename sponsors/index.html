@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
+  <script src="../analytics.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Thank you to our 2025 sponsors — Elk Grove Toy Drive Celebration." />
+  <link rel="canonical" href="https://elkgrovetoydrive.com/sponsors/" />
+  <meta property="og:title" content="2025 Sponsors — Elk Grove Toy Drive Celebration" />
+  <meta property="og:description" content="Thank you to our 2025 sponsors — Elk Grove Toy Drive Celebration." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://elkgrovetoydrive.com/sponsors/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2025 Sponsors — Elk Grove Toy Drive Celebration" />
+  <meta name="twitter:description" content="Thank you to our 2025 sponsors — Elk Grove Toy Drive Celebration." />
+
+  <title>2025 Sponsors — Elk Grove Toy Drive Celebration</title>
+  <script src="../clean-urls.js"></script>
+  <script>
+    (function () {
+      try {
+        var t = sessionStorage.getItem("toydrive-theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main class="page-wrap page-wrap--doc" id="main">
+    <div id="seo-prerender" class="seo-prerender">
+      <section class="hero">
+        <h1>Thank You, 2025 Sponsors</h1>
+        <p>Our 2025 Toy Drive was made possible by these sponsors, donors, and volunteers.</p>
+      </section>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="../doc-scroll.js"></script>
+  <script src="../site.js"></script>
+  <script>
+    (async function () {
+      const { initPageShell, loadSiteData, mountFooter, renderDocToc, wrapDocLayout, initDocToc, slugifyHeading, setPageTitle, escapeHtml } =
+        window.ToyDriveSite;
+      initPageShell("sponsors");
+      try {
+        const site = await loadSiteData();
+        setPageTitle(site, "2025 sponsors");
+        const res = await fetch("../data/toydrive-2025-sponsors-display.json", { cache: "no-store" });
+        if (!res.ok) throw new Error(`Could not load sponsors (${res.status})`);
+        const data = await res.json();
+        const sponsors = data.sponsors ?? [];
+        const tierOrder = data.tierOrder ?? [];
+        const byTier = new Map();
+        for (const s of sponsors) {
+          const tier = s.tier ?? "Sponsors & Donors";
+          if (!byTier.has(tier)) byTier.set(tier, []);
+          byTier.get(tier).push(s);
+        }
+        const sortedTiers = [
+          ...tierOrder.filter((t) => byTier.has(t)),
+          ...[...byTier.keys()].filter((t) => !tierOrder.includes(t)),
+        ];
+        const tocItems = [
+          ...sortedTiers.map((tier) => ({ id: slugifyHeading(tier), label: tier })),
+          { id: "sponsor-2026", label: "Sponsor the 2026 celebration" },
+        ];
+        const tiersHtml = sortedTiers
+          .map((tier) => {
+            const tierId = slugifyHeading(tier);
+            const cards = byTier
+              .get(tier)
+              .map((s) => {
+                const inner = s.logo
+                  ? `<img src="../sponsors/${escapeHtml(s.logo)}" alt="${escapeHtml(s.name)}" />`
+                  : escapeHtml(s.name);
+                if (s.url) {
+                  return `<a class="sponsor-card" href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${inner}</a>`;
+                }
+                return `<div class="sponsor-card">${inner}</div>`;
+              })
+              .join("");
+            return `<section class="sponsor-tier site-doc-section" id="${escapeHtml(tierId)}" data-doc-section><h2>${escapeHtml(tier)}</h2><div class="sponsor-grid">${cards}</div></section>`;
+          })
+          .join("");
+
+        const mainHtml = `
+          ${tiersHtml || "<p>No sponsors to display.</p>"}
+          <section class="content-section site-doc-section" id="sponsor-2026" data-doc-section>
+            <h2>Sponsor the 2026 celebration</h2>
+            <p>2026 sponsors will appear here when agreements are signed. Explore celebration gifts families remember.</p>
+            <a class="btn btn-primary" href="/fund-the-fete/">Fund the Fete →</a>
+          </section>`;
+
+        document.getElementById("main").innerHTML = `
+          <section class="hero">
+            <h1>Thank You, 2025 Sponsors</h1>
+            <p class="hero-lead">Our ${data.eventYear ?? 2025} Toy Drive was made possible by these sponsors, donors, and volunteers.</p>
+          </section>
+          ${wrapDocLayout(renderDocToc(tocItems), mainHtml)}
+        `;
+        initDocToc();
+        mountFooter(site);
+      } catch (err) {
+        document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
+      }
+    })();
+  </script>
+</body>
+</html>

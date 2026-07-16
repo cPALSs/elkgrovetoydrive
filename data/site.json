@@ -25,8 +25,8 @@
     "primaryHref": "/team/",
     "buildLabel": "Fund the Fete",
     "buildHref": "/fund-the-fete/",
-    "sponsorsLabel": "2025 archive",
-    "sponsorsHref": "https://toydrive.cpalss.com/",
+    "sponsorsLabel": "2025 sponsors",
+    "sponsorsHref": "/sponsors/",
     "archiveLabel": "2025 archive",
     "archiveHref": "https://toydrive.cpalss.com/"
   },
@@ -219,6 +219,44 @@
       "note": null
     }
   },
+  "resources": {
+    "headline": "Resources",
+    "lead": "Past sponsors, celebration media, and the 2025 archive site.",
+    "links": [
+      {
+        "title": "Sponsors",
+        "body": "Thank you to our 2025 Toy Drive sponsors and donors.",
+        "href": "/sponsors/"
+      },
+      {
+        "title": "Media",
+        "body": "Highlight reels and past celebration coverage.",
+        "href": "/resources/media/"
+      },
+      {
+        "title": "2025 archive",
+        "body": "Previous season site — charities, tickets, and event pages from 2025.",
+        "href": "https://toydrive.cpalss.com/"
+      }
+    ]
+  },
+  "media": {
+    "headline": "Media",
+    "lead": "Highlight reels from recent Elk Grove Toy Drive Celebrations.",
+    "contactNote": "Media inquiries: contact@elkgrovetoydrive.com",
+    "videos": [
+      {
+        "year": 2024,
+        "youtubeId": "kH9Q0HK7O-s",
+        "title": "Highlight Reel — 8th Annual Christmas Toy Drive & Celebration (2024)"
+      },
+      {
+        "year": 2023,
+        "youtubeId": "lkmEAe8ozio",
+        "title": "Highlight Reel — 7th Annual Christmas Toy Drive & Celebration (2023)"
+      }
+    ]
+  },
   "footer": {
     "thankYou2026": "Thank you to our Toy Drive sponsors and supporters",
     "socialLinks": [],
@@ -230,10 +268,6 @@
       {
         "label": "NVCC",
         "href": "https://www.facebook.com/norcalvietnamesechamber/"
-      },
-      {
-        "label": "2025 archive",
-        "href": "https://toydrive.cpalss.com/"
       }
     ]
   }
