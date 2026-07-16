@@ -3,22 +3,22 @@
     "siteName": "Elk Grove Christmas Toy Drive",
     "titleSuffix": "Elk Grove Toy Drive",
     "idealistUrl": null,
-    "idealistNote": "Paste-ready listing: Projects - Toy Drive/2026/Marketing/Idealist Listing - Toy Drive 2026 Directors.md — set short link here after Idealist publish"
+    "idealistNote": "Paste-ready listing: Projects - Toy Drive/2026/Marketing/Idealist Listing - Toy Drive 2026 Directors.md \u2014 set short link here after Idealist publish"
   },
   "event": {
     "name": "Elk Grove Christmas Toy Drive",
-    "dates": "Mid-December 2026 · Sunday afternoon–evening · date to be finalized",
+    "dates": "Mid-December 2026 \u00b7 Sunday afternoon\u2013evening \u00b7 date to be finalized",
     "venue": "District 56, Elk Grove, California",
     "city": "Elk Grove, CA",
-    "tagline": "free celebration · unwrapped toys for local charities",
+    "tagline": "free celebration \u00b7 unwrapped toys for local charities",
     "hosts": "cPALSs",
     "attendanceNote": "Planning baseline ~800 guests at the celebration; mission goal 1,000+ toys"
   },
   "hero": {
     "headline": "Help build the 10th Annual Toy Drive",
-    "intro": "The Elk Grove Christmas Toy Drive gathers unwrapped toys for children served by local charities — and hosts a joyful evening celebration with Santa photos, dinner, crafts, and entertainment. Sponsors fund the fete. Volunteers make the magic.",
-    "subhead": "We're looking for directors — one owner per piece of the celebration. Pick the lane you want to lead.",
-    "body": "We need directors — people who own an outcome, build a small team, and see it through with chair support. Chairs Vivian and Mamie (cPALSs) back every lane."
+    "intro": "The Elk Grove Christmas Toy Drive gathers unwrapped toys for children served by local charities \u2014 and hosts a joyful evening celebration with Santa photos, dinner, crafts, and entertainment. Sponsors fund the fete. Volunteers make the magic.",
+    "subhead": "We're looking for directors \u2014 one owner per piece of the celebration. Pick the lane you want to lead.",
+    "body": "We need directors \u2014 people who own an outcome, build a small team, and see it through with chair support. Chair Vivian (cPALSs) backs every lane."
   },
   "cta": {
     "primaryLabel": "Join the team",
@@ -34,28 +34,28 @@
     "email": "contact@elkgrovetoydrive.com",
     "emailSubject": "Toy Drive 2026 Director interest",
     "steps": [
-      "Pick one role (or two if they're closely related — we'll talk). See the full list on Team.",
-      "Apply on Idealist — name your role, preferred contact method (email, text, or phone), and any events you're already committed to this season.",
-      "We'll follow up within a few business days — introduce you to the chairs, share last year's runbooks, and set a first check-in."
+      "Pick one role (or two if they're closely related \u2014 we'll talk). See the full list on Team.",
+      "Apply on Idealist \u2014 name your role, preferred contact method (email, text, or phone), and any events you're already committed to this season.",
+      "We'll follow up within a few business days \u2014 introduce you to the chair, share last year's runbooks, and set a first check-in."
     ],
     "idealistFallback": "Can't use Idealist? Email contact@elkgrovetoydrive.com with the role name and one sentence on why you're interested."
   },
   "directorIntro": {
     "title": "What is a director?",
     "paragraphs": [
-      "A director is the go-to person for one celebration lane. You don't have to do every task yourself — you own the plan, coordinate vendors and volunteers, and report status to the chairs. Most roles are planning now through December 2026; peak workload is the two weeks before and event day.",
-      "Already covered: Event chairs — Vivian and Mamie (cPALSs). Chairs hold decision authority for the season; every lane director is open for 2026 recruitment.",
-      "14 director roles are open across guest experience, toys & partners, and outreach & production. Member and support roles fill in behind each director. Returning volunteers are welcome to apply — nothing is assumed until confirmed."
+      "A director is the go-to person for one celebration lane. You don't have to do every task yourself \u2014 you own the plan, coordinate vendors and volunteers, and report status to the chair. Most roles are planning now through December 2026; peak workload is the two weeks before and event day.",
+      "Already covered: Event chair \u2014 Vivian (cPALSs). She holds decision authority for the season; every lane director is open for 2026 recruitment.",
+      "14 director roles are open across guest experience, toys & partners, and outreach & production. Member and support roles fill in behind each director. Returning volunteers are welcome to apply \u2014 nothing is assumed until confirmed."
     ],
     "notes": [
-      "Fund the Fete at /fund-the-fete/ is the interactive sponsorship registry — named celebration gifts with slot counts.",
+      "Fund the Fete at /fund-the-fete/ is the interactive sponsorship registry \u2014 named celebration gifts with slot counts.",
       "Toy collection for charities is the mission; the celebration evening is how the community gathers and sponsors fund hospitality.",
-      "Volunteers Director owns shifts; chairs help cover gaps when a lane is still filling."
+      "Volunteers Director owns shifts; the chair helps cover gaps when a lane is still filling."
     ]
   },
   "productionMeetings": {
     "title": "Production meetings",
-    "intro": "Stay connected with Toy Drive production — join the weekly Zoom call.",
+    "intro": "Stay connected with Toy Drive production \u2014 join the weekly Zoom call.",
     "zoom": "Weekly Zoom calls are Fridays at 9:00 AM (confirm each season). To join as a guest, email contact@elkgrovetoydrive.com.",
     "discordLabel": null,
     "discordHref": null
@@ -64,10 +64,6 @@
     {
       "name": "Vivian",
       "title": "Toy Drive Chair (cPALSs)"
-    },
-    {
-      "name": "Mamie",
-      "title": "Toy Drive Chair (cPALSs)"
     }
   ],
   "lanes": [
@@ -75,7 +71,7 @@
       "id": "guest-experience",
       "title": "Guest experience",
       "subtitle": "What families see and remember",
-      "intro": "Celebration programming and hospitality — including sponsor-funded features from Fund the Fete.",
+      "intro": "Celebration programming and hospitality \u2014 including sponsor-funded features from Fund the Fete.",
       "roles": [
         {
           "title": "Entertainment",
@@ -104,7 +100,7 @@
         },
         {
           "title": "Decor",
-          "own": "Christmas décor plan, install/strike, entrance wow moments",
+          "own": "Christmas d\u00e9cor plan, install/strike, entrance wow moments",
           "fit": "Love transforming a room on a budget and a deadline"
         },
         {
@@ -175,11 +171,11 @@
   "faq": [
     {
       "q": "Do I need event experience?",
-      "a": "Helpful, not required. Prior Toy Drive runbooks and chairs back you up."
+      "a": "Helpful, not required. Prior Toy Drive runbooks and the chair backs you up."
     },
     {
       "q": "Is this paid?",
-      "a": "These are volunteer leadership roles. Photographers or performers may be paid vendors when sponsored — not director compensation."
+      "a": "These are volunteer leadership roles. Photographers or performers may be paid vendors when sponsored \u2014 not director compensation."
     },
     {
       "q": "Can two people co-direct?",
@@ -187,11 +183,11 @@
     },
     {
       "q": "What is Fund the Fete?",
-      "a": "Our interactive sponsorship registry — named celebration gifts with slot counts, at elkgrovetoydrive.com/fund-the-fete/."
+      "a": "Our interactive sponsorship registry \u2014 named celebration gifts with slot counts, at elkgrovetoydrive.com/fund-the-fete/."
     },
     {
-      "q": "I'm already helping with other cPALSs festivals — can I do both?",
-      "a": "Yes — tell us your season commitments on Idealist and we'll coordinate lanes so nothing collides."
+      "q": "I'm already helping with other cPALSs festivals \u2014 can I do both?",
+      "a": "Yes \u2014 tell us your season commitments on Idealist and we'll coordinate lanes so nothing collides."
     }
   ],
   "about": {
@@ -200,7 +196,7 @@
       {
         "title": "The celebration",
         "paragraphs": [
-          "Each December, Community Partners Advocate of Little Saigon Sacramento (cPALSs) hosts the Elk Grove Christmas Toy Drive & Celebration — a free family evening with Santa photos, dinner, crafts, kids games, entertainment, and the gathering of unwrapped toys for children served by local charities.",
+          "Each December, Community Partners Advocate of Little Saigon Sacramento (cPALSs) hosts the Elk Grove Christmas Toy Drive & Celebration \u2014 a free family evening with Santa photos, dinner, crafts, kids games, entertainment, and the gathering of unwrapped toys for children served by local charities.",
           "Our goal is simple: no child should be without a toy this Christmas. Last seasons we have delivered 1,000+ toys with community partners. Sponsors fund the hospitality of the evening through Fund the Fete; guests bring unwrapped toys; volunteers make the night run."
         ]
       },
