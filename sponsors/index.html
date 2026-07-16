@@ -34,7 +34,7 @@
     <div id="seo-prerender" class="seo-prerender">
       <section class="hero">
         <h1>Thank You, 2025 Sponsors</h1>
-        <p>Our 2025 Toy Drive was made possible by these sponsors, donors, and volunteers.</p>
+        <p>Our 2025 Toy Drive was made possible by these sponsors and donors.</p>
       </section>
     </div>
   </main>
@@ -98,7 +98,7 @@
         document.getElementById("main").innerHTML = `
           <section class="hero">
             <h1>Thank You, 2025 Sponsors</h1>
-            <p class="hero-lead">Our ${data.eventYear ?? 2025} Toy Drive was made possible by these sponsors, donors, and volunteers.</p>
+            <p class="hero-lead">Our ${data.eventYear ?? 2025} Toy Drive was made possible by these sponsors and donors.</p>
           </section>
           ${wrapDocLayout(renderDocToc(tocItems), mainHtml)}
         `;
