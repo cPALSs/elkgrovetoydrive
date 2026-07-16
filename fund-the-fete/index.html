@@ -132,7 +132,7 @@
       <div class="gift-grid gift-grid--3" id="tiers-grid"></div>
     </details>
 
-    <details class="panel collapsible" open>
+    <details class="panel collapsible" id="options-panel" open hidden>
       <summary><span class="caret" aria-hidden="true"></span>Perks and options</summary>
       <p class="hint collapsible-desc" id="options-desc"></p>
       <div class="gift-grid" id="options-grid"></div>
@@ -195,10 +195,7 @@
     <form method="dialog" class="modal-inner">
       <header class="modal-header">
         <h3 id="modal-title"></h3>
-        <label class="toggle-wrap" id="modal-toggle-wrap">
-          <span>Funded</span>
-          <input type="checkbox" id="modal-toggle" />
-        </label>
+        <div class="slot-counter-wrap" id="modal-toggle-wrap" hidden></div>
       </header>
       <div class="modal-tab-row">
         <div class="modal-tabs" id="modal-tabs">

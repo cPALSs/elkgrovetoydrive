@@ -3,9 +3,9 @@
     "name": "Elk Grove Toy Drive Celebration",
     "venue": "District 56, Elk Grove, California",
     "dates": "Mid-December 2026 \u00b7 Sunday afternoon\u2013evening \u00b7 date to be finalized",
-    "mvpCap": 35000,
+    "mvpCap": 750,
     "vendorRev100": 0,
-    "registryFull": 54100,
+    "registryFull": 41850,
     "vendorSlots": 0,
     "attendance": 800
   },
@@ -14,9 +14,9 @@
     "label": "Planning baseline",
     "fillRate": 1.0,
     "attendance": 800,
-    "mvpCap": 35000,
+    "mvpCap": 750,
     "vendorRevenue": 0,
-    "headroomOrGap": 35000,
+    "headroomOrGap": 750,
     "vendorSlots": 0,
     "estimatedRevenue": {
       "total": 0,
@@ -31,6 +31,49 @@
     }
   },
   "gifts": [
+    {
+      "id": "safe_celebration",
+      "name": "Safe Celebration",
+      "amount": 750,
+      "category": "core",
+      "sortOrder": 0,
+      "slots": 1,
+      "tagline": "1 slot \u00b7 private security for a packed District 56 evening.",
+      "description": "The only cash core underwrite for the celebration \u2014 day-of private security so families can attend safely (entry points, crowd flow, hall presence). Past seasons ran about $500\u2013$750. Dinner, Santa, crafts, and the rest of the evening are gift-registry stories, not core ops.",
+      "benefits": [
+        "Safety sponsor recognition on website",
+        "Name on website sponsor roll",
+        "MC thank-you"
+      ],
+      "lineItems": [
+        {
+          "label": "Private security (guards \u00d7 hours)",
+          "amount": 750
+        }
+      ]
+    },
+    {
+      "id": "spread_the_word",
+      "name": "Spread the Word",
+      "amount": 250,
+      "category": "registry",
+      "sortOrder": 12,
+      "impactOrder": 0,
+      "slots": 2,
+      "tagline": "2 slots \u00b7 flyers, banners, and print that fill the room and the town.",
+      "description": "Underwrite printing \u2014 celebration flyers, banners, and Champion-style print jobs that invite families and thank sponsors. Recent seasons spent about $150\u2013$280 on print.",
+      "benefits": [
+        "Print / outreach sponsor recognition",
+        "Name on website sponsor roll",
+        "MC thank-you"
+      ],
+      "lineItems": [
+        {
+          "label": "Flyers, banners, and print (per slot)",
+          "amount": 250
+        }
+      ]
+    },
     {
       "id": "raffle_items",
       "name": "Raffle Items",
@@ -76,12 +119,34 @@
       ]
     },
     {
+      "id": "inflatable_games",
+      "name": "Inflatable Games",
+      "amount": 500,
+      "category": "registry",
+      "sortOrder": 9,
+      "impactOrder": 3,
+      "slots": 3,
+      "tagline": "3 slots \u00b7 bounce houses and inflatable play for kids.",
+      "description": "Underwrite inflatable games and bounce-house style play so kids have a big-energy zone at the celebration. Complements Kids Game stations with larger attractions.",
+      "benefits": [
+        "Inflatable zone naming credit",
+        "Name on website sponsor roll",
+        "MC thank-you"
+      ],
+      "lineItems": [
+        {
+          "label": "Inflatable / bounce attraction (per slot)",
+          "amount": 500
+        }
+      ]
+    },
+    {
       "id": "performance",
       "name": "Performance",
       "amount": 550,
       "category": "registry",
-      "sortOrder": 9,
-      "impactOrder": 3,
+      "sortOrder": 8,
+      "impactOrder": 4,
       "slots": 6,
       "tagline": "6 slots \u00b7 live entertainment for the evening.",
       "description": "Underwrite live performances and stage programming \u2014 magic, dance, music, and other family entertainment that fills the District 56 celebration.",
@@ -102,8 +167,8 @@
       "name": "Chocolate Bar",
       "amount": 550,
       "category": "registry",
-      "sortOrder": 8,
-      "impactOrder": 4,
+      "sortOrder": 7,
+      "impactOrder": 5,
       "slots": 1,
       "tagline": "1 slot \u00b7 sweet station for guests.",
       "description": "Fund the chocolate / sweet bar hospitality station for families throughout the celebration.",
@@ -124,8 +189,8 @@
       "name": "Crafts Table",
       "amount": 750,
       "category": "registry",
-      "sortOrder": 7,
-      "impactOrder": 5,
+      "sortOrder": 6,
+      "impactOrder": 6,
       "slots": 12,
       "tagline": "12 slots \u00b7 hands-on crafts for kids.",
       "description": "Supply arts-and-crafts tables \u2014 materials, volunteers support, and take-home activities kids create during the fete.",
@@ -146,11 +211,11 @@
       "name": "Dinner",
       "amount": 950,
       "category": "registry",
-      "sortOrder": 6,
-      "impactOrder": 6,
+      "sortOrder": 5,
+      "impactOrder": 7,
       "slots": 10,
       "tagline": "10 slots \u00b7 free community dinner for guests.",
-      "description": "Help serve a free dinner for families at the celebration. Dinner service is a signature moment of hospitality for the Elk Grove community.",
+      "description": "Help serve a free dinner for families at the celebration \u2014 cash underwrites catering and service supplies; in-kind food donations (trays from restaurants and community partners) count toward the same Dinner story. Dinner is a signature moment of hospitality for the Elk Grove community.",
       "benefits": [
         "Dinner sponsor recognition on menu signage",
         "Name on website sponsor roll",
@@ -158,7 +223,7 @@
       ],
       "lineItems": [
         {
-          "label": "Dinner underwrite (per slot)",
+          "label": "Dinner underwrite \u2014 catering / supplies (per slot)",
           "amount": 950
         }
       ]
@@ -168,8 +233,8 @@
       "name": "Video & Photographer",
       "amount": 1000,
       "category": "registry",
-      "sortOrder": 5,
-      "impactOrder": 7,
+      "sortOrder": 4,
+      "impactOrder": 8,
       "slots": 2,
       "tagline": "2 slots \u00b7 capture the evening for families and partners.",
       "description": "Fund professional video and photography so families, sponsors, and charities have lasting images from the celebration.",
@@ -190,8 +255,8 @@
       "name": "Volunteers",
       "amount": 1500,
       "category": "registry",
-      "sortOrder": 4,
-      "impactOrder": 8,
+      "sortOrder": 3,
+      "impactOrder": 9,
       "slots": 2,
       "tagline": "2 slots \u00b7 hospitality for the volunteer corps.",
       "description": "Support the volunteer team \u2014 meals, shirts, hydration, and appreciation so 50\u201360 day-of volunteers can serve guests and charities well.",
@@ -212,8 +277,8 @@
       "name": "Santa Photo",
       "amount": 2000,
       "category": "registry",
-      "sortOrder": 3,
-      "impactOrder": 9,
+      "sortOrder": 2,
+      "impactOrder": 10,
       "slots": 1,
       "tagline": "1 slot \u00b7 free professional photos with Santa.",
       "description": "Underwrite free professional photography with Santa \u2014 a highlight for Christmas cards and family keepsakes. Includes photographer, staging, and Santa hospitality.",
@@ -227,30 +292,6 @@
         {
           "label": "Santa photo experience",
           "amount": 2000
-        }
-      ]
-    },
-    {
-      "id": "presenting",
-      "name": "Presenting",
-      "amount": 2500,
-      "category": "registry",
-      "sortOrder": 2,
-      "impactOrder": 10,
-      "slots": 2,
-      "tagline": "2 slots \u00b7 co-presenting partner recognition.",
-      "description": "Co-present the 10th Annual Elk Grove Toy Drive celebration with prominent logo placement, stage recognition, and partner messaging across digital channels.",
-      "benefits": [
-        "Presenting partner title on key materials",
-        "Featured logo on website",
-        "Instagram / Facebook feature",
-        "Opening MC thank-you",
-        "Name on website sponsor roll"
-      ],
-      "lineItems": [
-        {
-          "label": "Presenting partnership (per slot)",
-          "amount": 2500
         }
       ]
     },
@@ -276,30 +317,6 @@
           "amount": 3000
         }
       ]
-    },
-    {
-      "id": "event",
-      "name": "Event",
-      "amount": 5000,
-      "category": "registry",
-      "sortOrder": 0,
-      "impactOrder": 12,
-      "slots": 2,
-      "tagline": "2 slots \u00b7 flagship title sponsor of the celebration.",
-      "description": "Title-level underwrite for the full celebration evening \u2014 venue impact, hospitality, and the mission of 1,000+ toys delivered to local charities.",
-      "benefits": [
-        "Event sponsor title on primary materials",
-        "Hero logo on website",
-        "Headline Instagram / Facebook coverage",
-        "Opening and closing MC thank-you",
-        "Speaking opportunity (when scheduled)"
-      ],
-      "lineItems": [
-        {
-          "label": "Event title sponsorship (per slot)",
-          "amount": 5000
-        }
-      ]
     }
   ],
   "sponsorRules": {
@@ -310,8 +327,9 @@
     {
       "label": "Friend",
       "min": 100,
-      "tagline": "Name on the celebration website",
-      "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any Fund the Fete gifts you fund.",
+      "slots": 10,
+      "tagline": "10 slots \u00b7 name on the celebration website",
+      "description": "Entry recognition tier. Claim slots at this level, or reach it through Fund the Fete gifts. Tier benefits stack with naming credit on any gifts you fund.",
       "benefits": [
         "Name on website sponsor roll",
         "MC thank-you"
@@ -320,8 +338,9 @@
     {
       "label": "Community",
       "min": 750,
-      "tagline": "Logo + digital shout-out",
-      "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any Fund the Fete gifts you fund.",
+      "slots": 5,
+      "tagline": "5 slots \u00b7 logo + digital shout-out",
+      "description": "Recognition tier for Community-level partners. Claim slots at this level, or reach it through gifts. Tier benefits stack with naming credit on any gifts you fund.",
       "benefits": [
         "Name on website sponsor roll",
         "Logo on website",
@@ -332,8 +351,9 @@
     {
       "label": "Celebration",
       "min": 1500,
-      "tagline": "Strong digital recognition",
-      "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any Fund the Fete gifts you fund.",
+      "slots": 3,
+      "tagline": "3 slots \u00b7 strong digital recognition",
+      "description": "Recognition tier for Celebration-level partners. Claim slots at this level, or reach it through gifts. Tier benefits stack with naming credit on any gifts you fund.",
       "benefits": [
         "Name on website sponsor roll",
         "Logo on website",
@@ -345,8 +365,9 @@
     {
       "label": "Presenting",
       "min": 2500,
-      "tagline": "Co-presenting partner recognition",
-      "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any Fund the Fete gifts you fund.",
+      "slots": 2,
+      "tagline": "2 slots \u00b7 co-presenting partner recognition",
+      "description": "Co-presenting partner recognition. Claim up to 2 Presenting slots. Tier benefits stack with naming credit on any Fund the Fete gifts you fund.",
       "benefits": [
         "Presenting-level website placement",
         "Featured logo",
@@ -356,12 +377,13 @@
       ]
     },
     {
-      "label": "Event",
+      "label": "Title",
       "min": 5000,
-      "tagline": "Flagship title recognition",
-      "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any Fund the Fete gifts you fund.",
+      "slots": 2,
+      "tagline": "2 slots \u00b7 flagship title recognition",
+      "description": "Title-level partner recognition for the celebration. Claim up to 2 Title slots. Tier benefits stack with naming credit on any Fund the Fete gifts you fund.",
       "benefits": [
-        "Event title on primary materials",
+        "Title on primary materials",
         "Hero logo on website",
         "Headline Instagram / Facebook coverage",
         "Opening and closing MC thank-you",

@@ -24,6 +24,7 @@ const GIFT_SORT = {
   festival_foundation: 0,
   festival_stage: 1,
   safe_festival: 2,
+  safe_celebration: 2,
   festival_amenities: 3,
   lantern_procession: 1,
   saturday_children: 2,
@@ -220,9 +221,11 @@ const state = {
   manifest: null,
   festivalId: null,
   data: null,
-  enabled: {},
+  /** @type {Record<string, number>} giftId → claimed slots */
+  qty: {},
+  /** @type {Record<string, number>} tier.min → claimed slots */
+  tierQty: {},
   extraCash: 0,
-  selectedTierMin: null,
   modalGiftId: null,
   modalTierMin: null,
   modalTab: "guest",
@@ -231,6 +234,44 @@ const state = {
   estimatedSponsorMap: {},
   showEstimatedSponsors: false,
 };
+
+function giftMaxSlots(gift) {
+  const n = Number(gift?.slots);
+  return Number.isFinite(n) && n > 0 ? Math.floor(n) : 1;
+}
+
+function giftQty(id) {
+  return Math.max(0, Math.floor(Number(state.qty[id]) || 0));
+}
+
+function tierMaxSlots(tier) {
+  const n = Number(tier?.slots);
+  return Number.isFinite(n) && n > 0 ? Math.floor(n) : 1;
+}
+
+function tierQty(tierMin) {
+  return Math.max(0, Math.floor(Number(state.tierQty[String(tierMin)]) || 0));
+}
+
+function giftLineTotal(gift) {
+  if (isVariableAmountGift(gift)) return state.extraCash || 0;
+  return gift.amount * giftQty(gift.id);
+}
+
+function selectedTierList() {
+  return displaySponsorTiers().filter((t) => tierQty(t.min) > 0);
+}
+
+function slotCounterHtml({ qty, max, decAttr, incAttr, label, disabled }) {
+  const atMin = qty <= 0;
+  const atMax = qty >= max;
+  const dis = disabled ? " disabled" : "";
+  return `<div class="slot-counter${disabled ? " slot-counter--disabled" : ""}" onclick="event.stopPropagation()">
+    <button type="button" class="slot-btn" ${decAttr}${dis}${atMin || disabled ? " disabled" : ""} aria-label="Decrease ${escapeHtml(label)}">−</button>
+    <span class="slot-value" aria-live="polite"><span class="slot-count">${qty}</span><span class="slot-max"> / ${max}</span></span>
+    <button type="button" class="slot-btn" ${incAttr}${dis}${atMax || disabled ? " disabled" : ""} aria-label="Increase ${escapeHtml(label)}">+</button>
+  </div>`;
+}
 
 function currentFestivalEntry() {
   return state.manifest?.festivals?.find((f) => f.id === state.festivalId) ?? null;
@@ -243,8 +284,8 @@ function variableAmountGift() {
 function sumEnabled(categories) {
   if (!state.data) return 0;
   return state.data.gifts
-    .filter((g) => categories.includes(g.category) && state.enabled[g.id])
-    .reduce((s, g) => s + g.amount, 0);
+    .filter((g) => categories.includes(g.category) && giftQty(g.id) > 0)
+    .reduce((s, g) => s + g.amount * giftQty(g.id), 0);
 }
 
 /** Gift amounts covered by estimated 2026 sponsors (estimated-sponsors view only). */
@@ -266,11 +307,13 @@ function getSponsorRules() {
 }
 
 function selectedTierAmount() {
-  return state.selectedTierMin || 0;
+  return selectedTierList().reduce((s, t) => s + t.min * tierQty(t.min), 0);
 }
 
+/** Highest claimed tier (by min), for booth / copy helpers. */
 function selectedTier() {
-  return state.selectedTierMin != null ? findSponsorTier(state.selectedTierMin) : null;
+  const list = selectedTierList().sort((a, b) => b.min - a.min);
+  return list[0] ?? null;
 }
 
 function sponsorTotal() {
@@ -278,7 +321,7 @@ function sponsorTotal() {
 }
 
 function giftsSubtotal() {
-  return selectedGifts().reduce((s, g) => s + g.amount, 0);
+  return selectedGifts().reduce((s, g) => s + giftLineTotal(g), 0);
 }
 
 function cartTotal() {
@@ -292,14 +335,14 @@ function coreGiftName(giftId) {
 
 function boothIncludedByTier() {
   const { boothUnlockThreshold } = getSponsorRules();
-  return state.selectedTierMin != null && state.selectedTierMin >= boothUnlockThreshold;
+  return selectedTierList().some((t) => t.min >= boothUnlockThreshold);
 }
 
 function isOptionUnlocked(gift) {
   const { boothUnlockThreshold } = getSponsorRules();
   if (gift.requiresSponsorThreshold && sponsorTotal() < boothUnlockThreshold) return false;
-  if (gift.requiresBoothSpot && !state.enabled.sponsor_booth) return false;
-  if (gift.requiresCoreGift && !state.enabled[gift.requiresCoreGift]) return false;
+  if (gift.requiresBoothSpot && giftQty("sponsor_booth") <= 0) return false;
+  if (gift.requiresCoreGift && giftQty(gift.requiresCoreGift) <= 0) return false;
   return true;
 }
 
@@ -315,10 +358,10 @@ function unlockNotice(gift) {
       `Requires ${boothTierLabel} sponsorship (${fmt(boothUnlockThreshold)} minimum). Your build: ${fmt(sponsorTotal())}.`,
     );
   }
-  if (gift.requiresBoothSpot && !state.enabled.sponsor_booth) {
+  if (gift.requiresBoothSpot && giftQty("sponsor_booth") <= 0) {
     parts.push("Requires sponsor booth spot — add sponsor booth spot first.");
   }
-  if (gift.requiresCoreGift && !state.enabled[gift.requiresCoreGift]) {
+  if (gift.requiresCoreGift && giftQty(gift.requiresCoreGift) <= 0) {
     parts.push(`Requires ${coreGiftName(gift.requiresCoreGift)} — select it first.`);
   }
   return parts.join(" ");
@@ -507,9 +550,9 @@ function setShowEstimatedSponsors(on) {
 
 function purgeNonSelectable() {
   if (!state.data) return;
-  for (const id of Object.keys(state.enabled)) {
+  for (const id of Object.keys(state.qty)) {
     const gift = state.data.gifts.find((g) => g.id === id);
-    if (gift && !isSelectableGift(gift)) delete state.enabled[id];
+    if (gift && !isSelectableGift(gift)) delete state.qty[id];
   }
 }
 
@@ -517,26 +560,36 @@ function enforceOptionLocks() {
   purgeNonSelectable();
   if (state.data) {
     for (const gift of state.data.gifts) {
-      if (gift.requiresCoreGift && !state.enabled[gift.requiresCoreGift]) {
-        delete state.enabled[gift.id];
+      if (gift.requiresCoreGift && giftQty(gift.requiresCoreGift) <= 0) {
+        delete state.qty[gift.id];
       }
+      const q = giftQty(gift.id);
+      const max = giftMaxSlots(gift);
+      if (q > max) state.qty[gift.id] = max;
+      if (q <= 0) delete state.qty[gift.id];
     }
+  }
+  for (const tier of displaySponsorTiers()) {
+    const q = tierQty(tier.min);
+    const max = tierMaxSlots(tier);
+    if (q > max) state.tierQty[String(tier.min)] = max;
+    if (q <= 0) delete state.tierQty[String(tier.min)];
   }
   const { boothUnlockThreshold } = getSponsorRules();
   if (sponsorTotal() < boothUnlockThreshold) {
     for (const gift of state.data?.gifts ?? []) {
-      if (gift.requiresSponsorThreshold) delete state.enabled[gift.id];
+      if (gift.requiresSponsorThreshold) delete state.qty[gift.id];
     }
   }
   if (boothIncludedByTier()) {
-    state.enabled.sponsor_booth = true;
+    state.qty.sponsor_booth = Math.max(giftQty("sponsor_booth"), 1);
   }
   for (const gift of state.data?.gifts ?? []) {
     if (gift.requiresBoothSpot) {
       const boothGift = state.data.gifts.find(
-        (g) => g.requiresSponsorThreshold && state.enabled[g.id],
+        (g) => g.requiresSponsorThreshold && giftQty(g.id) > 0,
       );
-      if (!boothGift) delete state.enabled[gift.id];
+      if (!boothGift) delete state.qty[gift.id];
     }
   }
 }
@@ -547,11 +600,15 @@ function loadEnabledFromStorage(festivalId, validIds) {
     const raw = localStorage.getItem(enabledStorageKey(festivalId));
     if (!raw) return {};
     const parsed = JSON.parse(raw);
-    const enabled = {};
+    const qty = {};
     for (const id of Object.keys(parsed)) {
-      if (valid.has(id) && parsed[id]) enabled[id] = true;
+      if (!valid.has(id)) continue;
+      const v = parsed[id];
+      // Migrate legacy boolean map → slot counts
+      const n = v === true ? 1 : Math.floor(Number(v) || 0);
+      if (n > 0) qty[id] = n;
     }
-    return enabled;
+    return qty;
   } catch {
     return {};
   }
@@ -584,7 +641,7 @@ function boothGapHint() {
   const giftOnly = sumEnabled(["registry", "core"]);
   const { boothUnlockThreshold, boothTierLabel } = getSponsorRules();
   const hasBoothGift = state.data?.gifts.some(
-    (g) => g.requiresSponsorThreshold && state.enabled[g.id],
+    (g) => g.requiresSponsorThreshold && giftQty(g.id) > 0,
   );
   if (giftOnly > 0 && giftOnly < boothUnlockThreshold && !hasBoothGift) {
     const needed = boothUnlockThreshold - sponsorTotal();
@@ -617,11 +674,12 @@ function persistEnabled() {
   if (!state.festivalId) return;
   try {
     const compact = {};
-    for (const [id, on] of Object.entries(state.enabled)) {
-      if (!on) continue;
+    for (const [id, q] of Object.entries(state.qty)) {
+      const n = Math.floor(Number(q) || 0);
+      if (n <= 0) continue;
       const gift = state.data?.gifts.find((g) => g.id === id);
       if (gift && !isSelectableGift(gift)) continue;
-      compact[id] = true;
+      compact[id] = n;
     }
     localStorage.setItem(enabledStorageKey(state.festivalId), JSON.stringify(compact));
   } catch {
@@ -629,24 +687,35 @@ function persistEnabled() {
   }
 }
 
-function setGiftEnabled(id, checked) {
+function setGiftQty(id, next) {
   if (choicesLockedForEstimate()) return;
   const gift = state.data.gifts.find((g) => g.id === id);
   if (gift && !isSelectableGift(gift)) return;
-  if (gift && !isOptionUnlocked(gift) && checked) return;
-  if (id === "sponsor_booth" && !checked && boothIncludedByTier()) return;
-  if (checked) state.enabled[id] = true;
-  else delete state.enabled[id];
+  let n = Math.max(0, Math.floor(Number(next) || 0));
+  if (gift) n = Math.min(n, giftMaxSlots(gift));
+  if (n > 0 && gift && !isOptionUnlocked(gift)) return;
+  if (id === "sponsor_booth" && n <= 0 && boothIncludedByTier()) return;
+  if (n > 0) state.qty[id] = n;
+  else delete state.qty[id];
   enforceOptionLocks();
   persistEnabled();
   renderAll();
 }
 
+function adjustGiftQty(id, delta) {
+  setGiftQty(id, giftQty(id) + delta);
+}
+
 function persistSelectedTier() {
   if (!state.festivalId) return;
   try {
-    if (state.selectedTierMin != null) {
-      localStorage.setItem(selectedTierStorageKey(state.festivalId), String(state.selectedTierMin));
+    const compact = {};
+    for (const [min, q] of Object.entries(state.tierQty)) {
+      const n = Math.floor(Number(q) || 0);
+      if (n > 0) compact[min] = n;
+    }
+    if (Object.keys(compact).length) {
+      localStorage.setItem(selectedTierStorageKey(state.festivalId), JSON.stringify(compact));
     } else {
       localStorage.removeItem(selectedTierStorageKey(state.festivalId));
     }
@@ -658,29 +727,47 @@ function persistSelectedTier() {
 function loadSelectedTierFromStorage(festivalId) {
   try {
     const raw = localStorage.getItem(selectedTierStorageKey(festivalId));
-    if (raw == null) return null;
-    const n = Math.round(Number(raw));
-    return Number.isFinite(n) && n > 0 ? n : null;
+    if (raw == null) return {};
+    // Legacy: bare number meant one selected tier min
+    if (/^\d+$/.test(raw.trim())) {
+      const min = Math.round(Number(raw));
+      return Number.isFinite(min) && min > 0 ? { [String(min)]: 1 } : {};
+    }
+    const parsed = JSON.parse(raw);
+    const out = {};
+    for (const [min, v] of Object.entries(parsed)) {
+      const n = v === true ? 1 : Math.floor(Number(v) || 0);
+      if (n > 0) out[String(min)] = n;
+    }
+    return out;
   } catch {
-    return null;
+    return {};
   }
 }
 
-function setSelectedTier(tierMin, checked) {
+function setTierQty(tierMin, next) {
   if (choicesLockedForEstimate()) return;
-  if (checked) state.selectedTierMin = tierMin;
-  else if (state.selectedTierMin === tierMin) state.selectedTierMin = null;
+  const tier = findSponsorTier(tierMin);
+  if (!tier) return;
+  let n = Math.max(0, Math.floor(Number(next) || 0));
+  n = Math.min(n, tierMaxSlots(tier));
+  if (n > 0) state.tierQty[String(tierMin)] = n;
+  else delete state.tierQty[String(tierMin)];
   enforceOptionLocks();
   persistSelectedTier();
   persistEnabled();
   renderAll();
 }
 
+function adjustTierQty(tierMin, delta) {
+  setTierQty(tierMin, tierQty(tierMin) + delta);
+}
+
 function clearSelections() {
   if (choicesLockedForEstimate()) return;
-  state.enabled = {};
+  state.qty = {};
+  state.tierQty = {};
   state.extraCash = 0;
-  state.selectedTierMin = null;
   persistEnabled();
   persistExtraCash();
   persistSelectedTier();
@@ -697,17 +784,22 @@ function giftAmountLabel(gift) {
     return `${boothTierLabel} · ${fmt(boothUnlockThreshold)}+${suffix}`;
   }
   if (gift.amount === 0) return "Included";
+  const q = giftQty(gift.id);
+  const max = giftMaxSlots(gift);
+  if (q > 1) return `${fmt(gift.amount)} × ${q}`;
+  if (max > 1) return `${fmt(gift.amount)} / slot`;
   return fmt(gift.amount);
 }
 
 function selectedGifts() {
   if (!state.data) return [];
-  return state.data.gifts.filter((g) => state.enabled[g.id] && isSelectableGift(g));
+  return state.data.gifts.filter((g) => giftQty(g.id) > 0 && isSelectableGift(g));
 }
 
 function renderCartBadge() {
-  const n =
-    selectedGifts().length + (state.extraCash > 0 ? 1 : 0) + (state.selectedTierMin ? 1 : 0);
+  const giftSlots = selectedGifts().reduce((s, g) => s + giftQty(g.id), 0);
+  const tierSlots = selectedTierList().reduce((s, t) => s + tierQty(t.min), 0);
+  const n = giftSlots + tierSlots + (state.extraCash > 0 ? 1 : 0);
   const badge = document.getElementById("cart-count");
   badge.textContent = String(n);
   badge.hidden = n === 0;
@@ -715,39 +807,44 @@ function renderCartBadge() {
 
 function renderCartModal() {
   const selected = selectedGifts();
-  const tier = selectedTier();
+  const tiers = selectedTierList();
   document.getElementById("cart-total").textContent = fmt(cartTotal());
   document.getElementById("cart-clear").disabled =
-    selected.length === 0 && !state.extraCash && !tier;
+    selected.length === 0 && !state.extraCash && !tiers.length;
 
   const listEl = document.getElementById("cart-selection-list");
   const extraGift = variableAmountGift();
-  if (!selected.length && !state.extraCash && !tier) {
+  if (!selected.length && !state.extraCash && !tiers.length) {
     listEl.innerHTML =
-      `<p class="hint">No features selected yet. Toggle cards to build your sponsorship package.</p>`;
+      `<p class="hint">No features selected yet. Use the slot counters to build your sponsorship package.</p>`;
   } else {
-    const tierRow = tier
-      ? `<li><span>${escapeHtml(tier.label)}</span><span>${tierAmountLabel(tier)}</span></li>`
-      : "";
+    const tierRows = tiers
+      .map((t) => {
+        const q = tierQty(t.min);
+        const label = q > 1 ? `${escapeHtml(t.label)} × ${q}` : escapeHtml(t.label);
+        return `<li><span>${label}</span><span>${fmt(t.min * q)}</span></li>`;
+      })
+      .join("");
     const rows = selected
-      .map(
-        (g) =>
-          `<li><span>${giftLabel(g)}</span><span>${giftAmountLabel(g)}</span></li>`,
-      )
+      .map((g) => {
+        const q = giftQty(g.id);
+        const name = q > 1 ? `${giftLabel(g)} × ${q}` : giftLabel(g);
+        return `<li><span>${name}</span><span>${fmt(giftLineTotal(g))}</span></li>`;
+      })
       .join("");
     const extraRow =
       state.extraCash > 0 && extraGift
         ? `<li><span>${giftLabel(extraGift)}</span><span>${fmt(state.extraCash)}</span></li>`
         : "";
-    listEl.innerHTML = `<ul class="cart-list">${tierRow}${rows}${extraRow}</ul>`;
+    listEl.innerHTML = `<ul class="cart-list">${tierRows}${rows}${extraRow}</ul>`;
   }
 
   const withBenefits = selected.filter((g) => giftBenefits(g).length);
-  const tierBenefitsList = tier ? tierBenefits(tier) : [];
+  const tierBenefitsBlocks = tiers.filter((t) => tierBenefits(t).length);
   const global = globalPerkLines();
   const perksEl = document.getElementById("cart-perks");
 
-  if (!global.length && !withBenefits.length && !tierBenefitsList.length) {
+  if (!global.length && !withBenefits.length && !tierBenefitsBlocks.length) {
     perksEl.innerHTML = `<p class="hint">Select features to see sponsor perks.</p>`;
     return;
   }
@@ -761,12 +858,14 @@ function renderCartModal() {
       </div>`
     : "";
 
-  const tierHtml = tierBenefitsList.length
-    ? `<div class="cart-perk-group">
-        <h4>${escapeHtml(tier.label)}</h4>
-        <ul>${tierBenefitsList.map((b) => `<li>${escapeHtml(b)}</li>`).join("")}</ul>
-      </div>`
-    : "";
+  const tierHtml = tierBenefitsBlocks
+    .map(
+      (t) => `<div class="cart-perk-group">
+        <h4>${escapeHtml(t.label)}${tierQty(t.min) > 1 ? ` × ${tierQty(t.min)}` : ""}</h4>
+        <ul>${tierBenefits(t).map((b) => `<li>${escapeHtml(b)}</li>`).join("")}</ul>
+      </div>`,
+    )
+    .join("");
 
   const giftHtml = withBenefits.length
     ? `<div class="cart-perk-groups">
@@ -776,7 +875,7 @@ function renderCartModal() {
           .map(
             (g) => `
         <div class="cart-perk-group">
-          <h4>${giftLabel(g)}</h4>
+          <h4>${giftLabel(g)}${giftQty(g.id) > 1 ? ` × ${giftQty(g.id)}` : ""}</h4>
           <ul>${giftBenefits(g)
             .map((b) => `<li>${b}</li>`)
             .join("")}</ul>
@@ -845,6 +944,10 @@ function displaySponsorTiers() {
 }
 
 function tierAmountLabel(tier) {
+  const q = tierQty(tier.min);
+  const max = tierMaxSlots(tier);
+  if (q > 1) return `${fmt(tier.min)} × ${q}`;
+  if (max > 1) return `${fmt(tier.min)} / slot`;
   return fmt(tier.min);
 }
 
@@ -862,7 +965,8 @@ function renderTierModalContent(tierMin) {
   const tier = findSponsorTier(tierMin);
   if (!tier) return;
 
-  const on = state.selectedTierMin === tier.min;
+  const q = tierQty(tier.min);
+  const max = tierMaxSlots(tier);
   const benefits = tierBenefits(tier);
   const lockChoices = choicesLockedForEstimate();
 
@@ -874,17 +978,23 @@ function renderTierModalContent(tierMin) {
 
   const toggleWrap = document.getElementById("modal-toggle-wrap");
   toggleWrap.hidden = false;
-  const toggle = document.getElementById("modal-toggle");
-  toggle.checked = on;
-  toggle.disabled = lockChoices;
-  toggle.onchange = () => {
-    if (choicesLockedForEstimate()) {
-      toggle.checked = state.selectedTierMin === tier.min;
-      return;
-    }
-    setSelectedTier(tier.min, toggle.checked);
-    toggle.checked = state.selectedTierMin === tier.min;
-  };
+  toggleWrap.className = "slot-counter-wrap";
+  toggleWrap.innerHTML = slotCounterHtml({
+    qty: q,
+    max,
+    decAttr: `data-modal-tier-dec="${tier.min}"`,
+    incAttr: `data-modal-tier-inc="${tier.min}"`,
+    label: tier.label,
+    disabled: lockChoices,
+  });
+  toggleWrap.querySelector("[data-modal-tier-dec]")?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    adjustTierQty(tier.min, -1);
+  });
+  toggleWrap.querySelector("[data-modal-tier-inc]")?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    adjustTierQty(tier.min, 1);
+  });
 
   document.getElementById("modal-guest").innerHTML = `
     ${tier.tagline ? `<p class="modal-tagline">${escapeHtml(tier.tagline)}</p>` : ""}
@@ -914,15 +1024,24 @@ function bindTierGrid() {
   const el = document.getElementById("tiers-grid");
   if (!el) return;
 
-  el.querySelectorAll("[data-tier-toggle]").forEach((input) => {
-    input.onchange = () => setSelectedTier(Number(input.dataset.tierToggle), input.checked);
+  el.querySelectorAll("[data-tier-dec]").forEach((btn) => {
+    btn.onclick = (e) => {
+      e.stopPropagation();
+      adjustTierQty(Number(btn.dataset.tierDec), -1);
+    };
+  });
+  el.querySelectorAll("[data-tier-inc]").forEach((btn) => {
+    btn.onclick = (e) => {
+      e.stopPropagation();
+      adjustTierQty(Number(btn.dataset.tierInc), 1);
+    };
   });
 
   el.querySelectorAll(".gift-card").forEach((card) => {
     const tierMin = Number(card.dataset.tierMin);
     const open = () => openTierModal(tierMin);
     card.onclick = (e) => {
-      if (e.target.closest("[data-tier-toggle]")) return;
+      if (e.target.closest(".slot-counter")) return;
       open();
     };
     card.onkeydown = (e) => {
@@ -948,16 +1067,23 @@ function renderSponsorTiers() {
 
   grid.innerHTML = tiers
     .map((tier) => {
-      const on = state.selectedTierMin === tier.min;
+      const q = tierQty(tier.min);
+      const max = tierMaxSlots(tier);
+      const on = q > 0;
       return `<article class="gift-card gift-card--tier${on ? " enabled" : ""}" data-tier-min="${tier.min}" tabindex="0">
       <div class="gift-card-head">
         <div>
           <h3>${escapeHtml(tier.label)}</h3>
           <div class="gift-amount">${tierAmountLabel(tier)}</div>
         </div>
-        <label class="toggle-wrap${lockChoices ? " toggle-wrap--disabled" : ""}" onclick="event.stopPropagation()">
-          <input type="checkbox" data-tier-toggle="${tier.min}"${on ? " checked" : ""}${lockChoices ? " disabled" : ""} aria-label="Select ${escapeHtml(tier.label)} tier" />
-        </label>
+        ${slotCounterHtml({
+          qty: q,
+          max,
+          decAttr: `data-tier-dec="${tier.min}"`,
+          incAttr: `data-tier-inc="${tier.min}"`,
+          label: tier.label,
+          disabled: lockChoices,
+        })}
       </div>
       ${tier.tagline ? `<p class="gift-tagline">${escapeHtml(tier.tagline)}</p>` : ""}
     </article>`;
@@ -1142,7 +1268,9 @@ function variableAmountCardHtml(gift) {
 function giftCardHtml(gift) {
   if (isVariableAmountGift(gift)) return variableAmountCardHtml(gift);
   const selectable = isSelectableGift(gift);
-  const on = selectable && !!state.enabled[gift.id];
+  const q = selectable ? giftQty(gift.id) : 0;
+  const max = giftMaxSlots(gift);
+  const on = selectable && q > 0;
   const unlocked = isOptionUnlocked(gift);
   const lockChoices = choicesLockedForEstimate();
   const includedByTier = gift.id === "sponsor_booth" && boothIncludedByTier();
@@ -1156,9 +1284,14 @@ function giftCardHtml(gift) {
         </div>
         ${
           selectable
-            ? `<label class="toggle-wrap${toggleLocked ? " toggle-wrap--disabled" : ""}" onclick="event.stopPropagation()">
-          <input type="checkbox" data-toggle="${gift.id}"${on ? " checked" : ""}${toggleLocked ? " disabled" : ""} aria-label="Fund ${gift.name}" />
-        </label>`
+            ? slotCounterHtml({
+                qty: q,
+                max,
+                decAttr: `data-gift-dec="${gift.id}"`,
+                incAttr: `data-gift-inc="${gift.id}"`,
+                label: gift.name,
+                disabled: toggleLocked,
+              })
             : ""
         }
       </div>
@@ -1203,7 +1336,7 @@ function bindGiftGrid(containerId, category) {
     const id = card.dataset.id;
     const open = () => openModal(id);
     card.onclick = (e) => {
-      if (e.target.closest("[data-toggle]")) return;
+      if (e.target.closest(".slot-counter")) return;
       open();
     };
     card.onkeydown = (e) => {
@@ -1214,12 +1347,25 @@ function bindGiftGrid(containerId, category) {
     };
   });
 
-  el.querySelectorAll("[data-toggle]").forEach((input) => {
-    input.onchange = () => setGiftEnabled(input.dataset.toggle, input.checked);
+  el.querySelectorAll("[data-gift-dec]").forEach((btn) => {
+    btn.onclick = (e) => {
+      e.stopPropagation();
+      adjustGiftQty(btn.dataset.giftDec, -1);
+    };
+  });
+  el.querySelectorAll("[data-gift-inc]").forEach((btn) => {
+    btn.onclick = (e) => {
+      e.stopPropagation();
+      adjustGiftQty(btn.dataset.giftInc, 1);
+    };
   });
 
   if (category === "secondary") {
     const panel = document.getElementById("secondary-panel");
+    if (panel) panel.hidden = gifts.length === 0;
+  }
+  if (category === "options") {
+    const panel = document.getElementById("options-panel");
     if (panel) panel.hidden = gifts.length === 0;
   }
 }
@@ -1236,22 +1382,32 @@ function renderModalContent(giftId) {
   document.getElementById("modal-title").textContent = giftLabel(gift);
   document.getElementById("modal-amount").textContent = giftAmountLabel(gift);
   const toggleWrap = document.getElementById("modal-toggle-wrap");
-  toggleWrap.hidden = !selectable || variable;
-  const toggle = document.getElementById("modal-toggle");
-  toggle.checked = !!state.enabled[giftId];
-  toggle.disabled = !selectable || !unlocked || choicesLockedForEstimate() || includedByTier;
-  toggle.onchange = () => {
-    if (choicesLockedForEstimate() || includedByTier) {
-      toggle.checked = !!state.enabled[giftId];
-      return;
-    }
-    if (!unlocked) {
-      toggle.checked = false;
-      return;
-    }
-    setGiftEnabled(giftId, toggle.checked);
-    toggle.checked = !!state.enabled[giftId];
-  };
+  const showCounter = selectable && !variable;
+  toggleWrap.hidden = !showCounter;
+  if (showCounter) {
+    const q = giftQty(giftId);
+    const max = giftMaxSlots(gift);
+    const locked = !unlocked || choicesLockedForEstimate() || includedByTier;
+    toggleWrap.className = "slot-counter-wrap";
+    toggleWrap.innerHTML = slotCounterHtml({
+      qty: q,
+      max,
+      decAttr: `data-modal-gift-dec="${giftId}"`,
+      incAttr: `data-modal-gift-inc="${giftId}"`,
+      label: gift.name,
+      disabled: locked,
+    });
+    toggleWrap.querySelector("[data-modal-gift-dec]")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (!unlocked || includedByTier) return;
+      adjustGiftQty(giftId, -1);
+    });
+    toggleWrap.querySelector("[data-modal-gift-inc]")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (!unlocked || includedByTier) return;
+      adjustGiftQty(giftId, 1);
+    });
+  }
 
   const benefits = giftBenefits(gift);
   const gapHint = variable ? boothGapHint() : "";
@@ -1433,13 +1589,13 @@ async function loadFestivalData(festivalId) {
 
   state.festivalId = festivalId;
   state.data = await res.json();
-  state.enabled = loadEnabledFromStorage(festivalId, state.data.gifts.map((g) => g.id));
+  state.qty = loadEnabledFromStorage(festivalId, state.data.gifts.map((g) => g.id));
   state.extraCash = loadExtraCashFromStorage(festivalId);
   state.modalGiftId = null;
   state.modalTierMin = null;
-  state.selectedTierMin = loadSelectedTierFromStorage(festivalId);
-  if (state.selectedTierMin != null && !findSponsorTier(state.selectedTierMin)) {
-    state.selectedTierMin = null;
+  state.tierQty = loadSelectedTierFromStorage(festivalId);
+  for (const min of Object.keys(state.tierQty)) {
+    if (!findSponsorTier(Number(min))) delete state.tierQty[min];
   }
   state.showEstimatedSponsors = loadEstimatedSponsorsToggle(festivalId);
   enforceOptionLocks();

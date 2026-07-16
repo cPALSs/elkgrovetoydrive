@@ -7,10 +7,10 @@
       "registryImpactSort": "desc",
       "cashOffsetLabel": "Celebration ops",
       "sections": {
-        "core": "Celebration hospitality is sponsor-funded. Use the gift registry below to underwrite the evening — dinner, Santa, crafts, entertainment, and more.",
-        "registry": "Named gifts from our sponsorship packet — each card is a slot you can fund. Pick the story you want to own for the 10th annual celebration.",
-        "tiers": "Recognition levels based on your total sponsorship. Tier benefits stack with naming credit on any Fund the Fete gifts you fund.",
-        "options": "Presenting-level sponsorships unlock the strongest logo placement and stage recognition."
+        "core": "The only cash core underwrite is Safe Celebration (security). Everything else — dinner, Santa, crafts, inflatables, print, talent — lives in the gift registry. Without gifts, the evening would be skeletal but safe.",
+        "registry": "Named gifts with slot counts — use the counter on each card to claim up to the maximum slots. This is the substance of the fete.",
+        "tiers": "Sponsorship tiers also have slot counts. Use the counter to claim up to the maximum for Friend through Title. Tier benefits stack with naming credit on any gifts you fund.",
+        "options": "Presenting- and Title-level sponsorships unlock the strongest logo placement and stage recognition."
       }
     }
   ],
