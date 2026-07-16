@@ -42,7 +42,7 @@
   <script src="../site.js"></script>
   <script>
     (async function () {
-      const { initPageShell, loadSiteData, mountFooter, renderAboutSections, renderPosterWall, buildAboutToc, renderDocToc, wrapDocLayout, initDocToc, escapeHtml } =
+      const { initPageShell, loadSiteData, mountFooter, renderAboutSections, buildAboutToc, renderDocToc, wrapDocLayout, initDocToc, escapeHtml } =
         window.ToyDriveSite;
       initPageShell("about");
       try {
@@ -55,7 +55,7 @@
           </section>
           ${wrapDocLayout(
             renderDocToc(buildAboutToc(about)),
-            `${renderAboutSections(about)}${renderPosterWall(about.posterWall)}`,
+            renderAboutSections(about),
           )}
         `;
         initDocToc();

@@ -6,15 +6,15 @@
   <script src="../../analytics.js"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Elk Grove Toy Drive Celebration media — highlight reels from recent seasons." />
+  <meta name="description" content="Elk Grove Toy Drive Celebration media — highlight reels and past fliers." />
   <link rel="canonical" href="https://elkgrovetoydrive.com/resources/media/" />
   <meta property="og:title" content="Media — Elk Grove Toy Drive Celebration" />
-  <meta property="og:description" content="Elk Grove Toy Drive Celebration media — highlight reels from recent seasons." />
+  <meta property="og:description" content="Elk Grove Toy Drive Celebration media — highlight reels and past fliers." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://elkgrovetoydrive.com/resources/media/" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Media — Elk Grove Toy Drive Celebration" />
-  <meta name="twitter:description" content="Elk Grove Toy Drive Celebration media — highlight reels from recent seasons." />
+  <meta name="twitter:description" content="Elk Grove Toy Drive Celebration media — highlight reels and past fliers." />
 
   <title>Media — Elk Grove Toy Drive Celebration</title>
   <script src="../../clean-urls.js"></script>
@@ -49,6 +49,7 @@
         mountFooter,
         renderMediaPage,
         initMediaPlayers,
+        initDocToc,
         setPageTitle,
         escapeHtml,
       } = window.ToyDriveSite;
@@ -57,6 +58,7 @@
         const site = await loadSiteData();
         setPageTitle(site, "Media");
         document.getElementById("main").innerHTML = renderMediaPage(site.media);
+        initDocToc();
         initMediaPlayers();
         mountFooter(site);
       } catch (err) {
