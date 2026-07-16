@@ -221,20 +221,15 @@
   },
   "footer": {
     "thankYou2026": "Thank you to our Toy Drive sponsors and supporters",
-    "socialLinks": [
-      {
-        "label": "Instagram",
-        "href": "https://www.instagram.com/saccpalss/"
-      },
-      {
-        "label": "Facebook",
-        "href": "https://www.facebook.com/saccpalss"
-      }
-    ],
+    "socialLinks": [],
     "coalitionLinks": [
       {
         "label": "cPALSs",
         "href": "https://www.cpalss.com/"
+      },
+      {
+        "label": "NVCC",
+        "href": "https://www.facebook.com/norcalvietnamesechamber/"
       },
       {
         "label": "2025 archive",
