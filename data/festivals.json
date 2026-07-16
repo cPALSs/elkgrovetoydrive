@@ -2,7 +2,7 @@
   "festivals": [
     {
       "id": "toydrive2026",
-      "label": "Elk Grove Christmas Toy Drive 2026",
+      "label": "Elk Grove Toy Drive Celebration 2026",
       "file": "../data/toydrive-2026.json",
       "registryImpactSort": "desc",
       "cashOffsetLabel": "Celebration ops",

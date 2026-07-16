@@ -1,12 +1,12 @@
 {
   "meta": {
-    "siteName": "Elk Grove Christmas Toy Drive",
-    "titleSuffix": "Elk Grove Toy Drive",
+    "siteName": "Elk Grove Toy Drive Celebration",
+    "titleSuffix": "Elk Grove Toy Drive Celebration",
     "idealistUrl": "https://ideali.st/jkLUEw",
     "idealistNote": "Toy Drive 2026 Volunteer Directors \u2014 published 2026-07-15; long URL + admin in Corporate Administration/data/idealist-listing-template.json (toydrive-2026-directors)"
   },
   "event": {
-    "name": "Elk Grove Christmas Toy Drive",
+    "name": "Elk Grove Toy Drive Celebration",
     "dates": "Mid-December 2026 \u00b7 Sunday afternoon\u2013evening \u00b7 date to be finalized",
     "venue": "District 56, Elk Grove, California",
     "city": "Elk Grove, CA",
@@ -16,7 +16,7 @@
   },
   "hero": {
     "headline": "Help build the 10th Annual Toy Drive",
-    "intro": "The Elk Grove Christmas Toy Drive gathers unwrapped toys for children served by local charities \u2014 and hosts a joyful evening celebration with Santa photos, dinner, crafts, and entertainment. Sponsors fund the fete. Volunteers make the magic.",
+    "intro": "The Elk Grove Toy Drive Celebration gathers unwrapped toys for children served by local charities \u2014 and hosts a joyful evening with Santa photos, dinner, crafts, and entertainment. Sponsors fund the fete. Volunteers make the magic.",
     "subhead": "We're looking for directors \u2014 one owner per piece of the celebration. Pick the lane you want to lead.",
     "body": "We need directors \u2014 people who own an outcome, build a small team, and see it through with chair support. Chairs Vivian and Mamie (cPALSs) back every lane."
   },
@@ -195,12 +195,12 @@
     }
   ],
   "about": {
-    "headline": "About Elk Grove Christmas Toy Drive",
+    "headline": "About Elk Grove Toy Drive Celebration",
     "sections": [
       {
         "title": "The celebration",
         "paragraphs": [
-          "Each December, Community Partners Advocate of Little Saigon Sacramento (cPALSs) hosts the Elk Grove Christmas Toy Drive & Celebration \u2014 a free family evening with Santa photos, dinner, crafts, kids games, entertainment, and the gathering of unwrapped toys for children served by local charities.",
+          "Each December, Community Partners Advocate of Little Saigon Sacramento (cPALSs) hosts the Elk Grove Toy Drive Celebration \u2014 a free family evening with Santa photos, dinner, crafts, kids games, entertainment, and the gathering of unwrapped toys for children served by local charities.",
           "Our goal is simple: no child should be without a toy this Christmas. Last seasons we have delivered 1,000+ toys with community partners. Sponsors fund the hospitality of the evening through Fund the Fete; guests bring unwrapped toys; volunteers make the night run."
         ]
       },

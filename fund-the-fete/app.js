@@ -814,7 +814,7 @@ function renderMeta() {
   if (summaryEl) {
     summaryEl.textContent = [e.venue, e.dates, attendance].filter(Boolean).join(" · ");
   }
-  document.title = `Fund the Fete — ${e.name ?? currentFestivalEntry()?.label ?? "Elk Grove Christmas Toy Drive"}`;
+  document.title = `Fund the Fete — ${e.name ?? currentFestivalEntry()?.label ?? "Elk Grove Toy Drive Celebration"}`;
 }
 
 function renderSectionHints() {
