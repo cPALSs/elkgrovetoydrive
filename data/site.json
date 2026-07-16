@@ -53,20 +53,14 @@
       "Volunteers Director owns shifts; chairs help cover gaps when a lane is still filling."
     ]
   },
-  "productionMeetings": {
-    "title": "Production meetings",
-    "intro": "Stay connected with Toy Drive production \u2014 join the weekly Zoom call.",
-    "zoom": "Weekly Zoom calls are Fridays at 9:00 AM (confirm each season). To join as a guest, email contact@elkgrovetoydrive.com.",
-    "discordLabel": null,
-    "discordHref": null
-  },
+  "productionMeetings": null,
   "coChairs": [
     {
-      "name": "Vivian",
+      "name": "Vivian Vu",
       "title": "Toy Drive Chair (cPALSs)"
     },
     {
-      "name": "Mamie",
+      "name": "Mamie Yee",
       "title": "Toy Drive Chair (cPALSs)"
     }
   ],
@@ -208,7 +202,7 @@
         "title": "Where & who",
         "paragraphs": [
           "The celebration is typically held at District 56 in Elk Grove (Civic Center Drive). Exact Sunday date for 2026 will be announced when the venue hold is confirmed.",
-          "Toy Drive is a project of cPALSs. Questions: contact@elkgrovetoydrive.com (fallback ToyDrive@cPALSs.com)."
+          "Toy Drive is a project of cPALSs. Questions: contact@elkgrovetoydrive.com."
         ]
       }
     ],
