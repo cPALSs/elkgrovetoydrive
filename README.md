@@ -18,7 +18,7 @@ Toy Drive hub — home, team, about, **Fund the Fete**.
 
 ## Content
 
-- **`data/site.json`** — recruitment + about copy (see season Marketing [`Open Leadership Roles`](../../Projects%20-%20Toy%20Drive/2026/Marketing/Open%20Leadership%20Roles%20-%20Recruitment%20Copy.md))
+- **`data/site.json`** — recruitment + about copy (see season Marketing [`Open Leadership Roles`](../../../Programs/Toy%20Drive/2026/Marketing/Open%20Leadership%20Roles%20-%20Recruitment%20Copy.md))
 - **`data/toydrive-2026.json`** — Fund the Fete data (from `build_toydrive_budget.py`)
 - **`data/festivals.json`** — festival manifest for the SPA
 
@@ -49,4 +49,4 @@ git add -A && git commit -m "Update elkgrovetoydrive.com site" && git push
 
 ## Launch
 
-See [`ElkGroveToyDrive Website - Launch Checklist.md`](../../Projects%20-%20Toy%20Drive/2026/Marketing/ElkGroveToyDrive%20Website%20-%20Launch%20Checklist.md).
+See [`ElkGroveToyDrive Website - Launch Checklist.md`](../../../Programs/Toy%20Drive/2026/Marketing/ElkGroveToyDrive%20Website%20-%20Launch%20Checklist.md).

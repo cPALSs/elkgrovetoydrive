@@ -119,23 +119,23 @@
       ]
     },
     {
-      "id": "inflatable_games",
-      "name": "Inflatable Games",
+      "id": "inflatable_carnival_games",
+      "name": "Inflatable Carnival Games",
       "amount": 500,
       "category": "registry",
       "sortOrder": 9,
       "impactOrder": 3,
       "slots": 3,
-      "tagline": "3 slots \u00b7 bounce houses and inflatable play for kids.",
-      "description": "Underwrite inflatable games and bounce-house style play so kids have a big-energy zone at the celebration. Complements Kids Game stations with larger attractions.",
+      "tagline": "3 slots \u00b7 our owned 8-station carnival games \u2014 deploy labor, not a bounce-house rental.",
+      "description": "cPALSs + VACOS already own the Magic Jump\u2013class 8-station inflatable carnival games bundle ([product reference](https://www.magicjump.com/blog/inflatable-carnival-games/)). This gift funds deploy cost only \u2014 trailer, setup/teardown crew, cleaning, and storage amortization \u2014 so kids get a big-energy carnival zone at the celebration. Complements Kids Game stations. Not bounce houses (vendor rental is a separate product if ever funded).",
       "benefits": [
-        "Inflatable zone naming credit",
+        "Inflatable Carnival Games presented by [Sponsor]",
         "Name on website sponsor roll",
         "MC thank-you"
       ],
       "lineItems": [
         {
-          "label": "Inflatable / bounce attraction (per slot)",
+          "label": "Deploy cost share \u2014 trailer, crew, cleaning, storage amortization (per slot)",
           "amount": 500
         }
       ]
