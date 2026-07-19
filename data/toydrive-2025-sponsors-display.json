@@ -4,8 +4,8 @@
   "sourceTab": "Roster",
   "tierOrder": [
     "Sponsors",
-    "In-Kind Donations",
-    "Donors",
+    "Raffle Items Sponsors",
+    "In-Kind Donation (Food)",
     "Other Supporters",
     "Volunteers"
   ],
@@ -122,124 +122,124 @@
     },
     {
       "name": "Hinoka Sushi",
-      "tier": "In-Kind Donations",
+      "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null,
       "caption": "Chef Joey"
     },
     {
       "name": "Huong Lan Sandwiches",
-      "tier": "In-Kind Donations",
+      "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null,
       "caption": "Vivian Pham"
     },
     {
       "name": "Bon Mua",
-      "tier": "In-Kind Donations",
+      "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null
     },
     {
       "name": "Bodhi Bowl",
-      "tier": "In-Kind Donations",
+      "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null
     },
     {
       "name": "Welco Supermarket",
-      "tier": "In-Kind Donations",
+      "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null,
       "caption": "Alvin Phong & Tommy Phong"
     },
     {
       "name": "Vinh Phat Supermarket",
-      "tier": "In-Kind Donations",
+      "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null,
       "caption": "Suying Plaskett"
     },
     {
       "name": "Ha Noi Pho",
-      "tier": "In-Kind Donations",
+      "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null
     },
     {
       "name": "Hook & Reel",
-      "tier": "In-Kind Donations",
+      "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null,
       "caption": "Peter Phong & Eric Lee"
     },
     {
       "name": "Chason's Crab Stadium",
-      "tier": "In-Kind Donations",
+      "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null,
       "caption": "Peter Phong & Ronnie Lim"
     },
     {
       "name": "CRC Catering",
-      "tier": "In-Kind Donations",
+      "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null
     },
     {
       "name": "Duc Huong",
-      "tier": "In-Kind Donations",
+      "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null,
       "caption": "Adam Bui"
     },
     {
       "name": "Starbucks",
-      "tier": "In-Kind Donations",
+      "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null,
       "caption": "East Stockton Boulevard"
     },
     {
       "name": "Elk Grove Donuts",
-      "tier": "In-Kind Donations",
+      "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null
     },
     {
       "name": "Famous Pizza - Freeport Blvd",
-      "tier": "In-Kind Donations",
+      "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null
     },
     {
       "name": "House of Flavor",
-      "tier": "In-Kind Donations",
+      "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null
     },
     {
       "name": "New Happy Garden Seafood Restaurant",
-      "tier": "In-Kind Donations",
+      "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null
     },
     {
       "name": "Pho Xe Lua",
-      "tier": "In-Kind Donations",
+      "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null,
       "caption": "Tina Nguyen"
     },
     {
       "name": "Lollibowl",
-      "tier": "In-Kind Donations",
+      "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null
     },
     {
       "name": "Phoong Law",
-      "tier": "Donors",
+      "tier": "Raffle Items Sponsors",
       "url": null,
       "logo": null,
       "caption": "Anh Phoong"
