@@ -88,13 +88,6 @@
       "logo": null
     },
     {
-      "name": "Invictus Life & Legacy",
-      "tier": "Sponsors",
-      "url": null,
-      "logo": null,
-      "caption": "Emma Hou & Andy Van Hoang"
-    },
-    {
       "name": "Sidney Le Beauty",
       "tier": "Sponsors",
       "url": null,
@@ -119,6 +112,20 @@
       "url": null,
       "logo": null,
       "caption": "Ivan Barrero"
+    },
+    {
+      "name": "Invictus Life & Legacy",
+      "tier": "Raffle Items Sponsors",
+      "url": null,
+      "logo": null,
+      "caption": "Emma Hou & Andy Van Hoang"
+    },
+    {
+      "name": "Phoong Law",
+      "tier": "Raffle Items Sponsors",
+      "url": null,
+      "logo": null,
+      "caption": "Anh Phoong"
     },
     {
       "name": "Hinoka Sushi",
@@ -236,13 +243,6 @@
       "tier": "In-Kind Donation (Food)",
       "url": null,
       "logo": null
-    },
-    {
-      "name": "Phoong Law",
-      "tier": "Raffle Items Sponsors",
-      "url": null,
-      "logo": null,
-      "caption": "Anh Phoong"
     },
     {
       "name": "Good Karma Inc",
