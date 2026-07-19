@@ -119,6 +119,7 @@
     return [
       { id: "home", label: "Home", href: "/" },
       { id: "about", label: "About", href: "/about/" },
+      { id: "charities", label: "Charities", href: "/charities/" },
       { id: "team", label: "Team", href: "/team/" },
       {
         id: "production",
@@ -133,7 +134,7 @@
         label: "Resources",
         href: "/resources/",
         children: [
-          { id: "sponsors", label: "Sponsors", href: "/sponsors/" },
+          { id: "sponsors", label: "Sponsors & Supporters", href: "/sponsors/" },
           { id: "media", label: "Media", href: "/resources/media/" },
           { id: "archive2025", label: "2025 archive", href: "https://toydrive.cpalss.com/", external: true },
         ],
@@ -641,6 +642,55 @@
       <div class="resource-card-grid">${cards}</div>`;
   }
 
+  function renderCharitiesPage(charities) {
+    const partners = charities?.partners ?? [];
+    const become = charities?.becomeRecipient ?? {};
+    const mailto =
+      become.email &&
+      `mailto:${become.email}?subject=${encodeURIComponent(become.emailSubject ?? "Toy Drive recipient charity interest")}`;
+    const tocItems = [
+      { id: "partners", label: charities?.seasonLabel ?? "Partners" },
+      ...(mailto ? [{ id: "become-a-recipient", label: "Become a recipient" }] : []),
+    ];
+    const partnerCards = partners
+      .map((partner) => {
+        const label = partner.displayUrl ?? partner.url ?? partner.name;
+        if (partner.url) {
+          return `<a class="charity-card" href="${escapeHtml(partner.url)}" target="_blank" rel="noopener">
+            <span class="charity-card-name">${escapeHtml(partner.name)}</span>
+            <span class="charity-card-url">${escapeHtml(label)}</span>
+          </a>`;
+        }
+        return `<div class="charity-card">
+          <span class="charity-card-name">${escapeHtml(partner.name)}</span>
+        </div>`;
+      })
+      .join("");
+
+    const becomeHtml = mailto
+      ? `<section class="content-section site-doc-section" id="become-a-recipient" data-doc-section>
+          <h2>Become a recipient</h2>
+          <p>${escapeHtml(become.prompt ?? "Interested in becoming a recipient charity?")}</p>
+          <p><a class="btn btn-primary" href="${escapeHtml(mailto)}">${escapeHtml(become.cta ?? "Email us")} →</a></p>
+        </section>`
+      : "";
+
+    const mainHtml = `
+      <section class="content-section site-doc-section" id="partners" data-doc-section>
+        <h2>${escapeHtml(charities?.seasonLabel ?? "Partners")}</h2>
+        ${charities?.seasonNote ? `<p class="muted">${escapeHtml(charities.seasonNote)}</p>` : ""}
+        <div class="charity-grid">${partnerCards || "<p>Partner charities will be listed here.</p>"}</div>
+      </section>
+      ${becomeHtml}`;
+
+    return `
+      <section class="hero">
+        <h1>${escapeHtml(charities?.headline ?? "Local Charities")}</h1>
+        ${charities?.lead ? `<p class="hero-lead">${escapeHtml(charities.lead)}</p>` : ""}
+      </section>
+      ${wrapDocLayout(renderDocToc(tocItems), mainHtml)}`;
+  }
+
   function renderMediaVideoCard(video) {
     const id = String(video.youtubeId ?? "").trim();
     const title = video.title ?? "Festival video";
@@ -835,6 +885,7 @@
     initMediaPlayers,
     renderMediaPage,
     renderResourcesPage,
+    renderCharitiesPage,
     renderSeasonPage,
     renderRoleCard,
     renderTeamPage,

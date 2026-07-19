@@ -11,8 +11,8 @@
     "venue": "District 56, Elk Grove, California",
     "city": "Elk Grove, CA",
     "tagline": "free celebration · unwrapped toys for local charities",
-    "hosts": "cPALSs",
-    "attendanceNote": "Planning baseline ~800 guests at the celebration; mission goal 1,000+ toys"
+    "hosts": "cPALSs · NVCC",
+    "attendanceNote": "Planning baseline ~500 guests (District 56 Main Hall capacity); mission goal 1,000+ toys. 2025 Eventbrite ~1,077 registered — not door attendance."
   },
   "hero": {
     "headline": "Help build the 10th Annual Toy Drive",
@@ -25,7 +25,7 @@
     "primaryHref": "/team/",
     "buildLabel": "Fund the Fete",
     "buildHref": "/fund-the-fete/",
-    "sponsorsLabel": "2025 sponsors",
+    "sponsorsLabel": "2025 sponsors & supporters",
     "sponsorsHref": "/sponsors/",
     "archiveLabel": "2025 archive",
     "archiveHref": "https://toydrive.cpalss.com/"
@@ -195,7 +195,14 @@
         "title": "The celebration",
         "paragraphs": [
           "Each December, Community Partners Advocate of Little Saigon Sacramento (cPALSs) hosts the Elk Grove Toy Drive Celebration — a free family evening with Santa photos, dinner, crafts, kids games, entertainment, and the gathering of unwrapped toys for children served by local charities.",
-          "Our goal is simple: no child should be without a toy this Christmas. Last seasons we have delivered 1,000+ toys with community partners. Sponsors fund the hospitality of the evening through Fund the Fete; guests bring unwrapped toys; volunteers make the night run."
+          "Our goal is simple: no child should be without a toy this Christmas. Sponsors fund the hospitality of the evening through Fund the Fete; guests bring unwrapped toys; volunteers make the night run."
+        ]
+      },
+      {
+        "title": "Toys for kids",
+        "paragraphs": [
+          "Recent seasons (chair estimates unless noted): about 500 toys in 2023, about 500 in 2024, and about 900 in 2025 (closing report).",
+          "For 2026, our mission goal is 1,000+ toys. Last year’s partner charities are listed under Charities."
         ]
       },
       {
@@ -207,14 +214,58 @@
       }
     ]
   },
+  "charities": {
+    "headline": "Local Charities",
+    "lead": "We're proud to support local charities to bring smiles to children in our community!",
+    "seasonLabel": "2025 partners",
+    "seasonNote": "Toys collected at the celebration go to partner charities that serve children in our region. 2026 recipients will be confirmed closer to the event.",
+    "partners": [
+      {
+        "name": "xHope",
+        "url": "https://xhopemissions.org/",
+        "displayUrl": "xHopeMissions.org"
+      },
+      {
+        "name": "Dr. Sun Yat-sen Chinese School",
+        "url": "https://www.sacramentoindochinese.org/",
+        "displayUrl": "SacramentoIndochinese.org"
+      },
+      {
+        "name": "Marayah Care Foundation",
+        "url": "https://marayahcaresfoundation.com/",
+        "displayUrl": "MarayahCaresFoundation.com"
+      },
+      {
+        "name": "Cosumnes Fire Department",
+        "url": "https://cosumnescsd.gov/",
+        "displayUrl": "CosumnesCSD.gov"
+      },
+      {
+        "name": "Lac Hong Vietnamese School",
+        "url": "https://lachongcenter.org/",
+        "displayUrl": "LacHongCenter.org"
+      }
+    ],
+    "becomeRecipient": {
+      "prompt": "Interested in becoming a recipient charity?",
+      "cta": "Email us",
+      "email": "contact@elkgrovetoydrive.com",
+      "emailSubject": "Toy Drive recipient charity interest"
+    }
+  },
   "resources": {
     "headline": "Resources",
-    "lead": "Past sponsors, celebration media, and the 2025 archive site.",
+    "lead": "Past sponsors, charity partners, celebration media, and the 2025 archive site.",
     "links": [
       {
-        "title": "Sponsors",
-        "body": "Thank you to our 2025 Toy Drive sponsors and donors.",
+        "title": "Sponsors & Supporters",
+        "body": "Thank you to our 2025 sponsors, donors, in-kind partners, and volunteers.",
         "href": "/sponsors/"
+      },
+      {
+        "title": "Charities",
+        "body": "2025 partner charities that received toys for children in our community.",
+        "href": "/charities/"
       },
       {
         "title": "Media",
@@ -223,7 +274,7 @@
       },
       {
         "title": "2025 archive",
-        "body": "Previous season site — charities, tickets, and event pages from 2025.",
+        "body": "Previous season site — tickets, raffles, and event pages from 2025.",
         "href": "https://toydrive.cpalss.com/"
       }
     ]

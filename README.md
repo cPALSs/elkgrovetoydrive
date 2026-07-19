@@ -4,7 +4,7 @@
 
 **This folder (`Sites/elkgrovetoydrive`) is the canonical source of truth.** Edit here; push from this git repo when ready.
 
-Toy Drive hub — home, team, about, **Fund the Fete**.
+Toy Drive hub — home, team, about, charities, **Fund the Fete**.
 
 ## Pages
 
@@ -13,6 +13,7 @@ Toy Drive hub — home, team, about, **Fund the Fete**.
 | `/` | `index.html` |
 | `/team/` | Director recruitment (from `data/site.json`) |
 | `/about/` | Toy Drive story + cPALSs |
+| `/charities/` | Local charity partners (from `data/site.json`) |
 | `/fund-the-fete/` | Interactive sponsor registry |
 | `/build/` | Redirect → `/fund-the-fete/` |
 

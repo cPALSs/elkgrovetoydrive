@@ -1346,8 +1346,10 @@ body.nav-open {
 
 .sponsor-card {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.4rem;
   min-height: 88px;
   padding: 1rem;
   background: #fff;
@@ -1370,6 +1372,59 @@ body.nav-open {
   max-width: 100%;
   width: auto;
   object-fit: contain;
+}
+
+.sponsor-card-name {
+  line-height: 1.25;
+}
+
+.sponsor-card-caption {
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: color-mix(in srgb, #1a2332 62%, transparent);
+}
+
+.sponsor-card:hover .sponsor-card-caption {
+  color: color-mix(in srgb, var(--accent) 80%, #1a2332);
+}
+
+.charity-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .charity-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+.charity-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.1rem 1.15rem;
+  border: 1px solid color-mix(in srgb, var(--text) 14%, transparent);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+}
+
+.charity-card:hover {
+  border-color: var(--accent);
+}
+
+.charity-card-name {
+  font-weight: 650;
+  font-size: 1.05rem;
+}
+
+.charity-card-url {
+  color: var(--accent);
+  font-size: 0.92rem;
 }
 
 .build-subnav {

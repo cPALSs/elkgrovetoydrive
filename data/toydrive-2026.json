@@ -7,13 +7,13 @@
     "vendorRev100": 0,
     "registryFull": 41850,
     "vendorSlots": 0,
-    "attendance": 800
+    "attendance": 500
   },
   "scenario": {
     "id": "planning",
     "label": "Planning baseline",
     "fillRate": 1.0,
-    "attendance": 800,
+    "attendance": 500,
     "mvpCap": 750,
     "vendorRevenue": 0,
     "headroomOrGap": 750,
