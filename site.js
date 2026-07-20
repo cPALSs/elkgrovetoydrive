@@ -509,6 +509,21 @@
     return window.DocScroll.init();
   }
 
+  function renderToyCountCards(toyCounts) {
+    if (!(toyCounts ?? []).length) return "";
+    const cards = toyCounts
+      .map((row) => {
+        const note = row.note ? `<span class="toy-count-note">${escapeHtml(row.note)}</span>` : "";
+        return `<div class="toy-count-card">
+          <span class="toy-count-year">${escapeHtml(String(row.year))}</span>
+          <span class="toy-count-value">${escapeHtml(String(row.count))}</span>
+          ${note}
+        </div>`;
+      })
+      .join("");
+    return `<div class="toy-count-grid">${cards}</div>`;
+  }
+
   function renderAboutSections(about) {
     const sections = about.sections ?? [];
     if (sections.length) {
@@ -516,10 +531,16 @@
         .map(
           (section) => {
             const id = sectionId(section);
+            const body = [
+              renderToyCountCards(section.toyCounts),
+              ...(section.paragraphs ?? []).map((p) => `<p>${escapeHtml(p)}</p>`),
+            ]
+              .filter(Boolean)
+              .join("");
             return `
       <section class="about-section site-doc-section" id="${escapeHtml(id)}" data-doc-section>
         <h2>${escapeHtml(section.title)}</h2>
-        ${section.paragraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join("")}
+        ${body}
       </section>`;
           },
         )
@@ -655,15 +676,22 @@
     const partnerCards = partners
       .map((partner) => {
         const label = partner.displayUrl ?? partner.url ?? partner.name;
-        if (partner.url) {
-          return `<a class="charity-card" href="${escapeHtml(partner.url)}" target="_blank" rel="noopener">
+        const logo = partner.logo
+          ? `<img class="charity-card-logo" src="${escapeHtml(partner.logo)}" alt="" width="72" height="72" loading="lazy" decoding="async" />`
+          : "";
+        const mission = partner.mission
+          ? `<span class="charity-card-mission">${escapeHtml(partner.mission)}</span>`
+          : "";
+        const body = `<span class="charity-card-logo-slot">${logo}</span>
+          <span class="charity-card-body">
             <span class="charity-card-name">${escapeHtml(partner.name)}</span>
-            <span class="charity-card-url">${escapeHtml(label)}</span>
-          </a>`;
+            ${mission}
+            ${partner.url ? `<span class="charity-card-url">${escapeHtml(label)}</span>` : ""}
+          </span>`;
+        if (partner.url) {
+          return `<a class="charity-card" href="${escapeHtml(partner.url)}" target="_blank" rel="noopener">${body}</a>`;
         }
-        return `<div class="charity-card">
-          <span class="charity-card-name">${escapeHtml(partner.name)}</span>
-        </div>`;
+        return `<div class="charity-card">${body}</div>`;
       })
       .join("");
 

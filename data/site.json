@@ -200,9 +200,14 @@
       },
       {
         "title": "Toys for kids",
+        "toyCounts": [
+          { "year": 2023, "count": "~500 toys" },
+          { "year": 2024, "count": "~500 toys" },
+          { "year": 2025, "count": "~900 toys" },
+          { "year": "2026 goal", "count": "1,000+ toys" }
+        ],
         "paragraphs": [
-          "Recent seasons (chair estimates unless noted): about 500 toys in 2023, about 500 in 2024, and about 900 in 2025 (closing report).",
-          "For 2026, our mission goal is 1,000+ toys. Last year’s partner charities are listed under Charities."
+          "Last year’s partner charities are listed under Charities."
         ]
       },
       {
@@ -223,27 +228,37 @@
       {
         "name": "xHope",
         "url": "https://xhopemissions.org/",
-        "displayUrl": "xHopeMissions.org"
+        "displayUrl": "xHopeMissions.org",
+        "logo": "/charities/logos/xhope.png",
+        "mission": "Empowers vulnerable children and families with hope, love, education, and support — locally (foster and adoptive families, aging-out youth, unsheltered teens, and families in hardship) and through programs in Uganda."
       },
       {
         "name": "Dr. Sun Yat-sen Chinese School",
         "url": "https://www.sacramentoindochinese.org/",
-        "displayUrl": "SacramentoIndochinese.org"
+        "displayUrl": "SacramentoIndochinese.org",
+        "logo": "/charities/logos/scifa.png",
+        "mission": "Part of SCIFA (Sacramento Chinese of Indochina Friendship Association): preserves language and culture for ethnic Chinese families from Vietnam, Cambodia, and Laos, and runs a Chinese school plus community mutual-aid."
       },
       {
         "name": "Marayah Care Foundation",
         "url": "https://marayahcaresfoundation.com/",
-        "displayUrl": "MarayahCaresFoundation.com"
+        "displayUrl": "MarayahCaresFoundation.com",
+        "logo": "/charities/logos/marayah.png",
+        "mission": "Honors Marayah’s memory by helping families facing childhood cancer costs, supporting youth through education and athletics, and protecting neglected or abused animals."
       },
       {
         "name": "Cosumnes Fire Department",
         "url": "https://cosumnescsd.gov/",
-        "displayUrl": "CosumnesCSD.gov"
+        "displayUrl": "CosumnesCSD.gov",
+        "logo": "/charities/logos/cosumnes.png",
+        "mission": "Provides fire protection and emergency medical services for Elk Grove and Galt; also runs community holiday outreach such as the Toy Project and Santa & Sirens toy collections."
       },
       {
         "name": "Lac Hong Vietnamese School",
         "url": "https://lachongcenter.org/",
-        "displayUrl": "LacHongCenter.org"
+        "displayUrl": "LacHongCenter.org",
+        "logo": "/charities/logos/lachong.png",
+        "mission": "Volunteer-run Vietnamese Parent Teacher Association (since 1988) that teaches Vietnamese language and culture to younger generations in the Sacramento area."
       }
     ],
     "becomeRecipient": {

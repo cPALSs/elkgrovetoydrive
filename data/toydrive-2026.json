@@ -144,7 +144,7 @@
     },
     {
       "id": "performance",
-      "name": "Performance",
+      "name": "Holiday Show",
       "amount": 550,
       "category": "registry",
       "sortOrder": 8,
@@ -257,7 +257,7 @@
     },
     {
       "id": "volunteers",
-      "name": "Volunteers",
+      "name": "Volunteer Care",
       "amount": 1500,
       "category": "registry",
       "sortOrder": 3,
