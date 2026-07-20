@@ -39,7 +39,7 @@
       "sortOrder": 0,
       "slots": 1,
       "tagline": "1 slot \u00b7 private security for a packed District 56 evening.",
-      "description": "The only cash core underwrite for the celebration \u2014 day-of private security so families can attend safely (entry points, crowd flow, hall presence). Past seasons ran about $500\u2013$750. Dinner, Santa, crafts, and the rest of the evening are gift-registry stories, not core ops.",
+      "description": "The only cash core underwrite for the celebration \u2014 day-of private security so families can attend safely (entry points, crowd flow, hall presence). Past seasons ran about $500\u2013$750. Dinner, Santa, crafts, and the rest of the evening are gift-registry stories, not core ops. Toys for charities and District 56 venue are separate lanes (toys collected from guests; venue typically in-kind).",
       "benefits": [
         "Safety sponsor recognition on website",
         "Name on website sponsor roll",
@@ -60,11 +60,12 @@
       "sortOrder": 12,
       "impactOrder": 0,
       "slots": 2,
-      "tagline": "2 slots \u00b7 flyers, banners, and print that fill the room and the town.",
-      "description": "Underwrite printing \u2014 celebration flyers, banners, and Champion-style print jobs that invite families and thank sponsors. Recent seasons spent about $150\u2013$280 on print.",
+      "tagline": "2 slots \u00b7 share the print pool \u2014 flyers and banners that fill the room.",
+      "description": "Contribute to the celebration print pool \u2014 flyers, banners, and Champion-style jobs that invite families and thank sponsors. Slot count is a share pool (recent seasons spent about $150\u2013$280 total), not 2\u00d7 full print runs. Logo on printed materials when the design includes a sponsor strip.",
       "benefits": [
         "Print / outreach sponsor recognition",
         "Name on website sponsor roll",
+        "Logo on flyer strip when layout allows",
         "MC thank-you"
       ],
       "lineItems": [
@@ -82,8 +83,8 @@
       "sortOrder": 11,
       "impactOrder": 1,
       "slots": 20,
-      "tagline": "20 slots \u00b7 $100\u2013$250 value \u00b7 in-kind welcome.",
-      "description": "Stock the raffle with gift items families want to win. Cash underwrites purchase; in-kind donations of new items are welcome (email contact@elkgrovetoydrive.com).",
+      "tagline": "20 slots \u00b7 $100 cash underwrite \u00b7 in-kind prizes about $100\u2013$250 retail welcome.",
+      "description": "Stock the raffle. Cash is $100 per slot (we buy prizes). In-kind donations of new items about $100\u2013$250 retail also count as one Raffle Items gift \u2014 email contact@elkgrovetoydrive.com before dropping off. Do not treat cash and a separately purchased prize as two different products without noting both on the agreement.",
       "benefits": [
         "Raffle sponsor recognition on site signage",
         "Name on website sponsor roll",
@@ -104,10 +105,11 @@
       "sortOrder": 10,
       "impactOrder": 2,
       "slots": 5,
-      "tagline": "5 slots \u00b7 game stations with prizes for kids.",
-      "description": "Fund a kids game station \u2014 prizes, staffing support, and materials so every child can play and win something during the celebration.",
+      "tagline": "5 slots \u00b7 share the kids-game pool \u2014 stations with prizes.",
+      "description": "Contribute to kids game stations \u2014 prizes, materials, and staffing support. Multi-slot gifts share one station pool; filling all slots funds the lane fully, not five duplicate builds.",
       "benefits": [
         "Game station naming credit",
+        "Company sign at game display when produced",
         "Name on website sponsor roll",
         "MC thank-you"
       ],
@@ -126,8 +128,8 @@
       "sortOrder": 9,
       "impactOrder": 3,
       "slots": 3,
-      "tagline": "3 slots \u00b7 our owned 8-station carnival games \u2014 deploy labor, not a bounce-house rental.",
-      "description": "cPALSs + VACOS already own the Magic Jump\u2013class 8-station inflatable carnival games bundle ([product reference](https://www.magicjump.com/blog/inflatable-carnival-games/)). This gift funds deploy cost only \u2014 trailer, setup/teardown crew, cleaning, and storage amortization \u2014 so kids get a big-energy carnival zone at the celebration. Complements Kids Game stations. Not bounce houses (vendor rental is a separate product if ever funded).",
+      "tagline": "3 slots \u00b7 share deploy cost for our owned 8-station carnival games.",
+      "description": "cPALSs + VACOS already own the Magic Jump\u2013class 8-station inflatable carnival games bundle ([product reference](https://www.magicjump.com/blog/inflatable-carnival-games/)). This gift funds deploy cost only \u2014 trailer, setup/teardown crew, cleaning, and storage amortization. Complements Kids Game stations. Not bounce houses (vendor rental is a separate product if ever funded).",
       "benefits": [
         "Inflatable Carnival Games presented by [Sponsor]",
         "Name on website sponsor roll",
@@ -148,12 +150,13 @@
       "sortOrder": 8,
       "impactOrder": 4,
       "slots": 6,
-      "tagline": "6 slots \u00b7 live entertainment for the evening.",
-      "description": "Underwrite live performances and stage programming \u2014 magic, dance, music, and other family entertainment that fills the District 56 celebration.",
+      "tagline": "6 slots \u00b7 share the entertainment pool \u2014 magic, music, stage acts.",
+      "description": "Contribute to live performances and stage programming for the District 56 celebration. Slots share the talent/production pool (e.g. magician and related acts), not six separate full shows.",
       "benefits": [
         "Performance sponsor recognition",
         "Name on website sponsor roll",
-        "MC thank-you"
+        "MC thank-you during performance block",
+        "Logo in sponsor video loop when produced"
       ],
       "lineItems": [
         {
@@ -170,8 +173,8 @@
       "sortOrder": 7,
       "impactOrder": 5,
       "slots": 1,
-      "tagline": "1 slot \u00b7 sweet station for guests.",
-      "description": "Fund the chocolate / sweet bar hospitality station for families throughout the celebration.",
+      "tagline": "1 slot \u00b7 sweet / hot-cocoa hospitality station.",
+      "description": "Fund the chocolate / sweet bar (or hot-cocoa) hospitality station for families throughout the celebration.",
       "benefits": [
         "Chocolate bar naming credit",
         "Name on website sponsor roll",
@@ -192,10 +195,11 @@
       "sortOrder": 6,
       "impactOrder": 6,
       "slots": 12,
-      "tagline": "12 slots \u00b7 hands-on crafts for kids.",
-      "description": "Supply arts-and-crafts tables \u2014 materials, volunteers support, and take-home activities kids create during the fete.",
+      "tagline": "12 slots \u00b7 share the crafts pool \u2014 make-and-take for kids.",
+      "description": "Contribute to arts-and-crafts tables \u2014 materials and make-and-take activities. Slot count is a share pool for the crafts lane, not twelve independent full builds.",
       "benefits": [
         "Crafts table naming credit",
+        "Company logo on craft table signage when produced",
         "Name on website sponsor roll",
         "MC thank-you"
       ],
@@ -214,10 +218,10 @@
       "sortOrder": 5,
       "impactOrder": 7,
       "slots": 10,
-      "tagline": "10 slots \u00b7 free community dinner for guests.",
-      "description": "Help serve a free dinner for families at the celebration \u2014 cash underwrites catering and service supplies; in-kind food donations (trays from restaurants and community partners) count toward the same Dinner story. Dinner is a signature moment of hospitality for the Elk Grove community.",
+      "tagline": "10 slots \u00b7 share the dinner pool \u2014 cash or restaurant trays.",
+      "description": "Contribute to the free community dinner. Cash slots underwrite catering and service supplies; restaurant trays and other food in-kind count as In-Kind Donation (Food) toward the same Dinner story \u2014 not a separate cash tier. Slot count is a share pool for the meal lane.",
       "benefits": [
-        "Dinner sponsor recognition on menu signage",
+        "Dinner sponsor recognition on menu / serving signage",
         "Name on website sponsor roll",
         "MC thank-you during dinner service"
       ],
@@ -236,12 +240,13 @@
       "sortOrder": 4,
       "impactOrder": 8,
       "slots": 2,
-      "tagline": "2 slots \u00b7 capture the evening for families and partners.",
-      "description": "Fund professional video and photography so families, sponsors, and charities have lasting images from the celebration.",
+      "tagline": "2 slots \u00b7 share media production for the evening.",
+      "description": "Contribute to professional video and photography for families, sponsors, and charities. Paid media vendors are contractors \u2014 not automatically Video & Photographer sponsors unless this gift is funded and deliverables are received.",
       "benefits": [
         "Media sponsor recognition in highlight reel credits",
         "Name on website sponsor roll",
-        "Logo option on select photo backdrops"
+        "Logo option on select photo backdrops",
+        "Logo in sponsor video loop when produced"
       ],
       "lineItems": [
         {
@@ -258,8 +263,8 @@
       "sortOrder": 3,
       "impactOrder": 9,
       "slots": 2,
-      "tagline": "2 slots \u00b7 hospitality for the volunteer corps.",
-      "description": "Support the volunteer team \u2014 meals, shirts, hydration, and appreciation so 50\u201360 day-of volunteers can serve guests and charities well.",
+      "tagline": "2 slots \u00b7 share volunteer hospitality \u2014 meals, shirts, care.",
+      "description": "Support the volunteer corps \u2014 meals, shirts, hydration, and appreciation so about 50\u201360 day-of volunteers can serve guests and charities. Slots share that hospitality pool.",
       "benefits": [
         "Volunteer hospitality naming credit",
         "Name on website sponsor roll",
@@ -281,12 +286,13 @@
       "impactOrder": 10,
       "slots": 1,
       "tagline": "1 slot \u00b7 free professional photos with Santa.",
-      "description": "Underwrite free professional photography with Santa \u2014 a highlight for Christmas cards and family keepsakes. Includes photographer, staging, and Santa hospitality.",
+      "description": "Underwrite the full Santa photo experience \u2014 photographer, staging, and Santa hospitality \u2014 so families get free Christmas-card photos. Paying a photographer alone without Santa/staging is a contractor expense, not this gift.",
       "benefits": [
         "Santa photo station presenting credit",
         "Featured logo on photo backdrop (when available)",
         "Name on website sponsor roll",
-        "MC thank-you"
+        "MC thank-you",
+        "Priority Santa photos for sponsor guests when scheduled"
       ],
       "lineItems": [
         {
@@ -303,8 +309,8 @@
       "sortOrder": 1,
       "impactOrder": 11,
       "slots": 2,
-      "tagline": "2 slots \u00b7 turn District 56 into a winter wonderland.",
-      "description": "Fund immersive Christmas d\u00e9cor \u2014 trees, lighting, themed zones \u2014 so guests feel the holiday spirit the moment they walk in.",
+      "tagline": "2 slots \u00b7 share d\u00e9cor \u2014 turn District 56 into a winter wonderland.",
+      "description": "Contribute to immersive Christmas d\u00e9cor \u2014 trees, lighting, themed zones. Two slots share the d\u00e9cor package; both filled means the lane is fully funded.",
       "benefits": [
         "Decor naming credit on entrance / main hall",
         "Featured logo on website",
@@ -327,9 +333,9 @@
     {
       "label": "Friend",
       "min": 100,
-      "slots": 10,
-      "tagline": "10 slots \u00b7 name on the celebration website",
-      "description": "Entry recognition tier. Claim slots at this level, or reach it through Fund the Fete gifts. Tier benefits stack with naming credit on any gifts you fund.",
+      "claimable": false,
+      "tagline": "Earned from $100 in Fund the Fete gifts \u00b7 name on the celebration website",
+      "description": "Recognition only \u2014 not a separate purchase. Unlocks when your Fund the Fete gift total reaches $100. Pick Raffle Items or other gifts; this badge follows automatically.",
       "benefits": [
         "Name on website sponsor roll",
         "MC thank-you"
@@ -338,9 +344,9 @@
     {
       "label": "Community",
       "min": 750,
-      "slots": 5,
-      "tagline": "5 slots \u00b7 logo + digital shout-out",
-      "description": "Recognition tier for Community-level partners. Claim slots at this level, or reach it through gifts. Tier benefits stack with naming credit on any gifts you fund.",
+      "claimable": false,
+      "tagline": "Earned from $750 in Fund the Fete gifts \u00b7 logo + digital shout-out",
+      "description": "Recognition only \u2014 not a separate purchase. Unlocks when your Fund the Fete gift total reaches $750. Tier benefits stack with naming credit on the gifts you funded.",
       "benefits": [
         "Name on website sponsor roll",
         "Logo on website",
@@ -351,9 +357,9 @@
     {
       "label": "Celebration",
       "min": 1500,
-      "slots": 3,
-      "tagline": "3 slots \u00b7 strong digital recognition",
-      "description": "Recognition tier for Celebration-level partners. Claim slots at this level, or reach it through gifts. Tier benefits stack with naming credit on any gifts you fund.",
+      "claimable": false,
+      "tagline": "Earned from $1,500 in Fund the Fete gifts \u00b7 strong digital recognition",
+      "description": "Recognition only \u2014 not a separate purchase. Unlocks when your Fund the Fete gift total reaches $1,500.",
       "benefits": [
         "Name on website sponsor roll",
         "Logo on website",
@@ -365,29 +371,37 @@
     {
       "label": "Presenting",
       "min": 2500,
-      "slots": 2,
-      "tagline": "2 slots \u00b7 co-presenting partner recognition",
-      "description": "Co-presenting partner recognition. Claim up to 2 Presenting slots. Tier benefits stack with naming credit on any Fund the Fete gifts you fund.",
+      "claimable": false,
+      "tagline": "Earned from $2,500 in Fund the Fete gifts \u00b7 co-presenting partner (2025 package substance restored)",
+      "description": "Recognition only \u2014 not a separate cash tier to buy without gifts. Unlocks when your Fund the Fete gift total reaches $2,500. Benefits restore the 2025 Presenting package: toys for charities, VIP guest registrations, stage presence, and strong logo placement \u2014 fulfilled by the sponsorship benefits executor after payment clears.",
       "benefits": [
-        "Presenting-level website placement",
-        "Featured logo",
+        "Presenting-level website placement and featured logo",
         "Instagram / Facebook feature",
         "Opening MC thank-you",
-        "Mention in email to mailing list"
+        "Mention in email to mailing list",
+        "About 10 unwrapped toys contributed toward charity distribution (purchased or collected under your gift)",
+        "About 10 celebration VIP registrations for your guests when registration is open",
+        "Opportunity to speak on stage when the run-of-show allows",
+        "Priority Santa photos for sponsor guests when scheduled",
+        "Logo in sponsor video loop and on flyer strip when produced"
       ]
     },
     {
       "label": "Title",
       "min": 5000,
-      "slots": 2,
-      "tagline": "2 slots \u00b7 flagship title recognition",
-      "description": "Title-level partner recognition for the celebration. Claim up to 2 Title slots. Tier benefits stack with naming credit on any Fund the Fete gifts you fund.",
+      "claimable": false,
+      "tagline": "Earned from $5,000 in Fund the Fete gifts \u00b7 flagship title (2025 Event Sponsor substance)",
+      "description": "Recognition only \u2014 not a separate cash tier to buy without gifts. Unlocks when your Fund the Fete gift total reaches $5,000. Benefits restore the 2025 Event Sponsor package: larger toy and VIP commitments, retractable banner, and headline recognition \u2014 fulfilled by the sponsorship benefits executor after payment clears.",
       "benefits": [
-        "Title on primary materials",
-        "Hero logo on website",
+        "Title on primary materials and hero logo on website",
         "Headline Instagram / Facebook coverage",
         "Opening and closing MC thank-you",
-        "Speaking opportunity (when scheduled)"
+        "Speaking opportunity when scheduled",
+        "About 20 unwrapped toys contributed toward charity distribution",
+        "About 20 celebration VIP registrations for your guests when registration is open",
+        "Company retractable banner placement when produced",
+        "Website, email, and social marketing including participating-school channels when activated",
+        "Logo in sponsor video loop and on flyer strip when produced"
       ]
     }
   ],

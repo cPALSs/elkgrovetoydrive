@@ -8,9 +8,9 @@
       "cashOffsetLabel": "Celebration ops",
       "sections": {
         "core": "The only cash core underwrite is Safe Celebration (security). Everything else — dinner, Santa, crafts, Inflatable Carnival Games (owned deploy), print, talent — lives in the gift registry. Without gifts, the evening would be skeletal but safe. Bounce houses are a separate vendor rental if ever added.",
-        "registry": "Named gifts with slot counts — use the counter on each card to claim up to the maximum slots. This is the substance of the fete.",
-        "tiers": "Sponsorship tiers also have slot counts. Use the counter to claim up to the maximum for Friend through Title. Tier benefits stack with naming credit on any gifts you fund.",
-        "options": "Presenting- and Title-level sponsorships unlock the strongest logo placement and stage recognition."
+        "registry": "Named gifts with slot counts — use the counter on each card to claim shares of that story’s pool (not duplicate full builds). This is the substance of the fete.",
+        "tiers": "Friend through Title are recognition only — earned when your Fund the Fete gift total reaches each threshold. Not sold as empty slots. Tier benefits stack with naming credit on the gifts you fund.",
+        "options": "Presenting ($2,500+) and Title ($5,000+) restore 2025 package substance — toys, VIP registrations, stage/banner — once your gift total unlocks that level."
       }
     }
   ],

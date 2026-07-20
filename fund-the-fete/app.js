@@ -249,8 +249,20 @@ function tierMaxSlots(tier) {
   return Number.isFinite(n) && n > 0 ? Math.floor(n) : 1;
 }
 
+/** Claimable tiers add $ via slot counters. Earned tiers (claimable: false) unlock from gift total only. */
+function tierIsClaimable(tier) {
+  if (!tier) return false;
+  if (tier.claimable === false) return false;
+  return tierMaxSlots(tier) > 0;
+}
+
 function tierQty(tierMin) {
   return Math.max(0, Math.floor(Number(state.tierQty[String(tierMin)]) || 0));
+}
+
+/** Cash from Fund the Fete gifts (+ extra cash) — excludes claimable recognition tiers. */
+function giftsAndCashTotal() {
+  return sumEnabled(["registry", "core"]) + (state.extraCash || 0);
 }
 
 function giftLineTotal(gift) {
@@ -259,7 +271,24 @@ function giftLineTotal(gift) {
 }
 
 function selectedTierList() {
-  return displaySponsorTiers().filter((t) => tierQty(t.min) > 0);
+  return displaySponsorTiers().filter((t) => tierIsClaimable(t) && tierQty(t.min) > 0);
+}
+
+function earnedSponsorTiers() {
+  const total = giftsAndCashTotal();
+  return displaySponsorTiers().filter((t) => !tierIsClaimable(t) && total >= t.min);
+}
+
+/** Highest earned (non-claimable) recognition level, if any. */
+function highestEarnedTier() {
+  const list = earnedSponsorTiers().sort((a, b) => b.min - a.min);
+  return list[0] ?? null;
+}
+
+function isTierEarned(tier) {
+  if (!tier) return false;
+  if (tierIsClaimable(tier)) return tierQty(tier.min) > 0;
+  return giftsAndCashTotal() >= tier.min;
 }
 
 function slotCounterHtml({ qty, max, decAttr, incAttr, label, disabled }) {
@@ -335,7 +364,8 @@ function coreGiftName(giftId) {
 
 function boothIncludedByTier() {
   const { boothUnlockThreshold } = getSponsorRules();
-  return selectedTierList().some((t) => t.min >= boothUnlockThreshold);
+  if (selectedTierList().some((t) => t.min >= boothUnlockThreshold)) return true;
+  return giftsAndCashTotal() >= boothUnlockThreshold;
 }
 
 function isOptionUnlocked(gift) {
@@ -350,8 +380,8 @@ function unlockNotice(gift) {
   const { boothUnlockThreshold, boothTierLabel } = getSponsorRules();
   const parts = [];
   if (gift.id === "sponsor_booth" && boothIncludedByTier()) {
-    const tier = selectedTier();
-    return `Included with your selected ${tier?.label ?? boothTierLabel} tier.`;
+    const tier = selectedTier() || highestEarnedTier();
+    return `Included with ${tier?.label ?? boothTierLabel}-level recognition (${fmt(boothUnlockThreshold)}+ in gifts).`;
   }
   if (gift.requiresSponsorThreshold && sponsorTotal() < boothUnlockThreshold) {
     parts.push(
@@ -840,7 +870,13 @@ function renderCartModal() {
   }
 
   const withBenefits = selected.filter((g) => giftBenefits(g).length);
-  const tierBenefitsBlocks = tiers.filter((t) => tierBenefits(t).length);
+  const claimedTierBenefits = tiers.filter((t) => tierBenefits(t).length);
+  const earnedTop = highestEarnedTier();
+  const earnedTierBenefits =
+    earnedTop && tierBenefits(earnedTop).length && !tiers.some((t) => t.min === earnedTop.min)
+      ? [earnedTop]
+      : [];
+  const tierBenefitsBlocks = [...claimedTierBenefits, ...earnedTierBenefits];
   const global = globalPerkLines();
   const perksEl = document.getElementById("cart-perks");
 
@@ -853,18 +889,21 @@ function renderCartModal() {
   const globalHtml = global.length
     ? `<div class="cart-global-perks">
         <h4>Global perks</h4>
-        <p class="cart-tier-note">Recognition tier for your build: <strong>${reached.label}</strong> (${fmt(sponsorTotal())})</p>
+        <p class="cart-tier-note">Recognition level for your build: <strong>${reached.label}</strong> (${fmt(sponsorTotal())})</p>
         <ul>${global.map((p) => `<li><span class="cart-global-perk-label">${p.label}</span> — ${p.text}</li>`).join("")}</ul>
       </div>`
     : "";
 
   const tierHtml = tierBenefitsBlocks
-    .map(
-      (t) => `<div class="cart-perk-group">
-        <h4>${escapeHtml(t.label)}${tierQty(t.min) > 1 ? ` × ${tierQty(t.min)}` : ""}</h4>
+    .map((t) => {
+      const claimed = tierIsClaimable(t);
+      const qtyNote = claimed && tierQty(t.min) > 1 ? ` × ${tierQty(t.min)}` : "";
+      const earnedNote = !claimed ? " (earned)" : "";
+      return `<div class="cart-perk-group">
+        <h4>${escapeHtml(t.label)}${qtyNote}${earnedNote}</h4>
         <ul>${tierBenefits(t).map((b) => `<li>${escapeHtml(b)}</li>`).join("")}</ul>
-      </div>`,
-    )
+      </div>`;
+    })
     .join("");
 
   const giftHtml = withBenefits.length
@@ -944,6 +983,7 @@ function displaySponsorTiers() {
 }
 
 function tierAmountLabel(tier) {
+  if (!tierIsClaimable(tier)) return `from ${fmt(tier.min)}`;
   const q = tierQty(tier.min);
   const max = tierMaxSlots(tier);
   if (q > 1) return `${fmt(tier.min)} × ${q}`;
@@ -965,6 +1005,8 @@ function renderTierModalContent(tierMin) {
   const tier = findSponsorTier(tierMin);
   if (!tier) return;
 
+  const claimable = tierIsClaimable(tier);
+  const earned = isTierEarned(tier);
   const q = tierQty(tier.min);
   const max = tierMaxSlots(tier);
   const benefits = tierBenefits(tier);
@@ -977,24 +1019,34 @@ function renderTierModalContent(tierMin) {
   document.getElementById("modal-guest").classList.remove("hidden");
 
   const toggleWrap = document.getElementById("modal-toggle-wrap");
-  toggleWrap.hidden = false;
-  toggleWrap.className = "slot-counter-wrap";
-  toggleWrap.innerHTML = slotCounterHtml({
-    qty: q,
-    max,
-    decAttr: `data-modal-tier-dec="${tier.min}"`,
-    incAttr: `data-modal-tier-inc="${tier.min}"`,
-    label: tier.label,
-    disabled: lockChoices,
-  });
-  toggleWrap.querySelector("[data-modal-tier-dec]")?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    adjustTierQty(tier.min, -1);
-  });
-  toggleWrap.querySelector("[data-modal-tier-inc]")?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    adjustTierQty(tier.min, 1);
-  });
+  if (claimable) {
+    toggleWrap.hidden = false;
+    toggleWrap.className = "slot-counter-wrap";
+    toggleWrap.innerHTML = slotCounterHtml({
+      qty: q,
+      max,
+      decAttr: `data-modal-tier-dec="${tier.min}"`,
+      incAttr: `data-modal-tier-inc="${tier.min}"`,
+      label: tier.label,
+      disabled: lockChoices,
+    });
+    toggleWrap.querySelector("[data-modal-tier-dec]")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      adjustTierQty(tier.min, -1);
+    });
+    toggleWrap.querySelector("[data-modal-tier-inc]")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      adjustTierQty(tier.min, 1);
+    });
+  } else {
+    toggleWrap.hidden = false;
+    toggleWrap.className = "slot-counter-wrap tier-earned-status";
+    toggleWrap.innerHTML = `<p class="tier-earned-note">${
+      earned
+        ? `Earned — your Fund the Fete gifts total ${fmt(giftsAndCashTotal())}.`
+        : `Not for separate purchase. Earn this recognition when your Fund the Fete gifts reach ${fmt(tier.min)} (now ${fmt(giftsAndCashTotal())}).`
+    }</p>`;
+  }
 
   document.getElementById("modal-guest").innerHTML = `
     ${tier.tagline ? `<p class="modal-tagline">${escapeHtml(tier.tagline)}</p>` : ""}
@@ -1067,23 +1119,27 @@ function renderSponsorTiers() {
 
   grid.innerHTML = tiers
     .map((tier) => {
+      const claimable = tierIsClaimable(tier);
+      const earned = isTierEarned(tier);
       const q = tierQty(tier.min);
       const max = tierMaxSlots(tier);
-      const on = q > 0;
-      return `<article class="gift-card gift-card--tier${on ? " enabled" : ""}" data-tier-min="${tier.min}" tabindex="0">
+      const counter = claimable
+        ? slotCounterHtml({
+            qty: q,
+            max,
+            decAttr: `data-tier-dec="${tier.min}"`,
+            incAttr: `data-tier-inc="${tier.min}"`,
+            label: tier.label,
+            disabled: lockChoices,
+          })
+        : `<span class="tier-earned-badge${earned ? " is-earned" : ""}">${earned ? "Earned" : "Earn with gifts"}</span>`;
+      return `<article class="gift-card gift-card--tier${earned ? " enabled" : ""}${claimable ? "" : " gift-card--tier-earned"}" data-tier-min="${tier.min}" tabindex="0">
       <div class="gift-card-head">
         <div>
           <h3>${escapeHtml(tier.label)}</h3>
           <div class="gift-amount">${tierAmountLabel(tier)}</div>
         </div>
-        ${slotCounterHtml({
-          qty: q,
-          max,
-          decAttr: `data-tier-dec="${tier.min}"`,
-          incAttr: `data-tier-inc="${tier.min}"`,
-          label: tier.label,
-          disabled: lockChoices,
-        })}
+        ${counter}
       </div>
       ${tier.tagline ? `<p class="gift-tagline">${escapeHtml(tier.tagline)}</p>` : ""}
     </article>`;

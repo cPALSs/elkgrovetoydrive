@@ -663,6 +663,36 @@ select {
   width: 100%;
 }
 
+.tier-earned-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  border: 1px dashed color-mix(in srgb, var(--text) 35%, transparent);
+  color: color-mix(in srgb, var(--text) 70%, transparent);
+  white-space: nowrap;
+}
+
+.tier-earned-badge.is-earned {
+  border-style: solid;
+  border-color: var(--sponsor-covered-border, rgba(34, 160, 99, 0.45));
+  background: var(--sponsor-covered-bg, rgba(34, 160, 99, 0.12));
+  color: inherit;
+}
+
+.gift-card--tier-earned .gift-card-head {
+  align-items: flex-start;
+}
+
+.tier-earned-note {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
 .gift-sponsor-tags {
   display: flex;
   flex-wrap: wrap;
