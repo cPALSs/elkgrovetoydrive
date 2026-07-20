@@ -333,9 +333,10 @@
     {
       "label": "Friend",
       "min": 100,
-      "claimable": false,
-      "tagline": "Earned from $100 in Fund the Fete gifts \u00b7 name on the celebration website",
-      "description": "Recognition only \u2014 not a separate purchase. Unlocks when your Fund the Fete gift total reaches $100. Pick Raffle Items or other gifts; this badge follows automatically.",
+      "slots": 10,
+      "claimable": true,
+      "tagline": "10 slots \u00b7 $100 \u00b7 recognition when you don\u2019t care which gift to fund",
+      "description": "Lower recognition ladder for sponsors who want website + MC thanks without picking a Fund the Fete story. If you fund gifts totaling $100+, this level is already included \u2014 claim Friend only when you are not naming a gift.",
       "benefits": [
         "Name on website sponsor roll",
         "MC thank-you"
@@ -344,9 +345,10 @@
     {
       "label": "Community",
       "min": 750,
-      "claimable": false,
-      "tagline": "Earned from $750 in Fund the Fete gifts \u00b7 logo + digital shout-out",
-      "description": "Recognition only \u2014 not a separate purchase. Unlocks when your Fund the Fete gift total reaches $750. Tier benefits stack with naming credit on the gifts you funded.",
+      "slots": 5,
+      "claimable": true,
+      "tagline": "5 slots \u00b7 $750 \u00b7 recognition when you don\u2019t care which gift to fund",
+      "description": "Lower recognition ladder for sponsors who want logo + digital shout-out without picking a Fund the Fete story. If you fund gifts totaling $750+, this level is already included \u2014 claim Community only when you are not naming a gift.",
       "benefits": [
         "Name on website sponsor roll",
         "Logo on website",
@@ -357,9 +359,10 @@
     {
       "label": "Celebration",
       "min": 1500,
-      "claimable": false,
-      "tagline": "Earned from $1,500 in Fund the Fete gifts \u00b7 strong digital recognition",
-      "description": "Recognition only \u2014 not a separate purchase. Unlocks when your Fund the Fete gift total reaches $1,500.",
+      "slots": 3,
+      "claimable": true,
+      "tagline": "3 slots \u00b7 $1,500 \u00b7 recognition when you don\u2019t care which gift to fund",
+      "description": "Lower recognition ladder for stronger digital recognition without picking a Fund the Fete story. If you fund gifts totaling $1,500+, this level is already included \u2014 claim Celebration only when you are not naming a gift.",
       "benefits": [
         "Name on website sponsor roll",
         "Logo on website",
@@ -371,9 +374,10 @@
     {
       "label": "Presenting",
       "min": 2500,
-      "claimable": false,
-      "tagline": "Earned from $2,500 in Fund the Fete gifts \u00b7 co-presenting partner (2025 package substance restored)",
-      "description": "Recognition only \u2014 not a separate cash tier to buy without gifts. Unlocks when your Fund the Fete gift total reaches $2,500. Benefits restore the 2025 Presenting package: toys for charities, VIP guest registrations, stage presence, and strong logo placement \u2014 fulfilled by the sponsorship benefits executor after payment clears.",
+      "slots": 2,
+      "claimable": true,
+      "tagline": "2 slots \u00b7 $2,500 \u00b7 traditional co-presenting package (2025 Presenting substance)",
+      "description": "Flagship recognition like 2025 Presenting \u2014 claim as a traditional package, or reach $2,500+ in Fund the Fete gifts. Benefits include toys, VIP registrations, stage presence, and strong logo placement \u2014 fulfilled by the sponsorship benefits executor after payment clears. Gift naming (e.g. Santa Photo) stacks on top when you also fund registry stories.",
       "benefits": [
         "Presenting-level website placement and featured logo",
         "Instagram / Facebook feature",
@@ -389,9 +393,10 @@
     {
       "label": "Title",
       "min": 5000,
-      "claimable": false,
-      "tagline": "Earned from $5,000 in Fund the Fete gifts \u00b7 flagship title (2025 Event Sponsor substance)",
-      "description": "Recognition only \u2014 not a separate cash tier to buy without gifts. Unlocks when your Fund the Fete gift total reaches $5,000. Benefits restore the 2025 Event Sponsor package: larger toy and VIP commitments, retractable banner, and headline recognition \u2014 fulfilled by the sponsorship benefits executor after payment clears.",
+      "slots": 2,
+      "claimable": true,
+      "tagline": "2 slots \u00b7 $5,000 \u00b7 traditional title package (2025 Event Sponsor substance)",
+      "description": "Flagship recognition like 2025 Event Sponsor \u2014 claim as a traditional package, or reach $5,000+ in Fund the Fete gifts. Benefits include larger toy and VIP commitments, retractable banner, and headline recognition \u2014 fulfilled by the sponsorship benefits executor after payment clears. Gift naming stacks when you also fund registry stories.",
       "benefits": [
         "Title on primary materials and hero logo on website",
         "Headline Instagram / Facebook coverage",

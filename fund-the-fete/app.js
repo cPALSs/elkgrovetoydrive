@@ -249,18 +249,27 @@ function tierMaxSlots(tier) {
   return Number.isFinite(n) && n > 0 ? Math.floor(n) : 1;
 }
 
-/** Claimable tiers add $ via slot counters. Earned tiers (claimable: false) unlock from gift total only. */
-function tierIsClaimable(tier) {
+/** True when this tier may be sold via slot counter (not locked to gifts-only). */
+function tierAllowsClaim(tier) {
   if (!tier) return false;
   if (tier.claimable === false) return false;
   return tierMaxSlots(tier) > 0;
+}
+
+/**
+ * Counter is offered when the tier is claimable and gift total has not already unlocked it.
+ * Prevents double-charging Friend–Title when gifts already qualify the sponsor.
+ */
+function tierIsClaimable(tier) {
+  if (!tierAllowsClaim(tier)) return false;
+  return giftsAndCashTotal() < tier.min;
 }
 
 function tierQty(tierMin) {
   return Math.max(0, Math.floor(Number(state.tierQty[String(tierMin)]) || 0));
 }
 
-/** Cash from Fund the Fete gifts (+ extra cash) — excludes claimable recognition tiers. */
+/** Cash from Fund the Fete gifts (+ extra cash) — excludes recognition-tier claims. */
 function giftsAndCashTotal() {
   return sumEnabled(["registry", "core"]) + (state.extraCash || 0);
 }
@@ -271,15 +280,19 @@ function giftLineTotal(gift) {
 }
 
 function selectedTierList() {
-  return displaySponsorTiers().filter((t) => tierIsClaimable(t) && tierQty(t.min) > 0);
+  const giftTotal = giftsAndCashTotal();
+  return displaySponsorTiers().filter(
+    (t) => tierAllowsClaim(t) && tierQty(t.min) > 0 && giftTotal < t.min,
+  );
 }
 
+/** Levels unlocked by gift total alone (no tier claim needed). */
 function earnedSponsorTiers() {
   const total = giftsAndCashTotal();
-  return displaySponsorTiers().filter((t) => !tierIsClaimable(t) && total >= t.min);
+  return displaySponsorTiers().filter((t) => total >= t.min && tierQty(t.min) <= 0);
 }
 
-/** Highest earned (non-claimable) recognition level, if any. */
+/** Highest recognition unlocked by gifts (not separately claimed). */
 function highestEarnedTier() {
   const list = earnedSponsorTiers().sort((a, b) => b.min - a.min);
   return list[0] ?? null;
@@ -287,7 +300,7 @@ function highestEarnedTier() {
 
 function isTierEarned(tier) {
   if (!tier) return false;
-  if (tierIsClaimable(tier)) return tierQty(tier.min) > 0;
+  if (tierQty(tier.min) > 0) return true;
   return giftsAndCashTotal() >= tier.min;
 }
 
@@ -599,11 +612,14 @@ function enforceOptionLocks() {
       if (q <= 0) delete state.qty[gift.id];
     }
   }
+  const giftTotal = giftsAndCashTotal();
   for (const tier of displaySponsorTiers()) {
     const q = tierQty(tier.min);
     const max = tierMaxSlots(tier);
     if (q > max) state.tierQty[String(tier.min)] = max;
     if (q <= 0) delete state.tierQty[String(tier.min)];
+    // Gifts already unlock this recognition — drop a redundant claim so we don't double-charge.
+    if (giftTotal >= tier.min) delete state.tierQty[String(tier.min)];
   }
   const { boothUnlockThreshold } = getSponsorRules();
   if (sponsorTotal() < boothUnlockThreshold) {
@@ -778,7 +794,16 @@ function loadSelectedTierFromStorage(festivalId) {
 function setTierQty(tierMin, next) {
   if (choicesLockedForEstimate()) return;
   const tier = findSponsorTier(tierMin);
-  if (!tier) return;
+  if (!tier || !tierAllowsClaim(tier)) return;
+  // Gifts already unlock this level — don't sell a redundant claim.
+  if (giftsAndCashTotal() >= tier.min) {
+    delete state.tierQty[String(tierMin)];
+    enforceOptionLocks();
+    persistSelectedTier();
+    persistEnabled();
+    renderAll();
+    return;
+  }
   let n = Math.max(0, Math.floor(Number(next) || 0));
   n = Math.min(n, tierMaxSlots(tier));
   if (n > 0) state.tierQty[String(tierMin)] = n;
@@ -1041,10 +1066,13 @@ function renderTierModalContent(tierMin) {
   } else {
     toggleWrap.hidden = false;
     toggleWrap.className = "slot-counter-wrap tier-earned-status";
+    const viaGifts = giftsAndCashTotal() >= tier.min;
     toggleWrap.innerHTML = `<p class="tier-earned-note">${
-      earned
-        ? `Earned — your Fund the Fete gifts total ${fmt(giftsAndCashTotal())}.`
-        : `Not for separate purchase. Earn this recognition when your Fund the Fete gifts reach ${fmt(tier.min)} (now ${fmt(giftsAndCashTotal())}).`
+      viaGifts
+        ? `Included with your Fund the Fete gifts (${fmt(giftsAndCashTotal())}) — no need to claim this level separately.`
+        : tierAllowsClaim(tier)
+          ? `Claim this level for recognition without naming a gift, or earn it by funding ${fmt(tier.min)}+ in gifts (now ${fmt(giftsAndCashTotal())}).`
+          : `Earn this recognition when your Fund the Fete gifts reach ${fmt(tier.min)} (now ${fmt(giftsAndCashTotal())}).`
     }</p>`;
   }
 
@@ -1132,7 +1160,9 @@ function renderSponsorTiers() {
             label: tier.label,
             disabled: lockChoices,
           })
-        : `<span class="tier-earned-badge${earned ? " is-earned" : ""}">${earned ? "Earned" : "Earn with gifts"}</span>`;
+        : `<span class="tier-earned-badge${earned ? " is-earned" : ""}">${
+            giftsAndCashTotal() >= tier.min ? "Included with gifts" : "Earn with gifts"
+          }</span>`;
       return `<article class="gift-card gift-card--tier${earned ? " enabled" : ""}${claimable ? "" : " gift-card--tier-earned"}" data-tier-min="${tier.min}" tabindex="0">
       <div class="gift-card-head">
         <div>
