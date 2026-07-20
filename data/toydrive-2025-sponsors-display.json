@@ -2,39 +2,33 @@
   "eventYear": 2025,
   "source": "https://docs.google.com/spreadsheets/d/1AxU-7Iq8uckK3prCv_dnyo1nmcm8IajiZDT2njcNiME/edit",
   "sourceTab": "Roster",
+  "logosFolder": "https://drive.google.com/drive/folders/1DLO8zs2UkEiGcP700lV0XtjhlzxUg2Re",
   "tierOrder": [
     "Sponsors",
     "Raffle Items Sponsors",
+    "In-Kind Donation (Venue)",
     "In-Kind Donation (Food)",
     "Other Supporters",
     "Volunteers"
   ],
   "sponsors": [
     {
-      "name": "City of Elk Grove",
-      "tier": "Sponsors",
-      "url": null,
-      "logo": null
-    },
-    {
       "name": "American Furniture Galleries",
       "tier": "Sponsors",
       "url": "https://www.americanfurnituregalleries.net/",
-      "logo": "2025/american-furniture-gallery.png",
-      "caption": "Jimmy Phan & Aaron Copeland"
+      "logo": "2025/american-furniture-gallery.png"
     },
     {
       "name": "Sacramento County Supervisor Patrick Kennedy",
       "tier": "Sponsors",
       "url": null,
-      "logo": "2025/sacramento-county.png"
+      "logo": "2025/supervisor-patrick-kennedy.png"
     },
     {
       "name": "SeniorCare Spectrum",
       "tier": "Sponsors",
       "url": null,
-      "logo": "2025/seniorcare-spectrum.svg",
-      "caption": "Frank Sim"
+      "logo": "2025/seniorcare-spectrum.svg"
     },
     {
       "name": "Suying Plaskett",
@@ -46,8 +40,7 @@
       "name": "SDHC Pharmacy",
       "tier": "Sponsors",
       "url": null,
-      "logo": null,
-      "caption": "Mai Nguyen"
+      "logo": "2025/sdhc-pharmacy.png"
     },
     {
       "name": "SF Supermarket - Cali Saigon Mall",
@@ -59,133 +52,129 @@
       "name": "People Supermarket",
       "tier": "Sponsors",
       "url": null,
-      "logo": null,
-      "caption": "Tom Ha"
+      "logo": "2025/people-supermarket.png"
     },
     {
       "name": "Parkwest Casino Lotus",
       "tier": "Sponsors",
       "url": null,
-      "logo": "2025/parkwest-casino-lotus.png",
-      "caption": "Manny Perez & Jinky Dolar"
+      "logo": "2025/parkwest-casino-lotus.png"
     },
     {
       "name": "Sacramento County Supervisor Pat Hume",
       "tier": "Sponsors",
       "url": null,
-      "logo": null
+      "logo": "2025/supervisor-pat-hume.png"
     },
     {
       "name": "Elk Grove City Councilmember Rod Brewer",
       "tier": "Sponsors",
       "url": null,
-      "logo": null
+      "logo": "2025/councilmember-rod-brewer.png"
     },
     {
       "name": "Elk Grove Vice Mayor Darren Suen",
       "tier": "Sponsors",
       "url": null,
-      "logo": null
+      "logo": "2025/vice-mayor-darren-suen.png"
     },
     {
       "name": "Sidney Le Beauty",
       "tier": "Sponsors",
-      "url": null,
-      "logo": null,
-      "caption": "Sidney Le"
+      "url": "https://sidneyle.com/",
+      "logo": "2025/sidney-le-beauty.png"
     },
     {
-      "name": "Katie Kishi Media - Videographer",
+      "name": "Katie Kishi Media",
       "tier": "Sponsors",
       "url": null,
-      "logo": null
+      "logo": "2025/katie-kishi-media.png"
     },
     {
-      "name": "Josh Perry - Videographer & Photographer",
-      "tier": "Sponsors",
-      "url": null,
-      "logo": null
-    },
-    {
-      "name": "Dulcilandia Columbia",
+      "name": "Josh Perry",
       "tier": "Sponsors",
       "url": null,
       "logo": null,
-      "caption": "Ivan Barrero"
+      "caption": "Videographer & Photographer"
+    },
+    {
+      "name": "Dulcilandia",
+      "tier": "Sponsors",
+      "url": null,
+      "logo": "2025/dulciland.png"
     },
     {
       "name": "Invictus Life & Legacy",
       "tier": "Raffle Items Sponsors",
       "url": null,
-      "logo": null,
-      "caption": "Emma Hou & Andy Van Hoang"
+      "logo": "2025/invictus.jpeg"
     },
     {
       "name": "Phoong Law",
       "tier": "Raffle Items Sponsors",
       "url": null,
-      "logo": null,
-      "caption": "Anh Phoong"
+      "logo": "2025/phoong-law.png"
+    },
+    {
+      "name": "City of Elk Grove",
+      "tier": "In-Kind Donation (Venue)",
+      "url": null,
+      "logo": "2025/city-of-elk-grove.svg",
+      "note": "District 56 venue booking fee waived \u2014 large in-kind venue contribution"
     },
     {
       "name": "Hinoka Sushi",
       "tier": "In-Kind Donation (Food)",
       "url": null,
-      "logo": null,
-      "caption": "Chef Joey"
+      "logo": "2025/hinoka-sushi.png"
     },
     {
       "name": "Huong Lan Sandwiches",
       "tier": "In-Kind Donation (Food)",
       "url": null,
-      "logo": null,
-      "caption": "Vivian Pham"
+      "logo": "2025/huong-lan-sandwiches.png"
     },
     {
-      "name": "Bon Mua",
+      "name": "B\u1ed1n M\u00f9a Vietnamese Restaurant",
       "tier": "In-Kind Donation (Food)",
       "url": null,
-      "logo": null
+      "logo": "2025/bon-mua.png"
     },
     {
       "name": "Bodhi Bowl",
       "tier": "In-Kind Donation (Food)",
       "url": null,
-      "logo": null
+      "logo": "2025/bodhi-bowl.png"
     },
     {
       "name": "Welco Supermarket",
       "tier": "In-Kind Donation (Food)",
       "url": null,
-      "logo": null,
-      "caption": "Alvin Phong & Tommy Phong"
+      "logo": "2025/welco-supermarket.png"
     },
     {
       "name": "Vinh Phat Supermarket",
       "tier": "In-Kind Donation (Food)",
       "url": null,
-      "logo": null,
-      "caption": "Suying Plaskett"
+      "logo": "2025/vinh-phat-supermarket.png"
     },
     {
       "name": "Ha Noi Pho",
       "tier": "In-Kind Donation (Food)",
       "url": null,
-      "logo": null
+      "logo": "2025/ha-noi-pho.png"
     },
     {
       "name": "Hook & Reel",
       "tier": "In-Kind Donation (Food)",
       "url": null,
-      "logo": null,
-      "caption": "Peter Phong & Eric Lee"
+      "logo": "2025/hook-and-reel.png"
     },
     {
       "name": "Chason's Crab Stadium",
       "tier": "In-Kind Donation (Food)",
       "url": null,
-      "logo": null,
-      "caption": "Peter Phong & Ronnie Lim"
+      "logo": "2025/chasons-crab-stadium.png"
     },
     {
       "name": "CRC Catering",
@@ -197,33 +186,31 @@
       "name": "Duc Huong",
       "tier": "In-Kind Donation (Food)",
       "url": null,
-      "logo": null,
-      "caption": "Adam Bui"
+      "logo": "2025/duc-huong.png"
     },
     {
       "name": "Starbucks",
       "tier": "In-Kind Donation (Food)",
       "url": null,
-      "logo": null,
-      "caption": "East Stockton Boulevard"
+      "logo": "2025/starbucks.svg"
     },
     {
       "name": "Elk Grove Donuts",
       "tier": "In-Kind Donation (Food)",
       "url": null,
-      "logo": null
+      "logo": "2025/elk-grove-donuts.png"
     },
     {
       "name": "Famous Pizza - Freeport Blvd",
       "tier": "In-Kind Donation (Food)",
       "url": null,
-      "logo": null
+      "logo": "2025/famous-pizza.png"
     },
     {
       "name": "House of Flavor",
       "tier": "In-Kind Donation (Food)",
       "url": null,
-      "logo": null
+      "logo": "2025/house-of-flavor.jpeg"
     },
     {
       "name": "New Happy Garden Seafood Restaurant",
@@ -235,27 +222,25 @@
       "name": "Pho Xe Lua",
       "tier": "In-Kind Donation (Food)",
       "url": null,
-      "logo": null,
-      "caption": "Tina Nguyen"
+      "logo": "2025/pho-xe-lua.png"
     },
     {
       "name": "Lollibowl",
       "tier": "In-Kind Donation (Food)",
       "url": null,
-      "logo": null
+      "logo": "2025/lollibowl.png"
     },
     {
       "name": "Good Karma Inc",
       "tier": "Other Supporters",
       "url": null,
-      "logo": null
+      "logo": "2025/good-karma-inc.png"
     },
     {
       "name": "Mamie's Administrative Service",
       "tier": "Volunteers",
       "url": null,
-      "logo": "2025/mamies-administrative-services.png",
-      "caption": "Mamie Yee"
+      "logo": "2025/mamies-administrative-services.png"
     },
     {
       "name": "Vivian Vu Realtor",
@@ -267,57 +252,49 @@
       "name": "Equity Zone Mortgage",
       "tier": "Volunteers",
       "url": null,
-      "logo": "2025/equity-zone-mortgage.jpg",
-      "caption": "Kevin P. Nguyen"
+      "logo": "2025/equity-zone-mortgage.jpg"
     },
     {
       "name": "Nikki Win Team",
       "tier": "Volunteers",
       "url": null,
-      "logo": "2025/nikki-win.jpg",
-      "caption": "Nikki Nguyen"
+      "logo": "2025/nikki-win.jpg"
     },
     {
       "name": "Miss & Miss Teen Vietnam Northern California",
       "tier": "Volunteers",
       "url": null,
-      "logo": "2025/mv-norcal.jpg",
-      "caption": "Dai Nguyen & Sophia Nguyen"
+      "logo": "2025/mv-norcal.jpg"
     },
     {
       "name": "Lazzarini, Whiteford & Young, LLP",
       "tier": "Volunteers",
       "url": null,
-      "logo": "2025/lw-y.svg",
-      "caption": "Kenrick Young"
+      "logo": "2025/lw-y.svg"
     },
     {
       "name": "Aros",
       "tier": "Volunteers",
       "url": null,
-      "logo": "2025/aros.png",
-      "caption": "Raul Armenta"
+      "logo": "2025/aros.png"
     },
     {
       "name": "Curriculum Vitae Staffing Solutions",
       "tier": "Volunteers",
       "url": null,
-      "logo": "2025/curriculum-vitae-staffing.jpg",
-      "caption": "Ellie King"
+      "logo": "2025/curriculum-vitae-staffing.jpg"
     },
     {
       "name": "TotalCare Property Services",
       "tier": "Volunteers",
       "url": null,
-      "logo": "2025/totalcare-property-services.png",
-      "caption": "Ellie King"
+      "logo": "2025/totalcare-property-services.png"
     },
     {
       "name": "HEART",
       "tier": "Volunteers",
       "url": null,
-      "logo": "2025/heart.jpg",
-      "caption": "Emma King"
+      "logo": "2025/heart.jpg"
     }
   ]
 }
