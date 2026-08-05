@@ -1123,6 +1123,46 @@ body.nav-open {
   line-height: 1.35;
 }
 
+.photo-strip {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 0 0 1.75rem;
+}
+
+@media (min-width: 720px) {
+  .photo-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.photo-strip-item {
+  margin: 0;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.photo-strip-item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: var(--surface);
+}
+
+.photo-strip-item figcaption {
+  padding: 0.55rem 0.75rem 0.7rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.page-wrap--doc > .photo-strip {
+  margin-top: 0.25rem;
+}
+
 @media (min-width: 640px) {
   .poster-grid {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
