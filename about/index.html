@@ -42,7 +42,7 @@
   <script src="../site.js"></script>
   <script>
     (async function () {
-      const { initPageShell, loadSiteData, mountFooter, renderAboutSections, buildAboutToc, renderDocToc, wrapDocLayout, initDocToc, escapeHtml } =
+      const { initPageShell, loadSiteData, mountFooter, renderAboutSections, buildAboutToc, renderDocToc, wrapDocLayout, initDocToc, escapeHtml, renderPhotoStrip } =
         window.ToyDriveSite;
       initPageShell("about");
       try {
@@ -53,6 +53,7 @@
           <section class="hero">
             <h1>${escapeHtml(about.headline)}</h1>
           </section>
+          ${renderPhotoStrip(about.photos, "From the 2025 season")}
           ${wrapDocLayout(
             renderDocToc(buildAboutToc(about)),
             renderAboutSections(about),

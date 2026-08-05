@@ -524,6 +524,30 @@
     return `<div class="toy-count-grid">${cards}</div>`;
   }
 
+  function renderPhotoStrip(photos, ariaLabel) {
+    if (!(photos ?? []).length) return "";
+    const prefix = navPrefix();
+    const figures = photos
+      .map((photo) => {
+        const src = photo.src.startsWith("http")
+          ? photo.src
+          : prefix + photo.src.replace(/^\//, "");
+        const cap = photo.caption
+          ? `<figcaption>${escapeHtml(photo.caption)}</figcaption>`
+          : "";
+        return `
+      <figure class="photo-strip-item">
+        <img src="${escapeHtml(src)}" alt="${escapeHtml(photo.alt ?? "")}" loading="lazy" decoding="async" />
+        ${cap}
+      </figure>`;
+      })
+      .join("");
+    return `
+    <div class="photo-strip" role="group" aria-label="${escapeHtml(ariaLabel ?? "Photos")}">
+      ${figures}
+    </div>`;
+  }
+
   function renderAboutSections(about) {
     const sections = about.sections ?? [];
     if (sections.length) {
@@ -646,13 +670,18 @@
   function renderResourcesPage(resources) {
     const links = resources?.links ?? [];
     const cards = links
-      .map(
-        (link) => `
-      <a class="resource-card" href="${escapeHtml(link.href)}">
+      .map((link) => {
+        const external =
+          link.external === true || /^https?:\/\//i.test(link.href ?? "");
+        const attrs = external
+          ? ` target="_blank" rel="noopener noreferrer"`
+          : "";
+        return `
+      <a class="resource-card" href="${escapeHtml(link.href)}"${attrs}>
         <h2>${escapeHtml(link.title)}</h2>
         ${link.body ? `<p>${escapeHtml(link.body)}</p>` : ""}
-      </a>`,
-      )
+      </a>`;
+      })
       .join("");
 
     return `
@@ -904,6 +933,7 @@
     mountFooter,
     buildAboutToc,
     renderAboutSections,
+    renderPhotoStrip,
     renderPosterWall,
     renderApplyBlock,
     renderCoChairs,

@@ -81,7 +81,7 @@
   <script src="site.js"></script>
   <script>
     (async function () {
-      const { initPageShell, loadSiteData, mountFooter, renderEventSummary, setPageTitle, escapeHtml } = window.ToyDriveSite;
+      const { initPageShell, loadSiteData, mountFooter, renderEventSummary, setPageTitle, escapeHtml, renderPhotoStrip } = window.ToyDriveSite;
       initPageShell("home");
       try {
         const site = await loadSiteData();
@@ -95,6 +95,7 @@
             ${renderEventSummary(site)}
           </section>
           <p class="home-intro">${escapeHtml(h.intro)}</p>
+          ${renderPhotoStrip(h.photos, "From the 2025 celebration")}
           <section class="content-section">
             <h2>${escapeHtml(h.headline)}</h2>
             <p>${escapeHtml(h.subhead)}</p>

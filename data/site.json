@@ -18,7 +18,19 @@
     "headline": "Help build the 10th Annual Toy Drive",
     "intro": "The Elk Grove Toy Drive Celebration gathers unwrapped toys for children served by local charities — and hosts a joyful evening with Santa photos, dinner, crafts, and entertainment. Sponsors fund the fete. Volunteers make the magic.",
     "subhead": "We're looking for directors — one owner per piece of the celebration. Pick the lane you want to lead.",
-    "body": "We need directors — people who own an outcome, build a small team, and see it through with chair support. Chair Vivian Vu (cPALSs) backs every lane."
+    "body": "We need directors — people who own an outcome, build a small team, and see it through with chair support. Chair Vivian Vu (cPALSs) backs every lane.",
+    "photos": [
+      {
+        "src": "assets/photos/2025/celebration-santa-team.jpg",
+        "alt": "Santa with Toy Drive volunteers holding donated toys at the 2025 celebration",
+        "caption": "2025 celebration — Santa station with the volunteer crew"
+      },
+      {
+        "src": "assets/photos/2025/charity-cosumnes-fire.jpg",
+        "alt": "Toy delivery with Cosumnes Fire Station 71 for the 2025 Toy Drive",
+        "caption": "Toys delivered with Cosumnes Fire Station 71"
+      }
+    ]
   },
   "cta": {
     "primaryLabel": "Join the team",
@@ -186,6 +198,18 @@
   ],
   "about": {
     "headline": "About Elk Grove Toy Drive Celebration",
+    "photos": [
+      {
+        "src": "assets/photos/2025/charity-sun-yat-sen.jpg",
+        "alt": "Volunteers with tables of donated toys at Sun Yat-sen Chinese School, 2025 Toy Drive",
+        "caption": "2025 toy handoff — Sun Yat-sen Chinese School"
+      },
+      {
+        "src": "assets/photos/2025/volunteers-appreciation.jpg",
+        "alt": "Toy Drive volunteers and organizers at a 2025 appreciation gathering",
+        "caption": "Volunteer appreciation after the 2025 season"
+      }
+    ],
     "sections": [
       {
         "title": "The celebration",
@@ -266,7 +290,7 @@
   },
   "resources": {
     "headline": "Resources",
-    "lead": "Past sponsors, charity partners, celebration media, and the 2025 archive site.",
+    "lead": "Past sponsors, charity partners, celebration media, guest Santa photos, and the 2025 archive site.",
     "links": [
       {
         "title": "Sponsors & Supporters",
@@ -284,9 +308,16 @@
         "href": "/resources/media/"
       },
       {
+        "title": "2025 Santa Photos",
+        "body": "Guest Santa portraits from the 2025 celebration — look up and download your family’s photos (hosted by Knoxwood Productions).",
+        "href": "https://knoxwood-productions.mypixhome.com/instant-gallery/santa-toy-drive-2025/",
+        "external": true
+      },
+      {
         "title": "2025 archive",
         "body": "Previous season site — tickets, raffles, and event pages from 2025.",
-        "href": "https://toydrive.cpalss.com/"
+        "href": "https://toydrive.cpalss.com/",
+        "external": true
       }
     ]
   },
