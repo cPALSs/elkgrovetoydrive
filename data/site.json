@@ -290,17 +290,12 @@
   },
   "resources": {
     "headline": "Resources",
-    "lead": "Past sponsors, charity partners, celebration media, guest Santa photos, and the 2025 archive site.",
+    "lead": "Past sponsors, celebration media, guest Santa photos, and the 2025 archive site.",
     "links": [
       {
         "title": "Sponsors & Supporters",
         "body": "Thank you to our 2025 sponsors, donors, in-kind partners, and volunteers.",
         "href": "/sponsors/"
-      },
-      {
-        "title": "Charities",
-        "body": "2025 partner charities that received toys for children in our community.",
-        "href": "/charities/"
       },
       {
         "title": "Media",
