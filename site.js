@@ -127,6 +127,7 @@
         href: "/fund-the-fete/",
         children: [
           { id: "build", label: "Fund the Fete", navLabel: "Fund the Fete", href: "/fund-the-fete/" },
+          { id: "rfp", label: "Vendor RFPs", navLabel: "Vendor RFPs", href: "/rfp/" },
         ],
       },
       {
