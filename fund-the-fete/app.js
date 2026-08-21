@@ -22,6 +22,7 @@ function formatMarkdown(text) {
 /** Most important → most optional within each section */
 const GIFT_SORT = {
   festival_foundation: 0,
+  event_foundation: 0,
   festival_stage: 1,
   safe_festival: 2,
   safe_celebration: 2,
