@@ -3,9 +3,9 @@
     "name": "Elk Grove Toy Drive Celebration",
     "venue": "District 56, Elk Grove, California",
     "dates": "Sunday, December 6, 2026 \u00b7 3:30\u20137:30 PM (tentative)",
-    "mvpCap": 4378,
+    "mvpCap": 4400,
     "vendorRev100": 0,
-    "registryFull": 45478,
+    "registryFull": 45500,
     "vendorSlots": 0,
     "attendance": 500
   },
@@ -14,9 +14,9 @@
     "label": "Planning baseline",
     "fillRate": 1.0,
     "attendance": 500,
-    "mvpCap": 4378,
+    "mvpCap": 4400,
     "vendorRevenue": 0,
-    "headroomOrGap": 4378,
+    "headroomOrGap": 4400,
     "vendorSlots": 0,
     "estimatedRevenue": {
       "total": 0,
@@ -34,12 +34,12 @@
     {
       "id": "event_foundation",
       "name": "Event Foundation",
-      "amount": 4378,
+      "amount": 4400,
       "category": "core",
       "sortOrder": 0,
       "slots": 1,
       "tagline": "1 slot \u00b7 venue, City security staffing, and liability insurance to open the celebration.",
-      "description": "Cash core to open District 56 on Dec 6: Main Hall rental, City-invoice security staffing, and Toy Drive\u2019s share of special-events liability insurance (shared with Elk Grove Lunar New Year). Dinner, Santa, crafts, and the rest of the evening are gift-registry stories. Toys for charities are a separate mission lane. The refundable damage deposit is not part of this gift.",
+      "description": "Cash core to open District 56 on Dec 6: Main Hall rental, City-invoice security staffing, and Toy Drive\u2019s share of special-events liability insurance (shared with Elk Grove Lunar New Year; rounded planning figure from attendance weighting). Dinner, Santa, crafts, and the rest of the evening are gift-registry stories. Toys for charities are a separate mission lane. The refundable damage deposit is not part of this gift.",
       "benefits": [
         "Foundation sponsor recognition on website",
         "Name on website sponsor roll",
@@ -55,8 +55,8 @@
           "amount": 750
         },
         {
-          "label": "Special-events CGL \u2014 Toy Drive attendance share",
-          "amount": 328
+          "label": "Special-events CGL \u2014 Toy Drive share (rounded)",
+          "amount": 350
         }
       ]
     },
