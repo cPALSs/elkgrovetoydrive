@@ -713,14 +713,16 @@ body.nav-open {
 }
 
 .site-doc-main > .site-doc-section:first-child {
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 
 @media (min-width: 1100px) {
+  /* TOC gutter only — `gap` also set row-gap, which blew open h1 ↔ lead */
   .page-wrap--doc > .hero:has(+ .site-doc-layout) {
     display: grid;
     grid-template-columns: 200px minmax(0, 1fr);
-    gap: 2.5rem;
+    column-gap: 2.5rem;
+    row-gap: 0;
     align-items: end;
     padding-bottom: 0.75rem;
   }
@@ -728,6 +730,10 @@ body.nav-open {
   .page-wrap--doc > .hero:has(+ .site-doc-layout) > :is(h1, .hero-lead, p, time) {
     grid-column: 2;
     min-width: 0;
+  }
+
+  .page-wrap--doc > .hero:has(+ .site-doc-layout) .hero-lead {
+    margin-bottom: 0;
   }
 
   .site-doc-layout {
