@@ -37,6 +37,8 @@
     "primaryHref": "/team/",
     "buildLabel": "Fund the Fete",
     "buildHref": "/fund-the-fete/",
+    "donateLabel": "Donate",
+    "donateHref": "https://www.zeffy.com/en-US/donation-form/toy-drive-2026-donations",
     "sponsorsLabel": "2025 sponsors & supporters",
     "sponsorsHref": "/sponsors/",
     "archiveLabel": "2025 archive",

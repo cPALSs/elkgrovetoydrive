@@ -72,7 +72,7 @@
       </section>
       <p>Help build the 10th Annual Toy Drive — join as a director or Fund the Fete.</p>
       <section>
-        <p><a href="/team/">Join the team</a> · <a href="/fund-the-fete/">Fund the Fete</a></p>
+        <p><a href="/team/">Join the team</a> · <a href="/fund-the-fete/">Fund the Fete</a> · <a href="https://www.zeffy.com/en-US/donation-form/toy-drive-2026-donations">Donate</a></p>
       </section>
     </div>
   </main>
@@ -110,7 +110,9 @@
             <p>Sponsors underwrite dinner, Santa photos, crafts, entertainment, and more — so guests can focus on bringing unwrapped toys for local charities.</p>
             <div class="cta-row">
               <a class="btn btn-secondary" href="${escapeHtml(c.buildHref)}">${escapeHtml(c.buildLabel)}</a>
+              <a class="btn btn-tertiary" href="${escapeHtml(c.donateHref)}" target="_blank" rel="noopener">${escapeHtml(c.donateLabel)}</a>
             </div>
+            <p class="muted">Small gifts: Zeffy. Check, Zelle, or Venmo: contact@elkgrovetoydrive.com. Sponsor packages stay on Fund the Fete.</p>
           </section>
         `;
         mountFooter(site);
