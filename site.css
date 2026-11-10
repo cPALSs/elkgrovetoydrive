@@ -759,6 +759,10 @@ body.nav-open {
     font-weight: 600;
   }
 
+  .site-doc-toc-label--section {
+    margin: 1.15rem 0 0.75rem;
+  }
+
   .site-doc-toc-link {
     display: block;
     padding: 0.45rem 0 0.45rem 0.65rem;
@@ -1599,7 +1603,8 @@ body.nav-open {
   background: var(--surface-raised, var(--surface));
 }
 
-.resource-card h2 {
+.resource-card h2,
+.resource-card h3 {
   margin: 0 0 0.4rem;
   font-size: 1.15rem;
   color: var(--text);
@@ -1610,6 +1615,30 @@ body.nav-open {
   color: var(--muted);
   font-size: 0.95rem;
   line-height: 1.45;
+}
+
+.site-doc-main .resource-card-grid {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+
+.sponsorship-thank-you {
+  margin: 2.5rem 0 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.sponsorship-thank-you-title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font);
+  font-size: 1.55rem;
+  font-weight: 600;
+}
+
+.sponsorship-thank-you p {
+  margin: 0 0 1.25rem;
+  color: var(--muted);
 }
 
 .media-page-body {

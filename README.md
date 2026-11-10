@@ -4,7 +4,7 @@
 
 **This folder (`Sites/elkgrovetoydrive`) is the canonical source of truth.** Edit here; push from this git repo when ready.
 
-Toy Drive hub — home, team, about, charities, **Fund the Fete**.
+Toy Drive hub — home, team, about, charities, **Fund the Fete**, **Sponsorship**.
 
 ## Pages
 
@@ -15,6 +15,8 @@ Toy Drive hub — home, team, about, charities, **Fund the Fete**.
 | `/about/` | Toy Drive story + cPALSs |
 | `/charities/` | Local charity partners (from `data/site.json`) |
 | `/fund-the-fete/` | Interactive sponsor registry |
+| `/sponsorship/` | Sponsorship — partner pathways (Fund the Fete + packet) + 2025 sponsor recognition |
+| `/sponsors/` | Redirect → `/sponsorship/#thank-you-2025` |
 | `/build/` | Redirect → `/fund-the-fete/` |
 
 ## Content
@@ -33,6 +35,7 @@ python3 -m http.server 8767
 - http://localhost:8767/
 - http://localhost:8767/team/
 - http://localhost:8767/fund-the-fete/
+- http://localhost:8767/sponsorship/
 
 ## Refresh generated data
 

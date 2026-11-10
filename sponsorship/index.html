@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-934PPCQGLJ"></script>
+  <script src="../analytics.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Sponsor Elk Grove Toy Drive Celebration 2026 — Fund the Fete, sponsorship packet, and thank you to our 2025 sponsors &amp; supporters." />
+  <link rel="canonical" href="https://elkgrovetoydrive.com/sponsorship/" />
+  <meta property="og:title" content="Sponsorship — Elk Grove Toy Drive Celebration" />
+  <meta property="og:description" content="Sponsor Elk Grove Toy Drive Celebration 2026 — Fund the Fete, sponsorship packet, and thank you to our 2025 sponsors &amp; supporters." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://elkgrovetoydrive.com/sponsorship/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Sponsorship — Elk Grove Toy Drive Celebration" />
+  <meta name="twitter:description" content="Sponsor Elk Grove Toy Drive Celebration 2026 — Fund the Fete, sponsorship packet, and thank you to our 2025 sponsors &amp; supporters." />
+
+  <title>Sponsorship — Elk Grove Toy Drive Celebration</title>
+  <script src="../clean-urls.js"></script>
+  <script>
+    (function () {
+      try {
+        var t = sessionStorage.getItem("toydrive-theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main class="page-wrap page-wrap--doc" id="main">
+    <div id="seo-prerender" class="seo-prerender">
+      <section class="hero">
+        <h1>Sponsorship</h1>
+        <p>Partner with Elk Grove Toy Drive Celebration 2026 — unlock named celebration gifts, or start from the leave-behind packet.</p>
+      </section>
+      <section>
+        <h2>Partner with us</h2>
+        <div class="resource-card-grid">
+          <a class="resource-card" href="/fund-the-fete/">
+            <h3>Fund the Fete</h3>
+            <p>Interactive gift registry — sponsors unlock named celebration gifts families experience on the evening.</p>
+          </a>
+          <a class="resource-card" href="https://drive.google.com/file/d/1-XmZQQ4y1UU_ER4Udh-qrwymhatZANQi/view">
+            <h3>Sponsorship Packet</h3>
+            <p>PDF overview of sponsorship opportunities, benefits, and how to partner with the celebration.</p>
+          </a>
+        </div>
+      </section>
+      <section class="hero">
+        <h1>Thank You, 2025 Sponsors &amp; Supporters</h1>
+        <p>Our 2025 Toy Drive was made possible by sponsors, donors, in-kind partners, and volunteers.</p>
+      </section>
+      <section><h2>Sponsors</h2><p>American Furniture Galleries, Sacramento County Supervisor Patrick Kennedy, SeniorCare Spectrum, Suying Plaskett, SDHC Pharmacy, SF Supermarket - Cali Saigon Mall, People Supermarket, Parkwest Casino Lotus, Sacramento County Supervisor Pat Hume, Elk Grove City Councilmember Rod Brewer, Elk Grove Vice Mayor Darren Suen, Sidney Le Beauty, Katie Kishi Media, Josh Perry, Dulcilandia</p></section>
+      <section><h2>Raffle Items Sponsors</h2><p>Invictus Life &amp; Legacy, Phoong Law</p></section>
+      <section><h2>In-Kind Donation (Venue)</h2><p>City of Elk Grove</p></section>
+      <section><h2>In-Kind Donation (Food)</h2><p>Hinoka Sushi, Huong Lan Sandwiches, Bốn Mùa Vietnamese Restaurant, Bodhi Bowl, Welco Supermarket, Vinh Phat Supermarket, Ha Noi Pho, Hook &amp; Reel, Chason's Crab Stadium, CRC Catering, Duc Huong, Starbucks, Elk Grove Donuts, Famous Pizza - Freeport Blvd, House of Flavor, New Happy Garden Seafood Restaurant, Pho Xe Lua, Lollibowl</p></section>
+      <section><h2>Other Supporters</h2><p>Good Karma Inc</p></section>
+      <section><h2>Volunteers</h2><p>Mamie's Administrative Service, Vivian Vu Realtor, Equity Zone Mortgage, Nikki Win Team, Miss &amp; Miss Teen Vietnam Northern California, Lazzarini, Whiteford &amp; Young, LLP, Aros, Curriculum Vitae Staffing Solutions, TotalCare Property Services, HEART</p></section>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="../doc-scroll.js"></script>
+  <script src="../site.js"></script>
+  <script>
+    (async function () {
+      const {
+        initPageShell,
+        loadSiteData,
+        loadJsonData,
+        mountFooter,
+        renderSponsorshipPage,
+        initDocToc,
+        setPageTitle,
+        escapeHtml,
+      } = window.ToyDriveSite;
+      initPageShell("sponsorship");
+      try {
+        const [site, sponsorsData] = await Promise.all([
+          loadSiteData(),
+          loadJsonData("data/toydrive-2025-sponsors-display.json"),
+        ]);
+        setPageTitle(site, site.sponsorship?.headline ?? "Sponsorship");
+        document.querySelector('meta[name="description"]').setAttribute(
+          "content",
+          "Sponsor Elk Grove Toy Drive Celebration 2026 — Fund the Fete, sponsorship packet, and thank you to our 2025 sponsors & supporters.",
+        );
+        document.getElementById("main").innerHTML = renderSponsorshipPage(site.sponsorship, sponsorsData);
+        initDocToc();
+        mountFooter(site);
+      } catch (err) {
+        document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
+      }
+    })();
+  </script>
+</body>
+</html>

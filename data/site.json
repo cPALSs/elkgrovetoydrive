@@ -40,7 +40,9 @@
     "donateLabel": "Donate",
     "donateHref": "https://www.zeffy.com/en-US/donation-form/toy-drive-2026-donations",
     "sponsorsLabel": "2025 sponsors & supporters",
-    "sponsorsHref": "/sponsors/",
+    "sponsorsHref": "/sponsorship/#thank-you-2025",
+    "sponsorLabel": "Sponsor the celebration",
+    "sponsorHref": "/sponsorship/",
     "archiveLabel": "2025 archive",
     "archiveHref": "https://toydrive.cpalss.com/"
   },
@@ -292,13 +294,8 @@
   },
   "resources": {
     "headline": "Resources",
-    "lead": "Past sponsors, celebration media, guest Santa photos, and the 2025 archive site.",
+    "lead": "Celebration media, guest Santa photos, and the 2025 archive site.",
     "links": [
-      {
-        "title": "Sponsors & Supporters",
-        "body": "Thank you to our 2025 sponsors, donors, in-kind partners, and volunteers.",
-        "href": "/sponsors/"
-      },
       {
         "title": "Media",
         "body": "Highlight reels and past celebration fliers.",
@@ -314,6 +311,32 @@
         "title": "2025 archive",
         "body": "Previous season site — tickets, raffles, and event pages from 2025.",
         "href": "https://toydrive.cpalss.com/",
+        "external": true
+      }
+    ]
+  },
+  "sponsorship": {
+    "headline": "Sponsorship",
+    "lead": "Partner with Elk Grove Toy Drive Celebration 2026 — unlock named celebration gifts, or start from the leave-behind packet.",
+    "partnerTitle": "Partner with us",
+    "partnerIntro": "Two ways to start: build a package in Fund the Fete, or download the cash sponsorship packet PDF.",
+    "partnerContactNote": "Questions? Email contact@elkgrovetoydrive.com.",
+    "partnerContactEmail": "contact@elkgrovetoydrive.com",
+    "partnerContactSubject": "Toy Drive 2026 sponsorship",
+    "thankYouId": "thank-you-2025",
+    "thankYouTitle": "Thank You, 2025 Sponsors & Supporters",
+    "thankYouLead": "Our 2025 Toy Drive was made possible by sponsors, donors, in-kind partners, and volunteers.",
+    "sponsorsTocLabel": "2025 Sponsors & Supporters",
+    "links": [
+      {
+        "title": "Fund the Fete",
+        "body": "Interactive gift registry — sponsors unlock named celebration gifts families experience on the evening.",
+        "href": "/fund-the-fete/"
+      },
+      {
+        "title": "Sponsorship Packet",
+        "body": "PDF overview of sponsorship opportunities, benefits, and how to partner with the celebration.",
+        "href": "https://drive.google.com/file/d/1-XmZQQ4y1UU_ER4Udh-qrwymhatZANQi/view",
         "external": true
       }
     ]

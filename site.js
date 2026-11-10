@@ -127,6 +127,7 @@
         href: "/fund-the-fete/",
         children: [
           { id: "build", label: "Fund the Fete", navLabel: "Fund the Fete", href: "/fund-the-fete/" },
+          { id: "sponsorship", label: "Sponsorship", navLabel: "Sponsorship", href: "/sponsorship/" },
           { id: "rfp", label: "Vendor RFPs", navLabel: "Vendor RFPs", href: "/rfp/" },
         ],
       },
@@ -135,7 +136,6 @@
         label: "Resources",
         href: "/resources/",
         children: [
-          { id: "sponsors", label: "Sponsors & Supporters", href: "/sponsors/" },
           { id: "media", label: "Media", href: "/resources/media/" },
           {
             id: "santaPhotos2025",
@@ -478,10 +478,14 @@
 
   function renderDocToc(tocItems) {
     const links = (tocItems ?? [])
-      .map(
-        (item) =>
-          `<a class="site-doc-toc-link" href="#${escapeHtml(item.id)}" data-toc-target="${escapeHtml(item.id)}">${escapeHtml(item.label)}</a>`,
-      )
+      .map((item) => {
+        if (item?.type === "divider" || item?.divider) {
+          return `<p class="site-doc-toc-label site-doc-toc-label--section">${escapeHtml(
+            item.label ?? "",
+          )}</p>`;
+        }
+        return `<a class="site-doc-toc-link" href="#${escapeHtml(item.id)}" data-toc-target="${escapeHtml(item.id)}">${escapeHtml(item.label)}</a>`;
+      })
       .join("");
     return `<nav class="site-doc-toc" aria-label="On this page"><p class="site-doc-toc-label">On this page</p>${links}</nav>`;
   }
@@ -626,6 +630,124 @@
     const res = await fetch(`${prefix}data/season-events.json`, { cache: "no-store" });
     if (!res.ok) throw new Error(`Could not load season events (${res.status})`);
     return res.json();
+  }
+
+  async function loadJsonData(relativePath) {
+    const prefix = navPrefix();
+    const res = await fetch(`${prefix}${relativePath}`, { cache: "no-store" });
+    if (!res.ok) throw new Error(`Could not load ${relativePath} (${res.status})`);
+    return res.json();
+  }
+
+  function renderSponsorTierHtml(sponsorsData, options = {}) {
+    const sponsors = sponsorsData?.sponsors ?? [];
+    const tierOrder = sponsorsData?.tierOrder ?? [];
+    const byTier = new Map();
+    for (const s of sponsors) {
+      const tier = s.tier ?? "Sponsors & Donors";
+      if (!byTier.has(tier)) byTier.set(tier, []);
+      byTier.get(tier).push(s);
+    }
+    const sortedTiers = [
+      ...tierOrder.filter((t) => byTier.has(t)),
+      ...[...byTier.keys()].filter((t) => !tierOrder.includes(t)),
+    ];
+    const logoPrefix = options.logoPrefix ?? "/sponsors/";
+    return sortedTiers
+      .map((tier) => {
+        const tierId = slugifyHeading(tier);
+        const cards = byTier
+          .get(tier)
+          .map((s) => {
+            const caption = s.caption
+              ? `<span class="sponsor-card-caption">${escapeHtml(s.caption)}</span>`
+              : "";
+            const inner = s.logo
+              ? `<img src="${escapeHtml(logoPrefix)}${escapeHtml(s.logo)}" alt="${escapeHtml(s.name)}" />${caption}`
+              : `<span class="sponsor-card-name">${escapeHtml(s.name)}</span>${caption}`;
+            if (s.url) {
+              return `<a class="sponsor-card" href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${inner}</a>`;
+            }
+            return `<div class="sponsor-card">${inner}</div>`;
+          })
+          .join("");
+        return `<section class="sponsor-tier site-doc-section" id="${escapeHtml(tierId)}" data-doc-section><h2>${escapeHtml(tier)}</h2><div class="sponsor-grid">${cards}</div></section>`;
+      })
+      .join("");
+  }
+
+  function renderSponsorshipPage(sponsorship, sponsorsData) {
+    const links = sponsorship?.links ?? [];
+    const partnerCards = links
+      .map((link) => {
+        const external = link.external ? ' target="_blank" rel="noopener"' : "";
+        return `
+      <a class="resource-card" href="${escapeHtml(link.href)}"${external}>
+        <h3>${escapeHtml(link.title)}</h3>
+        ${link.body ? `<p>${escapeHtml(link.body)}</p>` : ""}
+      </a>`;
+      })
+      .join("");
+
+    const year = sponsorsData?.eventYear ?? 2025;
+    const thankYouId = sponsorship?.thankYouId ?? `thank-you-${year}`;
+    const thankYouTitle =
+      sponsorship?.thankYouTitle ?? `Thank You, ${year} Sponsors & Supporters`;
+    const thankYouLead =
+      sponsorship?.thankYouLead ??
+      `Our ${year} Toy Drive was made possible by sponsors, donors, in-kind partners, and volunteers.`;
+
+    const sponsors = sponsorsData?.sponsors ?? [];
+    const tierOrder = sponsorsData?.tierOrder ?? [];
+    const byTier = new Map();
+    for (const s of sponsors) {
+      const tier = s.tier ?? "Sponsors & Donors";
+      if (!byTier.has(tier)) byTier.set(tier, []);
+      byTier.get(tier).push(s);
+    }
+    const sortedTiers = [
+      ...tierOrder.filter((t) => byTier.has(t)),
+      ...[...byTier.keys()].filter((t) => !tierOrder.includes(t)),
+    ];
+    const tiersHtml = renderSponsorTierHtml(sponsorsData);
+
+    const tocItems = [
+      { id: "partner", label: sponsorship?.partnerTitle ?? "Partner with us" },
+      {
+        type: "divider",
+        label: sponsorship?.sponsorsTocLabel ?? `${year} Sponsors & Supporters`,
+      },
+      ...sortedTiers.map((tier) => ({ id: slugifyHeading(tier), label: tier })),
+    ];
+
+    const partnerEmail = sponsorship?.partnerContactEmail ?? "contact@elkgrovetoydrive.com";
+    const partnerSubject = sponsorship?.partnerContactSubject ?? "Toy Drive 2026 sponsorship";
+    const partnerContactNote = sponsorship?.partnerContactNote
+      ? `<p class="muted">${escapeHtml(sponsorship.partnerContactNote).replace(
+          escapeHtml(partnerEmail),
+          `<a href="mailto:${escapeHtml(partnerEmail)}?subject=${encodeURIComponent(partnerSubject)}">${escapeHtml(partnerEmail)}</a>`,
+        )}</p>`
+      : "";
+
+    const mainHtml = `
+      <section class="content-section site-doc-section" id="partner" data-doc-section>
+        <h2>${escapeHtml(sponsorship?.partnerTitle ?? "Partner with us")}</h2>
+        ${sponsorship?.partnerIntro ? `<p>${escapeHtml(sponsorship.partnerIntro)}</p>` : ""}
+        <div class="resource-card-grid">${partnerCards}</div>
+        ${partnerContactNote}
+      </section>
+      <div class="sponsorship-thank-you" id="${escapeHtml(thankYouId)}">
+        <h2 class="sponsorship-thank-you-title">${escapeHtml(thankYouTitle)}</h2>
+        <p>${escapeHtml(thankYouLead)}</p>
+      </div>
+      ${tiersHtml || "<p>No sponsors to display.</p>"}`;
+
+    return `
+      <section class="hero">
+        <h1>${escapeHtml(sponsorship?.headline ?? "Sponsorship")}</h1>
+        ${sponsorship?.lead ? `<p class="hero-lead">${escapeHtml(sponsorship.lead)}</p>` : ""}
+      </section>
+      ${wrapDocLayout(renderDocToc(tocItems), mainHtml)}`;
   }
 
   function externalLinkAttrs(href) {
@@ -937,6 +1059,7 @@
   window.ToyDriveSite = {
     initPageShell,
     loadSiteData,
+    loadJsonData,
     mountFooter,
     buildAboutToc,
     renderAboutSections,
@@ -953,6 +1076,8 @@
     renderCharitiesPage,
     renderSeasonPage,
     renderRoleCard,
+    renderSponsorTierHtml,
+    renderSponsorshipPage,
     renderTeamPage,
     setPageTitle,
     wrapDocLayout,
