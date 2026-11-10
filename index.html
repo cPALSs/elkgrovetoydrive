@@ -9,7 +9,7 @@
   <meta name="description" content="Official site for the Elk Grove Toy Drive Celebration — free family celebration at District 56. Volunteer directors, Fund the Fete sponsors, and toy collection for local charities." />
   <link rel="canonical" href="https://elkgrovetoydrive.com/" />
   <meta property="og:title" content="Elk Grove Toy Drive Celebration" />
-  <meta property="og:description" content="10th Annual — free celebration, unwrapped toys for local charities. Join the team or Fund the Fete." />
+  <meta property="og:description" content="10th Annual — free celebration, unwrapped toys for local charities. Join the team or sponsor the event." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://elkgrovetoydrive.com/" />
   <meta name="twitter:card" content="summary" />
@@ -70,9 +70,9 @@
         <h1>Elk Grove Toy Drive Celebration</h1>
         <p>Sunday, December 6, 2026 · 3:30–7:30 PM (tentative) · District 56 · free celebration · toys for local charities</p>
       </section>
-      <p>Help build the 10th Annual Toy Drive — join as a director or Fund the Fete.</p>
       <section>
-        <p><a href="/team/">Join the team</a> · <a href="/fund-the-fete/">Fund the Fete</a> · <a href="https://www.zeffy.com/en-US/donation-form/toy-drive-2026-donations">Donate</a></p>
+        <h2>Help build the 10th Annual Toy Drive</h2>
+        <p><a href="/team/">Join the team</a> · <a href="/sponsorship/">Sponsor the event</a></p>
       </section>
     </div>
   </main>
@@ -96,24 +96,15 @@
           </section>
           <p class="home-intro">${escapeHtml(h.intro)}</p>
           ${renderPhotoStrip(h.photos, "From the 2025 celebration")}
-          <section class="content-section">
-            <h2>${escapeHtml(h.headline)}</h2>
-            <p>${escapeHtml(h.subhead)}</p>
-            <p class="muted">${escapeHtml(h.body)}</p>
-            <div class="cta-row">
-              <a class="btn btn-primary" href="${escapeHtml(c.primaryHref)}">${escapeHtml(c.primaryLabel)}</a>
-              <a class="btn btn-tertiary" href="${escapeHtml(c.sponsorsHref)}">${escapeHtml(c.sponsorsLabel)}</a>
-            </div>
-          </section>
-          <section class="content-section">
-            <h2>Fund the Fete</h2>
-            <p>Sponsors underwrite dinner, Santa photos, crafts, entertainment, and more — so guests can focus on bringing unwrapped toys for local charities.</p>
-            <div class="cta-row">
-              <a class="btn btn-secondary" href="${escapeHtml(c.buildHref)}">${escapeHtml(c.buildLabel)}</a>
-              <a class="btn btn-tertiary" href="${escapeHtml(c.donateHref)}" target="_blank" rel="noopener">${escapeHtml(c.donateLabel)}</a>
-            </div>
-            <p class="muted">Small gifts: Zeffy. Check, Zelle, or Venmo: contact@elkgrovetoydrive.com. Sponsor packages stay on Fund the Fete.</p>
-          </section>
+          <div class="home-below">
+            <section class="content-section home-build-cta">
+              <h2>${escapeHtml(h.headline)}</h2>
+              <div class="cta-row">
+                <a class="btn btn-primary" href="${escapeHtml(c.primaryHref)}">${escapeHtml(c.primaryLabel)}</a>
+                <a class="btn btn-secondary" href="${escapeHtml(c.sponsorHref ?? "/sponsorship/")}">${escapeHtml(c.sponsorLabel ?? "Sponsor the event")}</a>
+              </div>
+            </section>
+          </div>
         `;
         mountFooter(site);
       } catch (err) {

@@ -813,8 +813,50 @@ body.nav-open {
 }
 
 .home-intro + .panel,
-.home-intro + .content-section {
+.home-intro + .content-section,
+.home-intro + .photo-strip {
   margin-top: 0;
+}
+
+.home-below {
+  margin: 0;
+}
+
+.home-build-cta {
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.home-build-cta .cta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  max-width: 28rem;
+  margin-inline: auto;
+}
+
+.home-build-cta .cta-row .btn {
+  width: 100%;
+}
+
+@media (max-width: 479px) {
+  .home-build-cta .cta-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 720px) {
+  .home-build-cta .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    max-width: none;
+  }
+
+  .home-build-cta .cta-row .btn {
+    width: auto;
+  }
 }
 
 .hero-eyebrow {

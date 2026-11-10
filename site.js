@@ -128,7 +128,6 @@
         children: [
           { id: "build", label: "Fund the Fete", navLabel: "Fund the Fete", href: "/fund-the-fete/" },
           { id: "sponsorship", label: "Sponsorship", navLabel: "Sponsorship", href: "/sponsorship/" },
-          { id: "rfp", label: "Vendor RFPs", navLabel: "Vendor RFPs", href: "/rfp/" },
         ],
       },
       {
