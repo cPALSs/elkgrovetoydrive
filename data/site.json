@@ -35,6 +35,8 @@
   "cta": {
     "primaryLabel": "Join the team",
     "primaryHref": "/team/",
+    "volunteerLabel": "Volunteer interest sign-up",
+    "volunteerHref": "/volunteer/",
     "buildLabel": "Fund the Fete",
     "buildHref": "/fund-the-fete/",
     "donateLabel": "Donate",
@@ -45,6 +47,21 @@
     "sponsorHref": "/sponsorship/",
     "archiveLabel": "2025 archive",
     "archiveHref": "https://toydrive.cpalss.com/"
+  },
+  "volunteer": {
+    "headline": "Volunteer for Toy Drive 2026",
+    "intro": "Interest sign-up for the Sunday, December 6 celebration at District 56. Everyone is waitlisted until we approve. Officer-led groups and individual volunteers are both welcome.",
+    "bugleUrl": "https://bglvol.com/iwlnnquc",
+    "bugleUrlLong": "https://app.buglevolunteers.com/registration?id=84687655-1894-4d1b-9f5a-b92a6a349bb8",
+    "ctaLabel": "Sign up for interest",
+    "bullets": [
+      "Pick one or more shifts: Pre (2:00–3:30 setup), During (3:30–7:30 guest stations), Cleanup (7:30–9:00 teardown).",
+      "Registration is interest only — you stay waitlisted until we approve.",
+      "If approved, we email a digital waiver next; arrival and check-in details come closer to December 6.",
+      "Unwrapped toys are welcome if you bring them — empty hands are fine too."
+    ],
+    "contact": "Questions: contact@elkgrovetoydrive.com",
+    "directorsNote": "Looking to lead a lane instead? See open director roles on Team."
   },
   "apply": {
     "email": "contact@elkgrovetoydrive.com",

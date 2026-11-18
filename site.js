@@ -121,6 +121,7 @@
       { id: "about", label: "About", href: "/about/" },
       { id: "charities", label: "Charities", href: "/charities/" },
       { id: "team", label: "Team", href: "/team/" },
+      { id: "volunteer", label: "Volunteer", href: "/volunteer/" },
       {
         id: "production",
         label: "Production",
