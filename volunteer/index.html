@@ -30,7 +30,7 @@
 </head>
 <body>
   <div id="site-nav"></div>
-  <main class="page-wrap page-wrap--doc" id="main">
+  <main class="page-wrap" id="main">
     <div id="seo-prerender" class="seo-prerender">
       <section class="hero">
         <h1>Volunteer for Toy Drive 2026</h1>
@@ -57,7 +57,7 @@
         document.getElementById("main").innerHTML = `
           <section class="hero">
             <h1>${escapeHtml(v.headline || "Volunteer for Toy Drive 2026")}</h1>
-            <p class="lede">${escapeHtml(v.intro || "")}</p>
+            <p class="hero-lead">${escapeHtml(v.intro || "")}</p>
             <p class="home-intro">${escapeHtml(e.dates || "")} · ${escapeHtml(e.venue || "District 56")}</p>
             <div class="cta-row">
               <a class="btn btn-primary" href="${escapeHtml(v.bugleUrl || "https://bglvol.com/iwlnnquc")}" rel="noopener">${escapeHtml(v.ctaLabel || "Sign up for interest")}</a>
@@ -68,7 +68,7 @@
             <h2>How sign-up works</h2>
             <ul>${bullets}</ul>
             <p>${escapeHtml(v.contact || "Questions: contact@elkgrovetoydrive.com")}</p>
-            <p>${escapeHtml(v.directorsNote || "")}</p>
+            <p><a href="/team/">${escapeHtml(v.directorsNote || "Looking to lead a lane instead? See open director roles on Team.")}</a></p>
           </section>
         `;
         mountFooter(site);
