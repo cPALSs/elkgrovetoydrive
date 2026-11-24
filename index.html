@@ -9,12 +9,12 @@
   <meta name="description" content="Official site for the Elk Grove Toy Drive Celebration — free family celebration at District 56. Volunteer directors, Fund the Fete sponsors, and toy collection for local charities." />
   <link rel="canonical" href="https://elkgrovetoydrive.com/" />
   <meta property="og:title" content="Elk Grove Toy Drive Celebration" />
-  <meta property="og:description" content="10th Annual — free celebration, unwrapped toys for local charities. Join the team or sponsor the event." />
+  <meta property="og:description" content="Join us for the 10th anniversary Elk Grove Toy Drive Celebration! Free tickets — bring a new or like-new toy for children served by local charities." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://elkgrovetoydrive.com/" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Elk Grove Toy Drive Celebration" />
-  <meta name="twitter:description" content="10th Annual — free celebration, unwrapped toys for local charities." />
+  <meta name="twitter:description" content="Join us for the 10th anniversary Elk Grove Toy Drive Celebration! Free tickets — bring a new or like-new toy for children served by local charities." />
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -24,7 +24,7 @@
       "@id": "https://elkgrovetoydrive.com/#event",
       "name": "Elk Grove Toy Drive Celebration",
       "url": "https://elkgrovetoydrive.com/",
-      "description": "Free family celebration with Santa photos, dinner, crafts, and collection of unwrapped toys for children served by local charities.",
+      "description": "Free 10th anniversary family celebration with Santa photos, dinner, crafts, and a show. Bring a new or like-new toy for children served by local charities.",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "isAccessibleForFree": true,
@@ -68,11 +68,12 @@
     <div id="seo-prerender" class="seo-prerender">
       <section class="hero">
         <h1>Elk Grove Toy Drive Celebration</h1>
-        <p>Sunday, December 6, 2026 · 3:30–7:30 PM · District 56 · free celebration · toys for local charities</p>
+        <p>Sunday, December 6, 2026 · 3:30–7:30 PM · District 56</p>
+        <p>Join us for the 10th anniversary Elk Grove Toy Drive Celebration! Grab your free tickets, bring a new or like-new toy for children served by local charities, and enjoy an evening of dinner, Santa photos, crafts, and a show.</p>
       </section>
       <section>
         <h2>Help build the 10th Annual Toy Drive</h2>
-        <p><a href="/volunteer/">Volunteer interest sign-up</a> · <a href="/team/">Join the team</a> · <a href="/sponsorship/">Sponsor the event</a></p>
+        <p><a href="/volunteer/">Volunteer at event</a> · <a href="/team/">Join the team</a> · <a href="/sponsorship/">Sponsor the event</a></p>
       </section>
     </div>
   </main>
@@ -81,32 +82,65 @@
   <script src="site.js"></script>
   <script>
     (async function () {
-      const { initPageShell, loadSiteData, mountFooter, renderEventSummary, setPageTitle, escapeHtml, renderPhotoStrip } = window.ToyDriveSite;
+        const {
+        initPageShell,
+        loadSiteData,
+        loadJsonData,
+        mountFooter,
+        renderEventSummary,
+        renderHostedBy,
+        setPageTitle,
+        escapeHtml,
+        renderPhotoStrip,
+        renderHomeFlyer,
+        renderHomeSponsors2026,
+        initHistoryLightbox,
+      } = window.ToyDriveSite;
       initPageShell("home");
       try {
-        const site = await loadSiteData();
+        const [site, sponsors2026Data, service2026Data] = await Promise.all([
+          loadSiteData(),
+          loadJsonData("data/toydrive-2026-sponsors-display.json"),
+          loadJsonData("data/toydrive-2026-volunteers-display.json"),
+        ]);
         setPageTitle(site);
         const e = site.event;
         const h = site.hero;
         const c = site.cta;
-        document.getElementById("main").innerHTML = `
-          <section class="hero">
-            <h1>${escapeHtml(e.name)}</h1>
-            ${renderEventSummary(site)}
-          </section>
-          <p class="home-intro">${escapeHtml(h.intro)}</p>
-          ${renderPhotoStrip(h.photos, "From the 2025 celebration")}
+        const ticketsHref = String(c.ticketsHref || e.eventbriteUrl || "").trim();
+        const ticketsLabel = c.ticketsLabel || "Get free tickets on Eventbrite";
+        const ticketsCta = ticketsHref
+          ? `<div class="cta-row home-intro-cta"><a class="btn btn-primary" href="${escapeHtml(ticketsHref)}" target="_blank" rel="noopener">${escapeHtml(ticketsLabel)}</a></div>`
+          : `<div class="cta-row home-intro-cta"><a class="btn btn-primary" href="#" aria-disabled="true">${escapeHtml(ticketsLabel)}</a></div>`;
+        const main = document.getElementById("main");
+        main.innerHTML = `
+          <div class="home-lead">
+            <div class="home-lead-copy">
+              <section class="hero">
+                <h1>${escapeHtml(e.name)}</h1>
+                ${renderEventSummary(site)}
+              </section>
+              <p class="home-intro">${escapeHtml(h.intro)}</p>
+              ${ticketsCta}
+            </div>
+            ${renderHomeFlyer(h.flyer)}
+          </div>
+          <hr class="home-rule" />
           <div class="home-below">
+            ${renderHostedBy(site)}
             <section class="content-section home-build-cta">
               <h2>${escapeHtml(h.headline)}</h2>
               <div class="cta-row">
-                <a class="btn btn-primary" href="${escapeHtml(c.volunteerHref ?? "/volunteer/")}">${escapeHtml(c.volunteerLabel ?? "Volunteer interest sign-up")}</a>
+                <a class="btn btn-secondary" href="${escapeHtml(c.volunteerHref ?? "/volunteer/")}">${escapeHtml(c.volunteerLabel ?? "Volunteer at event")}</a>
                 <a class="btn btn-secondary" href="${escapeHtml(c.primaryHref)}">${escapeHtml(c.primaryLabel)}</a>
                 <a class="btn btn-secondary" href="${escapeHtml(c.sponsorHref ?? "/sponsorship/")}">${escapeHtml(c.sponsorLabel ?? "Sponsor the event")}</a>
               </div>
             </section>
+            ${renderPhotoStrip(h.photos, "From the 2025 celebration")}
+            ${renderHomeSponsors2026(site.sponsorship, sponsors2026Data, service2026Data)}
           </div>
         `;
+        initHistoryLightbox(main);
         mountFooter(site);
       } catch (err) {
         document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;

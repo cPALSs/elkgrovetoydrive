@@ -1,0 +1,65 @@
+{
+  "eventYear": 2026,
+  "title": "In-Kind Donation (Service)",
+  "lead": "Thank you to these teams for supporting the 2026 Toy Drive with volunteer service.",
+  "tierOrder": [
+    "In-Kind Donation (Service)"
+  ],
+  "volunteers": [
+    {
+      "name": "Bao Productions",
+      "tier": "In-Kind Donation (Service)",
+      "url": null,
+      "logo": null,
+      "caption": "events + automation",
+      "notes": "Text attribution only — no logo"
+    },
+    {
+      "name": "CrossCountry Mortgage (Kevin P. Nguyen Team)",
+      "tier": "In-Kind Donation (Service)",
+      "url": "https://ccm.com/phuong-nguyen",
+      "logo": "2026/crosscountry-mortgage.jpg",
+      "trackerOrganization": "CrossCountry Mortgage (Kevin P. Nguyen Team)",
+      "notes": "Graph: prior Equity Zone Mortgage; current CCM 2026. Drive Logos/: CrossCountry Mortgage (Kevin P. Nguyen Team).jpg"
+    },
+    {
+      "name": "Curriculum Vitae Staffing Solutions",
+      "tier": "In-Kind Donation (Service)",
+      "url": null,
+      "logo": "2025/curriculum-vitae-staffing.jpg",
+      "cardBg": "#05032B",
+      "notes": "Shared with 2025 sponsors display — /sponsors/2025/curriculum-vitae-staffing.jpg"
+    },
+    {
+      "name": "HEART",
+      "tier": "In-Kind Donation (Service)",
+      "url": null,
+      "logo": "2025/heart.jpg",
+      "cardBg": "#E4CEB7",
+      "notes": "Shared with 2025 sponsors display — /sponsors/2025/heart.jpg"
+    },
+    {
+      "name": "Lazzarini, Whiteford & Young, LLP",
+      "tier": "In-Kind Donation (Service)",
+      "url": null,
+      "logo": "2025/lw-y.svg",
+      "notes": "Shared with 2025 sponsors display — /sponsors/2025/lw-y.svg (LW&Y)"
+    },
+    {
+      "name": "Nikki Win Team",
+      "tier": "In-Kind Donation (Service)",
+      "url": null,
+      "logo": "2025/nikki-win.jpg",
+      "trackerOrganization": "Nikki Win Team - Keller Williams",
+      "notes": "Shared with 2025 sponsors display — /sponsors/2025/nikki-win.jpg"
+    },
+    {
+      "name": "TotalCare Property Services",
+      "tier": "In-Kind Donation (Service)",
+      "url": null,
+      "logo": "2025/totalcare-property-services.png",
+      "notes": "Shared with 2025 sponsors display — /sponsors/2025/totalcare-property-services.png"
+    }
+  ],
+  "pendingEllieConfirm": []
+}

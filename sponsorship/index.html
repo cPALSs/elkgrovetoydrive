@@ -6,15 +6,15 @@
   <script src="../analytics.js"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Sponsor Elk Grove Toy Drive Celebration 2026 — Fund the Fete, sponsorship packet, and thank you to our 2025 sponsors &amp; supporters." />
+  <meta name="description" content="Sponsor Elk Grove Toy Drive Celebration 2026 — Fund the Fete, sponsorship packet, and thank you to our 2026 and 2025 sponsors." />
   <link rel="canonical" href="https://elkgrovetoydrive.com/sponsorship/" />
   <meta property="og:title" content="Sponsorship — Elk Grove Toy Drive Celebration" />
-  <meta property="og:description" content="Sponsor Elk Grove Toy Drive Celebration 2026 — Fund the Fete, sponsorship packet, and thank you to our 2025 sponsors &amp; supporters." />
+  <meta property="og:description" content="Sponsor Elk Grove Toy Drive Celebration 2026 — Fund the Fete, sponsorship packet, and thank you to our 2026 and 2025 sponsors." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://elkgrovetoydrive.com/sponsorship/" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Sponsorship — Elk Grove Toy Drive Celebration" />
-  <meta name="twitter:description" content="Sponsor Elk Grove Toy Drive Celebration 2026 — Fund the Fete, sponsorship packet, and thank you to our 2025 sponsors &amp; supporters." />
+  <meta name="twitter:description" content="Sponsor Elk Grove Toy Drive Celebration 2026 — Fund the Fete, sponsorship packet, and thank you to our 2026 and 2025 sponsors." />
 
   <title>Sponsorship — Elk Grove Toy Drive Celebration</title>
   <script src="../clean-urls.js"></script>
@@ -49,16 +49,30 @@
           </a>
         </div>
       </section>
+      <section>
+        <h2>2026 Sponsors</h2>
+        <p>Thank you to these partners and sponsors for standing with the 2026 Toy Drive.</p>
+        <h3>Partner</h3>
+        <p>Darren Suen</p>
+        <h3>Presenting Sponsor</h3>
+        <p>American Furniture Galleries</p>
+        <h3>Volunteers Sponsor</h3>
+        <p>Rod Brewer</p>
+        <h3>Sponsor</h3>
+        <p>Parkwest Casino Lotus</p>
+        <h3>In-Kind Donation (Service)</h3>
+        <p>Bao Productions, CrossCountry Mortgage (Kevin P. Nguyen Team), Curriculum Vitae Staffing Solutions, HEART, Lazzarini, Whiteford &amp; Young, LLP, Nikki Win Team, TotalCare Property Services</p>
+      </section>
       <section class="hero">
         <h1>Thank You, 2025 Sponsors &amp; Supporters</h1>
         <p>Our 2025 Toy Drive was made possible by sponsors, donors, in-kind partners, and volunteers.</p>
       </section>
-      <section><h2>Sponsors</h2><p>American Furniture Galleries, Sacramento County Supervisor Patrick Kennedy, SeniorCare Spectrum, Suying Plaskett, SDHC Pharmacy, SF Supermarket - Cali Saigon Mall, People Supermarket, Parkwest Casino Lotus, Sacramento County Supervisor Pat Hume, Elk Grove City Councilmember Rod Brewer, Elk Grove Vice Mayor Darren Suen, Sidney Le Beauty, Katie Kishi Media, Josh Perry, Dulcilandia</p></section>
-      <section><h2>Raffle Items Sponsors</h2><p>Invictus Life &amp; Legacy, Phoong Law</p></section>
+      <section><h2>Sponsors</h2><p>American Furniture Galleries, Dulcilandia, Elk Grove City Councilmember Rod Brewer, Elk Grove Vice Mayor Darren Suen, Josh Perry, Katie Kishi Media, Parkwest Casino Lotus, People Supermarket, Sacramento County Supervisor Pat Hume, Sacramento County Supervisor Patrick Kennedy, SDHC Pharmacy, SeniorCare Spectrum, SF Supermarket - Cali Saigon Mall, Sidney Le Beauty, Suying Plaskett</p></section>
       <section><h2>In-Kind Donation (Venue)</h2><p>City of Elk Grove</p></section>
-      <section><h2>In-Kind Donation (Food)</h2><p>Hinoka Sushi, Huong Lan Sandwiches, Bốn Mùa Vietnamese Restaurant, Bodhi Bowl, Welco Supermarket, Vinh Phat Supermarket, Ha Noi Pho, Hook &amp; Reel, Chason's Crab Stadium, CRC Catering, Duc Huong, Starbucks, Elk Grove Donuts, Famous Pizza - Freeport Blvd, House of Flavor, New Happy Garden Seafood Restaurant, Pho Xe Lua, Lollibowl</p></section>
+      <section><h2>In-Kind Donation (Raffle)</h2><p>Invictus Life &amp; Legacy, Phoong Law</p></section>
+      <section><h2>In-Kind Donation (Food)</h2><p>Bodhi Bowl, Bốn Mùa Vietnamese Restaurant, Chason's Crab Stadium, CRC Catering, Duc Huong, Elk Grove Donuts, Famous Pizza - Freeport Blvd, Ha Noi Pho, Hinoka Sushi, Hook &amp; Reel, House of Flavor, Huong Lan Sandwiches, Lollibowl, New Happy Garden Seafood Restaurant, Pho Xe Lua, Starbucks, Vinh Phat Supermarket, Welco Supermarket</p></section>
+      <section><h2>In-Kind Donation (Service)</h2><p>Aros, Curriculum Vitae Staffing Solutions, Equity Zone Mortgage, HEART, Lazzarini, Whiteford &amp; Young, LLP, Mamie's Administrative Service, Miss &amp; Miss Teen Vietnam Northern California, Nikki Win Team, TotalCare Property Services, Vivian Vu Realtor</p></section>
       <section><h2>Other Supporters</h2><p>Good Karma Inc</p></section>
-      <section><h2>Volunteers</h2><p>Mamie's Administrative Service, Vivian Vu Realtor, Equity Zone Mortgage, Nikki Win Team, Miss &amp; Miss Teen Vietnam Northern California, Lazzarini, Whiteford &amp; Young, LLP, Aros, Curriculum Vitae Staffing Solutions, TotalCare Property Services, HEART</p></section>
     </div>
   </main>
   <div id="site-footer"></div>
@@ -78,16 +92,24 @@
       } = window.ToyDriveSite;
       initPageShell("sponsorship");
       try {
-        const [site, sponsorsData] = await Promise.all([
-          loadSiteData(),
-          loadJsonData("data/toydrive-2025-sponsors-display.json"),
-        ]);
+        const [site, sponsors2025Data, sponsors2026Data, service2026Data] =
+          await Promise.all([
+            loadSiteData(),
+            loadJsonData("data/toydrive-2025-sponsors-display.json"),
+            loadJsonData("data/toydrive-2026-sponsors-display.json"),
+            loadJsonData("data/toydrive-2026-volunteers-display.json"),
+          ]);
         setPageTitle(site, site.sponsorship?.headline ?? "Sponsorship");
         document.querySelector('meta[name="description"]').setAttribute(
           "content",
-          "Sponsor Elk Grove Toy Drive Celebration 2026 — Fund the Fete, sponsorship packet, and thank you to our 2025 sponsors & supporters.",
+          "Sponsor Elk Grove Toy Drive Celebration 2026 — Fund the Fete, sponsorship packet, and thank you to our 2026 and 2025 sponsors.",
         );
-        document.getElementById("main").innerHTML = renderSponsorshipPage(site.sponsorship, sponsorsData);
+        document.getElementById("main").innerHTML = renderSponsorshipPage(
+          site.sponsorship,
+          sponsors2025Data,
+          sponsors2026Data,
+          service2026Data,
+        );
         initDocToc();
         mountFooter(site);
       } catch (err) {

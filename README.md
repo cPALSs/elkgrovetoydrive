@@ -24,6 +24,27 @@ Toy Drive hub — home, team, about, charities, **Fund the Fete**, **Sponsorship
 - **`data/site.json`** — recruitment + about copy (see season Marketing [`Open Leadership Roles`](../../../Programs/Toy%20Drive/2026/Marketing/Open%20Leadership%20Roles%20-%20Recruitment%20Copy.md))
 - **`data/toydrive-2026.json`** — Fund the Fete data (from `build_toydrive_budget.py`)
 - **`data/festivals.json`** — festival manifest for the SPA
+- **`data/toydrive-*-sponsors-display.json`** / **`toydrive-*-volunteers-display.json`** — public sponsor + in-kind logos/tiers (homepage + `/sponsorship/`)
+
+## Sponsor logo cards
+
+Match EGLNY’s pattern (`Operations/Sites/eglny/STYLE.md` · Sponsor logo cards). **Full agent workflow** (Magick trim vs plates, Gray `+smush` fix, SVG rasterize, flier cash/in-kind): skill [`festival-sponsor-logos`](../../../.cursor/skills/festival-sponsor-logos/SKILL.md).
+
+| Rule | Behavior |
+|------|----------|
+| **Aspect** | `3 / 2` (`--sponsor-card-aspect`) |
+| **Inset** | `--sponsor-card-logo-scale: 0.8` (absolute center + `object-fit: contain`) — not %-padding |
+| **Grid** | Cap at **4 columns** max (5-across is too small) |
+| **Sort** | A→Z by name within each tier at render (`site.js`) — never by logo path |
+| **Plates** | Default white; optional `cardBg` / `logoOnDark` for baked plates (CV navy, HEART tan, Vinh Phat tan, etc.) |
+
+Asset prep — trim export padding under `sponsors/YYYY/` so CSS inset drives spacing:
+
+```bash
+magick logo.png -bordercolor white -border 1 -fuzz 3% -trim +repage sponsors/2026/slug.png
+```
+
+Do **not** trim plate-fill marks (navy/tan squares meant to match `cardBg`). Prefer PNG with real alpha when the mark isn’t rectangular.
 
 ## Local preview
 

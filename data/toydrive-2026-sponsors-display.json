@@ -1,0 +1,46 @@
+{
+  "eventYear": 2026,
+  "source": "https://docs.google.com/spreadsheets/d/1fJLVVRiBgDUZSbyrXar15PGT3Vo-LgNLuv9B5wj3sEs/edit",
+  "sourceTab": "Sponsors 26",
+  "sourceRows": "2-5",
+  "tierOrder": [
+    "Partner",
+    "Presenting Sponsor",
+    "Volunteers Sponsor",
+    "Sponsor"
+  ],
+  "sponsors": [
+    {
+      "name": "Darren Suen",
+      "tier": "Partner",
+      "url": "https://elkgrove.gov/city-council/district-1-darren-suen",
+      "logo": "2026/darren-suen.png",
+      "trackerName": "Darren Suen",
+      "trackerOrganization": "City of Elk Grove — District 1"
+    },
+    {
+      "name": "American Furniture Galleries",
+      "tier": "Presenting Sponsor",
+      "url": "https://www.americanfurnituregalleries.net/",
+      "logo": "2026/american-furniture-gallery.png",
+      "trackerName": "Jimmy H. Phan / Aaron Copeland",
+      "trackerOrganization": "American Furniture Galleries"
+    },
+    {
+      "name": "Rod Brewer",
+      "tier": "Volunteers Sponsor",
+      "url": "https://elkgrove.gov/city-council/district-2-rod-brewer",
+      "logo": "2026/rod-brewer.png",
+      "trackerName": "Rod Brewer",
+      "trackerOrganization": "City of Elk Grove — District 2"
+    },
+    {
+      "name": "Parkwest Casino Lotus",
+      "tier": "Sponsor",
+      "url": "https://parkwestcasinolotus.com/",
+      "logo": "2026/parkwest-casino-lotus.png",
+      "trackerName": "Manny Perez / Jinky Dolar",
+      "trackerOrganization": "Parkwest Casino Lotus"
+    }
+  ]
+}

@@ -17,6 +17,13 @@
   --font: system-ui, -apple-system, "Segoe UI", sans-serif;
   --max-width: 960px;
   --nav-height: 3.25rem;
+  /* Sponsor logo cards — shared homepage + /sponsorship/ */
+  --sponsor-card-aspect: 3 / 2;
+  --sponsor-card-logo-scale: 0.8;
+  --sponsor-card-min: 8.5rem;
+  --sponsor-card-bg: #ffffff;
+  --sponsor-card-opacity: 0.92;
+  --sponsor-card-border: color-mix(in srgb, #f3e0cf 18%, transparent);
 }
 
 :root[data-theme="light"] {
@@ -31,6 +38,9 @@
   --accent-hover: #0a6233;
   --accent-dim: #d4f0e0;
   --gold: #b8860b;
+  --sponsor-card-bg: #ffffff;
+  --sponsor-card-opacity: 1;
+  --sponsor-card-border: color-mix(in srgb, #1a2332 14%, transparent);
 }
 
 @media (prefers-color-scheme: light) {
@@ -46,6 +56,9 @@
     --accent-hover: #0a6233;
     --accent-dim: #d4f0e0;
     --gold: #b8860b;
+    --sponsor-card-bg: #ffffff;
+    --sponsor-card-opacity: 1;
+    --sponsor-card-border: color-mix(in srgb, #1a2332 14%, transparent);
   }
 }
 
@@ -138,6 +151,9 @@ img {
 }
 
 .site-nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   font-weight: 700;
   font-size: 1rem;
   color: var(--text);
@@ -145,12 +161,15 @@ img {
   min-width: 0;
 }
 
-.site-nav-brand span {
-  color: var(--gold);
+.site-nav-symbol {
+  flex-shrink: 0;
+  font-size: 1.35rem;
+  line-height: 1;
 }
 
-.site-nav-brand-short {
-  display: none;
+.site-nav-brand-text {
+  min-width: 0;
+  color: var(--text);
 }
 
 .site-nav-end {
@@ -277,10 +296,69 @@ body.nav-open {
   overflow: hidden;
 }
 
+.site-nav-drawer-tools {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem 0.35rem;
+}
+
+.site-nav-tickets-cta.btn.is-disabled,
+.site-nav-tickets-cta.btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.site-nav-social-slot {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.site-nav-end .theme-toggle {
+  flex-shrink: 0;
+}
+
 .site-nav-links {
   display: flex;
   flex-direction: column;
   padding: 0.25rem 1rem 1rem;
+}
+
+.site-nav-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.site-nav-col-left {
+  gap: 0.35rem;
+}
+
+.site-nav-col-right {
+  gap: 0.75rem;
+}
+
+/* Beat `.site-nav-links a` padding/weight so the CTA stays a real pill button. */
+.site-nav-col-right .site-nav-tickets-cta.btn {
+  align-self: start;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-top: 0.15rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 999px;
+  border-bottom: none;
+  font-weight: 600;
+  font-size: 0.925rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.site-nav-drawer-footer {
+  display: none;
 }
 
 .site-nav-links a {
@@ -377,37 +455,86 @@ body.nav-open {
     border-bottom-color: var(--border);
   }
 
-  .site-nav-brand-full {
-    display: none;
-  }
-
-  .site-nav-brand-short {
-    display: inline;
-  }
-
   .site-nav-toggle {
     display: inline-flex;
   }
 
+  /* Two equal-width columns that stack vertically (not row-paired). */
+  .site-nav-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem 1rem;
+    align-items: start;
+    padding: 0.15rem 0.85rem 1rem;
+  }
+
+  .site-nav-col-left {
+    grid-column: 1;
+    gap: 0.35rem;
+  }
+
+  .site-nav-col-right {
+    grid-column: 2;
+    gap: 0.75rem;
+  }
+
+  .site-nav-group {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    min-width: 0;
+  }
+
   .site-nav-submenu {
-    margin-left: 0.75rem;
-    padding-left: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-left: 0;
+    padding-left: 0.1rem;
+    column-gap: 0;
   }
 
   .site-nav-links .site-nav-sublink-wrap {
+    flex: none;
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
     padding: 0;
   }
 
   .site-nav-links .site-nav-sublink {
-    padding: 0.65rem 0.25rem 0.65rem 0.35rem;
-    font-size: 0.9rem;
+    display: block;
+    padding: 0.4rem 0.15rem;
+    font-size: 0.85rem;
+    line-height: 1.25;
     color: var(--muted);
     border-bottom: none;
+    white-space: normal;
   }
 
   .site-nav-links .site-nav-parent {
-    padding: 0.75rem 0.25rem;
+    padding: 0.45rem 0.15rem 0.35rem;
+    font-size: 0.95rem;
+    font-weight: 600;
     border-bottom: 1px solid var(--border);
+  }
+
+  .site-nav-drawer-footer {
+    display: block;
+    margin: 0.25rem 0.85rem 0;
+    padding: 0.75rem 0.15rem 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .site-nav-drawer-footer-email {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .site-nav-drawer-footer-email:hover {
+    color: var(--accent);
   }
 }
 
@@ -425,7 +552,7 @@ body.nav-open {
   }
 
   .site-nav-end {
-    order: 3;
+    order: 4;
   }
 
   .site-nav-brand {
@@ -447,6 +574,20 @@ body.nav-open {
     box-shadow: none;
   }
 
+  .site-nav-drawer-tools {
+    order: 3;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  /* Free tickets pill is mobile-drawer only — no desktop top-bar tickets item. */
+  .site-nav-tickets-cta.btn {
+    display: none;
+  }
+
   .site-nav-backdrop {
     display: none !important;
   }
@@ -458,6 +599,7 @@ body.nav-open {
   .site-nav-links {
     order: 2;
     flex: 1;
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
@@ -465,6 +607,23 @@ body.nav-open {
     gap: 0.35rem 1rem;
     padding: 0;
     overflow: visible;
+  }
+
+  /* Unwrap mobile columns so desktop keeps About · Production · Resources. */
+  .site-nav-col {
+    display: contents;
+  }
+
+  .site-nav-group[data-nav-section="about"] {
+    order: 1;
+  }
+
+  .site-nav-group[data-nav-section="production"] {
+    order: 2;
+  }
+
+  .site-nav-group[data-nav-section="resources"] {
+    order: 3;
   }
 
   .site-nav-links a {
@@ -806,16 +965,227 @@ body.nav-open {
   margin-top: 0;
 }
 
+.home-lead {
+  display: grid;
+  gap: 1.25rem;
+  margin: 0 0 1.75rem;
+  align-items: start;
+}
+
+.home-lead-copy {
+  min-width: 0;
+}
+
+.home-lead-copy .hero {
+  padding-bottom: 0.85rem;
+}
+
 .home-intro {
-  margin: 0 0 1.5rem;
+  margin: 0;
   max-width: 42rem;
   line-height: 1.6;
 }
 
-.home-intro + .panel,
-.home-intro + .content-section,
-.home-intro + .photo-strip {
-  margin-top: 0;
+.home-intro-cta {
+  margin-top: 1rem;
+}
+
+.festival-hosts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  margin: 0 0 1.75rem;
+}
+
+.festival-hosts-label {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.festival-hosts-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.25rem;
+  width: min(100%, 22rem);
+  align-items: start;
+  justify-items: center;
+}
+
+.festival-host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+}
+
+.festival-host:hover .festival-host-mark,
+.festival-host:focus-visible .festival-host-mark {
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
+
+.festival-host-mark {
+  display: block;
+  width: clamp(5.625rem, 22.5vw, 7.8125rem); /* 1.25× prior 4.5rem / 18vw / 6.25rem */
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.festival-host-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.festival-host-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  text-align: center;
+}
+
+.festival-host:hover .festival-host-label,
+.festival-host:focus-visible .festival-host-label {
+  color: var(--text);
+}
+
+.home-flyer {
+  margin: 0;
+  max-width: none;
+  width: 100%;
+  justify-self: stretch;
+}
+
+.home-flyer-open {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: transparent;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+  cursor: zoom-in;
+  color: inherit;
+}
+
+.home-flyer-open:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.home-flyer img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.history-lightbox {
+  box-sizing: border-box;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+}
+
+.history-lightbox[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.history-lightbox::backdrop {
+  background: rgba(0, 0, 0, 0.88);
+}
+
+.history-lightbox-image {
+  display: block;
+  width: auto;
+  height: 100vh;
+  height: 100dvh;
+  max-width: 100vw;
+  max-height: 100vh;
+  max-height: 100dvh;
+  margin: 0;
+  object-fit: contain;
+}
+
+.history-lightbox-chrome {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.history-lightbox-share,
+.history-lightbox-close {
+  margin: 0;
+  border: 0;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.history-lightbox-share {
+  padding: 0 0.85rem;
+  height: 2.5rem;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.history-lightbox-close {
+  padding: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.75rem;
+}
+
+.history-lightbox-share:hover,
+.history-lightbox-share:focus-visible,
+.history-lightbox-close:hover,
+.history-lightbox-close:focus-visible {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.history-lightbox-share:focus-visible,
+.history-lightbox-close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.home-rule {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 0 0 1.5rem;
 }
 
 .home-below {
@@ -823,8 +1193,57 @@ body.nav-open {
 }
 
 .home-build-cta {
-  border-top: 1px solid var(--border);
   text-align: center;
+}
+
+.home-sponsors-2026,
+.home-volunteers-2026 {
+  --sponsor-card-min: clamp(9.5rem, 42vw, 14rem);
+}
+
+.home-sponsors-2026 .sponsor-tier,
+.home-volunteers-2026 .sponsor-tier {
+  margin: 1.5rem 0 0;
+}
+
+.home-sponsors-2026 .sponsor-tier + .sponsor-tier,
+.home-volunteers-2026 .sponsor-tier + .sponsor-tier {
+  margin-top: 1.25rem;
+}
+
+.home-sponsors-2026 .sponsor-tier h2,
+.home-volunteers-2026 .sponsor-tier h2 {
+  margin-bottom: 0.75rem;
+}
+
+/* Standalone service strip: section title already names the tier */
+.home-volunteers-2026 .sponsor-tier h2 {
+  display: none;
+}
+
+.home-sponsors-2026 + .home-volunteers-2026 {
+  margin-top: 1.5rem;
+}
+
+.photo-strip + .home-sponsors-2026 {
+  margin-top: 2rem;
+}
+
+.home-build-cta + .photo-strip {
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 720px) {
+  .home-lead {
+    grid-template-columns: minmax(0, 1fr) minmax(12rem, 18rem);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .home-flyer {
+    justify-self: end;
+    max-width: none;
+  }
 }
 
 .home-build-cta .cta-row {
@@ -876,12 +1295,26 @@ body.nav-open {
 }
 
 .event-summary-dates,
-.event-summary-meta {
+.event-summary-meta,
+.event-summary-tagline {
   margin: 0;
 }
 
-.event-summary-meta {
+.event-summary-meta,
+.event-summary-tagline {
   margin-top: 0.35rem;
+}
+
+.event-summary-calendar-link,
+.event-summary-venue-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.event-summary-calendar-link:hover,
+.event-summary-venue-link:hover {
+  color: var(--accent-hover);
 }
 
 .hero h1 {
@@ -1407,6 +1840,10 @@ body.nav-open {
   gap: 0.35rem;
 }
 
+.site-footer-nav-parent {
+  font-weight: 700;
+}
+
 .site-footer-social {
   display: flex;
   justify-content: center;
@@ -1461,6 +1898,24 @@ body.nav-open {
   margin: 0;
 }
 
+.site-doc-main > .sponsorship-thank-you.site-doc-section:has(+ .sponsor-tier) {
+  padding-bottom: 0.35rem;
+}
+
+.site-doc-main > .sponsorship-thank-you.site-doc-section:has(+ .sponsor-tier) > p {
+  margin-bottom: 0;
+}
+
+.site-doc-main > .sponsorship-thank-you.site-doc-section + .sponsor-tier.site-doc-section,
+.site-doc-main > .sponsor-tier.site-doc-section + .sponsor-tier.site-doc-section {
+  border-top: none;
+  padding-top: 1rem;
+}
+
+.site-doc-main > .sponsor-tier.site-doc-section:has(+ .sponsorship-thank-you) {
+  padding-bottom: 2.5rem;
+}
+
 .sponsor-tier h2 {
   margin: 0 0 1rem;
   font-size: 1.15rem;
@@ -1469,33 +1924,71 @@ body.nav-open {
 
 .sponsor-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  gap: 0.75rem;
+  --sponsor-grid-gap: 0.75rem;
+  gap: var(--sponsor-grid-gap);
+  /* Cap at 4 columns: track floor ≥ (100% − 3 gaps) / 4 so auto-fill never opens a 5th. */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(
+      min(
+        100%,
+        max(
+          var(--sponsor-card-min),
+          calc((100% - 3 * var(--sponsor-grid-gap)) / 4)
+        )
+      ),
+      1fr
+    )
+  );
+}
+
+.sponsor-grid--center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  /* Same 4-across cap for centered (incomplete) homepage rows. */
+  max-width: calc(4 * var(--sponsor-card-min) + 3 * var(--sponsor-grid-gap));
+  margin-inline: auto;
+}
+
+.sponsor-grid--center .sponsor-card {
+  box-sizing: border-box;
+  flex: 0 1 var(--sponsor-card-min);
+  width: var(--sponsor-card-min);
+  max-width: 100%;
 }
 
 @media (min-width: 640px) {
+  :root {
+    --sponsor-card-min: 10rem;
+  }
+
   .sponsor-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 1rem;
+    --sponsor-grid-gap: 1rem;
   }
 }
 
 .sponsor-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  min-height: 88px;
-  padding: 1rem;
-  background: #fff;
-  border: 1px solid color-mix(in srgb, #1a2332 14%, transparent);
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: var(--sponsor-card-aspect);
+  width: 100%;
+  min-height: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* Per-card override via inline --sponsor-card-bg (display JSON cardBg). */
+  background: var(--sponsor-card-bg);
+  opacity: var(--sponsor-card-opacity);
+  border: 1px solid var(--sponsor-card-border);
   border-radius: var(--radius);
   text-align: center;
   text-decoration: none;
   color: #1a2332;
   font-weight: 600;
   font-size: 0.95rem;
+  overflow: hidden;
 }
 
 .sponsor-card:hover {
@@ -1503,11 +1996,56 @@ body.nav-open {
   color: var(--accent);
 }
 
+/*
+ * Dark plates (logoOnDark / darkBg, or cardBg luminance < ~0.25).
+ * Background still comes from --sponsor-card-bg when set; this class
+ * only flips border + label colors so captions stay readable.
+ */
+.sponsor-card--on-dark {
+  border-color: color-mix(in srgb, #f3e0cf 22%, transparent);
+  color: #f3e0cf;
+  opacity: 1;
+}
+
+.sponsor-card--on-dark:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.sponsor-card--on-dark .sponsor-card-caption {
+  color: color-mix(in srgb, #f3e0cf 70%, transparent);
+}
+
+.sponsor-card--on-dark:hover .sponsor-card-caption {
+  color: color-mix(in srgb, var(--accent) 80%, #f3e0cf);
+}
+
+.sponsor-card > :not(img) {
+  max-width: calc(100% * var(--sponsor-card-logo-scale));
+  max-height: calc(100% * var(--sponsor-card-logo-scale));
+}
+
 .sponsor-card img {
-  max-height: 72px;
-  max-width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: auto;
+  height: auto;
+  max-width: calc(100% * var(--sponsor-card-logo-scale));
+  max-height: calc(100% * var(--sponsor-card-logo-scale));
   object-fit: contain;
+  object-position: center;
+}
+
+.sponsor-card-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  line-height: 1.2;
+  padding: 0.35rem 0.5rem;
 }
 
 .sponsor-card-name {
@@ -1517,6 +2055,7 @@ body.nav-open {
 .sponsor-card-caption {
   font-weight: 500;
   font-size: 0.8rem;
+  line-height: 1.2;
   color: color-mix(in srgb, #1a2332 62%, transparent);
 }
 
@@ -1669,6 +2208,11 @@ body.nav-open {
   margin: 2.5rem 0 1rem;
   padding-top: 0.5rem;
   border-top: 1px solid var(--border);
+}
+
+.page-wrap--doc .sponsorship-thank-you.site-doc-section {
+  margin: 0;
+  padding-top: 2.5rem;
 }
 
 .sponsorship-thank-you-title {
