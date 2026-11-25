@@ -21,7 +21,7 @@
     "subhead": "Meet the chairs and co-host — and join a director lane if you want to own a piece of the night.",
     "body": "Directors own an outcome, build a small team, and see it through with chair support. Co-chairs Nikki Nguyen and Ellie King (cPALSs) back every lane; Kevin P. Nguyen (NVCC) is standing co-host.",
     "flyer": {
-      "src": "posters/2026.jpg?v=eventbrite-qr16",
+      "src": "posters/2026.jpg?v=eventbrite-qr17",
       "alt": "10th Annual Elk Grove Toy Drive Celebration 2026 flier — Sunday, December 6 at District 56, with sponsors"
     },
     "photos": [
@@ -52,9 +52,9 @@
     "sponsorHref": "/sponsorship/",
     "archiveLabel": "2025 archive",
     "archiveHref": "https://toydrive.cpalss.com/",
-    "ticketsLabel": "Get free tickets on Eventbrite",
+    "ticketsLabel": "Get free tickets",
     "ticketsNavLabel": "Free tickets",
-    "ticketsHref": "https://www.eventbrite.com/e/10th-annual-elk-grove-toy-drive-celebration-tickets-2005386210138"
+    "ticketsHref": "/tickets/"
   },
   "volunteer": {
     "headline": "Volunteer for Toy Drive 2026",
@@ -426,7 +426,7 @@
         {
           "year": 2026,
           "venue": "District 56",
-          "image": "posters/2026.jpg?v=eventbrite-qr16"
+          "image": "posters/2026.jpg?v=eventbrite-qr17"
         },
         {
           "year": 2025,
