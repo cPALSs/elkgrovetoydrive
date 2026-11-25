@@ -41,6 +41,14 @@
       "logo": "2026/parkwest-casino-lotus.png",
       "trackerName": "Manny Perez / Jinky Dolar",
       "trackerOrganization": "Parkwest Casino Lotus"
+    },
+    {
+      "name": "VACOS",
+      "tier": "Sponsor",
+      "url": "https://vacos.org/",
+      "logo": "2026/vacos.png",
+      "trackerName": "VACOS",
+      "trackerOrganization": "Vietnamese American Community of Sacramento"
     }
   ]
 }
