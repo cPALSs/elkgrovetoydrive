@@ -11,7 +11,7 @@ Toy Drive hub — home, team, about, charities, **Fund the Fete**, **Sponsorship
 | Path | File |
 |------|------|
 | `/` | `index.html` |
-| `/team/` | Director recruitment (from `data/site.json`) |
+| `/team/` | Public roster SoT + open director roles via lane modals (`data/site.json` `teamPage`) |
 | `/about/` | Toy Drive story + cPALSs |
 | `/charities/` | Local charity partners (from `data/site.json`) |
 | `/fund-the-fete/` | Interactive sponsor registry |

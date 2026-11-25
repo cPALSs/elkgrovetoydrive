@@ -615,16 +615,32 @@
     return items;
   }
 
+  function findLaneById(site, laneId) {
+    if (!laneId) return null;
+    return (site.lanes ?? []).find((lane) => lane.id === laneId) ?? null;
+  }
+
   function buildTeamToc(site) {
     const meetings = site.productionMeetings;
+    const roster = site.teamPage?.roster;
+    const groups = roster?.groups?.length
+      ? roster.groups
+      : roster?.members?.length
+        ? [{ title: null, members: roster.members }]
+        : [];
+    const rosterToc = groups
+      .map((group) => {
+        const members = group.members ?? [];
+        const lane = findLaneById(site, group.laneId);
+        if (!members.length && !lane) return null;
+        const id = group.title ? slugifyHeading(group.title) : "roster";
+        return { id, label: group.title ?? roster?.title ?? "Team" };
+      })
+      .filter(Boolean);
     return [
       ...(meetings ? [{ id: "production-meetings", label: meetings.title ?? "Production meetings" }] : []),
-      { id: "director-roles", label: "Director roles" },
-      ...(site.lanes ?? []).map((lane) => ({ id: lane.id, label: lane.title })),
-      ...(site.phase2?.title && (site.phase2.roles ?? []).length
-        ? [{ id: "phase2", label: site.phase2.title }]
-        : []),
-      { id: "apply", label: "How to apply" },
+      ...rosterToc,
+      { id: "apply", label: site.teamPage?.join?.title ?? "Apply & get involved" },
       { id: "faq", label: "FAQ" },
     ];
   }
@@ -1512,15 +1528,201 @@
     });
   }
 
-  function renderTeamPage(site) {
+  function rosterInitials(name) {
+    return String(name ?? "")
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((w) => w[0])
+      .join("")
+      .toUpperCase();
+  }
+
+  function renderRosterMemberCard(m) {
+    const photo = m.photo;
+    const img = photo
+      ? `<img class="roster-photo" src="${escapeHtml(photo)}" alt="" width="88" height="88" loading="lazy" />`
+      : `<span class="roster-photo roster-photo--placeholder" aria-hidden="true">${escapeHtml(
+          rosterInitials(m.name),
+        )}</span>`;
+    const handle = String(m.instagram ?? "")
+      .trim()
+      .replace(/^@/, "");
+    const ig = handle
+      ? `<a
+            class="roster-ig"
+            href="https://www.instagram.com/${escapeHtml(handle)}/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="${escapeHtml(m.name)} on Instagram (@${escapeHtml(handle)})"
+          >${renderSocialIcon("Instagram")}</a>`
+      : "";
+    const nameHtml = m.href
+      ? `<a class="co-chair-name" href="${escapeHtml(m.href)}">${escapeHtml(m.name)}</a>`
+      : `<p class="co-chair-name">${escapeHtml(m.name)}</p>`;
+    const titleLines = String(m.title ?? "")
+      .split(/\n+/)
+      .map((line) => line.trim())
+      .filter(Boolean);
+    const titleHtml = titleLines
+      .map((line) => `<p class="co-chair-title">${escapeHtml(line)}</p>`)
+      .join("");
+    return `
+    <div class="roster-card">
+      ${img}
+      <div class="roster-card-text">
+        <div class="roster-name-row">
+          ${nameHtml}
+          ${ig}
+        </div>
+        ${titleHtml}
+      </div>
+    </div>`;
+  }
+
+  function renderLaneInterestCta(lane) {
+    if (!lane) return "";
+    const teamName = lane.joinTeamName ?? lane.title;
+    const label = `Interested in joining the ${teamName} Team?`;
+    return `<p class="roster-lane-interest-wrap"><button type="button" class="roster-lane-interest" data-roster-lane="${escapeHtml(
+      lane.id,
+    )}" data-roster-lane-title="${escapeHtml(teamName)}" aria-haspopup="dialog">${escapeHtml(label)}</button></p>`;
+  }
+
+  function renderLaneModalTemplate(site, lane) {
+    if (!lane) return "";
     const intro = site.directorIntro;
+    const introHtml = intro
+      ? `<div class="roster-lane-modal-intro">
+          <h3>${escapeHtml(intro.title ?? "What is a director?")}</h3>
+          ${(intro.paragraphs ?? []).map((p) => `<p>${escapeHtml(p)}</p>`).join("")}
+        </div>`
+      : "";
+    return `
+      <template class="roster-lane-full" data-roster-lane="${escapeHtml(lane.id)}">
+        <div class="lane-section roster-lane-modal-lane">
+          <div class="lane-header">
+            <p><strong>${escapeHtml(lane.subtitle)}</strong>${
+              lane.intro ? ` — ${escapeHtml(lane.intro)}` : ""
+            }</p>
+          </div>
+          ${(lane.roles ?? []).map(renderRoleCard).join("")}
+        </div>
+        <div class="roster-lane-modal-apply">
+          ${introHtml}
+          <h3>Apply &amp; get involved</h3>
+          <p>${escapeHtml(
+            site.teamPage?.join?.applyNote ??
+              "Name the role you're interested in, then apply on Idealist.",
+          )}</p>
+          ${renderApplyBlock(site)}
+        </div>
+      </template>`;
+  }
+
+  function renderRosterSection(site) {
+    const roster = site.teamPage?.roster;
+    if (!roster) return "";
+
+    const groups = roster.groups?.length
+      ? roster.groups
+      : roster.members?.length
+        ? [{ title: null, members: roster.members }]
+        : [];
+    if (!groups.length) return "";
+
+    const sections = groups
+      .map((group) => {
+        const members = group.members ?? [];
+        const lane = findLaneById(site, group.laneId);
+        if (!members.length && !lane) return "";
+        const id = group.title ? slugifyHeading(group.title) : "roster";
+        const heading = group.title
+          ? `<h2>${escapeHtml(group.title)}</h2>`
+          : `<h2>${escapeHtml(roster.title ?? "Team")}</h2>`;
+        const blurb = lane?.teamBlurb
+          ? `<p class="roster-lane-blurb">${escapeHtml(lane.teamBlurb)}</p>`
+          : "";
+        const cards = members.map(renderRosterMemberCard).join("");
+        const grid = cards ? `<div class="co-chairs roster-grid">${cards}</div>` : "";
+        return `
+          <section class="content-section site-doc-section" id="${escapeHtml(id)}" data-doc-section>
+            ${heading}
+            ${blurb}
+            ${grid}
+            ${renderLaneInterestCta(lane)}
+          </section>`;
+      })
+      .filter(Boolean)
+      .join("");
+
+    const templates = (site.lanes ?? []).map((lane) => renderLaneModalTemplate(site, lane)).join("");
+    return `${sections}${templates}`;
+  }
+
+  function ensureRosterLaneModal() {
+    let dialog = document.getElementById("roster-lane-modal");
+    if (dialog) return dialog;
+    dialog = document.createElement("dialog");
+    dialog.id = "roster-lane-modal";
+    dialog.className = "roster-lane-modal";
+    dialog.innerHTML = `
+      <div class="roster-lane-modal-inner">
+        <form method="dialog" class="roster-lane-modal-toolbar">
+          <h2 class="roster-lane-modal-title"></h2>
+          <button type="submit" class="roster-lane-modal-close" aria-label="Close">&times;</button>
+        </form>
+        <div class="roster-lane-modal-body"></div>
+      </div>`;
+    document.body.appendChild(dialog);
+    return dialog;
+  }
+
+  function initRosterLaneModals(root = document) {
+    const dialog = ensureRosterLaneModal();
+    const laneTitle = dialog.querySelector(".roster-lane-modal-title");
+    const laneBody = dialog.querySelector(".roster-lane-modal-body");
+
+    root.querySelectorAll(".roster-lane-interest[data-roster-lane]").forEach((button) => {
+      if (button.dataset.rosterLaneBound === "1") return;
+      button.dataset.rosterLaneBound = "1";
+      button.addEventListener("click", () => {
+        const key = button.getAttribute("data-roster-lane");
+        const template = Array.from(root.querySelectorAll("template.roster-lane-full")).find(
+          (el) => el.getAttribute("data-roster-lane") === key,
+        );
+        if (!template || !laneTitle || !laneBody) return;
+        laneTitle.textContent =
+          button.getAttribute("data-roster-lane-title") || button.textContent || "Open roles";
+        laneBody.replaceChildren(template.content.cloneNode(true));
+        dialog.showModal();
+      });
+    });
+  }
+
+  function renderTeamApplySection(site) {
+    const join = site.teamPage?.join ?? {};
+    return `
+          <section class="content-section site-doc-section" id="apply" data-doc-section>
+            <h2>${escapeHtml(join.title ?? "Apply & get involved")}</h2>
+            <h3>Apply to an open role</h3>
+            <p>${escapeHtml(
+              join.applyNote ??
+                "Apply on Idealist — name the lane or role you're interested in.",
+            )}</p>
+            ${renderApplyBlock(site)}
+          </section>`;
+  }
+
+  function renderTeamPage(site) {
     const meetings = site.productionMeetings;
     const contactEmail = site.apply?.email ?? "contact@elkgrovetoydrive.com";
 
-    const discordLi =
-      meetings?.discordHref
-        ? `<li><a href="${escapeHtml(meetings.discordHref)}"${externalLinkAttrs(meetings.discordHref)}>${escapeHtml(meetings.discordLabel ?? "Join the Discord")}</a></li>`
-        : "";
+    const discordLi = meetings?.discordHref
+      ? `<li><a href="${escapeHtml(meetings.discordHref)}"${externalLinkAttrs(meetings.discordHref)}>${escapeHtml(
+          meetings.discordLabel ?? "Join the Discord",
+        )}</a></li>`
+      : "";
     const meetingsHtml = meetings
       ? `
           <section class="content-section site-doc-section" id="production-meetings" data-doc-section>
@@ -1536,32 +1738,7 @@
           </section>`
       : "";
 
-    const lanesHtml = site.lanes
-      .map(
-        (lane) => `
-          <section class="lane-section site-doc-section" id="${escapeHtml(lane.id)}" data-doc-section>
-            <div class="lane-header">
-              <h2>${escapeHtml(lane.title)}</h2>
-              <p><strong>${escapeHtml(lane.subtitle)}</strong>${lane.intro ? " — " + escapeHtml(lane.intro) : ""}</p>
-            </div>
-            ${lane.roles.map(renderRoleCard).join("")}
-          </section>`,
-      )
-      .join("");
-
-    const phase2 = site.phase2;
-    const phase2Html =
-      phase2?.title && (phase2.roles ?? []).length
-        ? `
-          <section class="content-section site-doc-section" id="phase2" data-doc-section>
-            <h2>${escapeHtml(phase2.title)}</h2>
-            <p>${escapeHtml(phase2.intro)}</p>
-            <ul>${phase2.roles.map((r) => `<li>${escapeHtml(r)}</li>`).join("")}</ul>
-            <p><a href="${escapeHtml(phase2.registryHref)}">See the registry →</a></p>
-          </section>`
-        : "";
-
-    const faqHtml = site.faq
+    const faqHtml = (site.faq ?? [])
       .map(
         (f) => `
           <div class="faq-item">
@@ -1573,19 +1750,8 @@
 
     const mainHtml = `
           ${meetingsHtml}
-          <section class="content-section site-doc-section" id="director-roles" data-doc-section>
-            <h2>Director roles — 2026 Toy Drive</h2>
-            <h3>${escapeHtml(intro.title)}</h3>
-            ${intro.paragraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join("")}
-            <ul>${intro.notes.map((n) => `<li>${escapeHtml(n)}</li>`).join("")}</ul>
-          </section>
-          ${lanesHtml}
-          ${phase2Html}
-          <section class="content-section site-doc-section" id="apply" data-doc-section>
-            <h2>How to apply</h2>
-            ${renderApplyBlock(site)}
-            <div class="co-chairs">${renderCoChairs(site)}</div>
-          </section>
+          ${renderRosterSection(site)}
+          ${renderTeamApplySection(site)}
           <section class="content-section site-doc-section" id="faq" data-doc-section>
             <h2>FAQ</h2>
             ${faqHtml}
@@ -1626,6 +1792,7 @@
     renderHomeVolunteers2026,
     renderSponsorshipPage,
     renderTeamPage,
+    initRosterLaneModals,
     setPageTitle,
     wrapDocLayout,
     initDocToc,
