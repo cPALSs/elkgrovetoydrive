@@ -218,7 +218,6 @@
           <span class="site-nav-brand-text">Elk Grove Toy Drive</span>
         </a>
         <div class="ls-nav-end">
-          ${renderThemeControl()}
           <button type="button" class="ls-nav-toggle" data-ls-nav-toggle aria-expanded="false" aria-controls="site-nav-drawer">
             <span class="ls-nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
             <span class="ls-sr-only">Open menu</span>
@@ -229,6 +228,7 @@
       <div id="site-nav-drawer" class="ls-nav-drawer" data-ls-nav-drawer aria-hidden="true">
         <div class="ls-nav-drawer-tools">
           <div class="site-nav-social-slot"></div>
+          ${renderThemeControl()}
         </div>
         <div class="ls-nav-links">${links}</div>
         <div class="ls-nav-drawer-footer">
