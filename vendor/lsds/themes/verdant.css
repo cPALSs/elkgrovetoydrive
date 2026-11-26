@@ -151,4 +151,14 @@
       --ls-sponsor-border: rgba(10, 47, 44, 0.14);
     }
   }
+  [data-ls-theme=verdant],
+  [data-ls-theme=elkgrovetoydrive],
+  [data-ls-theme=krewe] {
+    --ls-media-bg: rgb(0 0 0 / 0.94);
+    --ls-media-fg: rgb(255 255 255);
+    --ls-media-muted: rgb(255 255 255 / 0.72);
+    --ls-media-chip: rgb(255 255 255 / 0.14);
+    --ls-media-chip-hover: rgb(255 255 255 / 0.26);
+    --ls-media-video-bg: rgb(0 0 0);
+  }
 }
