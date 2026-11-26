@@ -44,11 +44,11 @@ body {
   line-height: 1.55;
 }
 
-a:not(.ls-btn, .ls-sponsor-card, .ls-nav-brand, .ls-nav-parent, .ls-nav-sublink, .ls-doc-toc-link, .ls-doc-toc-back, .ls-doc-heading-anchor, .ls-footer a) {
+a:where(:not(.ls-btn, .ls-sponsor-card, .ls-nav-brand, .ls-nav-parent, .ls-nav-sublink, .ls-doc-toc-link, .ls-doc-toc-back, .ls-doc-heading-anchor, .ls-footer a)) {
   color: var(--accent);
 }
 
-a:not(.ls-btn, .ls-sponsor-card, .ls-nav-brand, .ls-nav-parent, .ls-nav-sublink, .ls-doc-toc-link, .ls-doc-toc-back, .ls-doc-heading-anchor, .ls-footer a):hover {
+a:where(:not(.ls-btn, .ls-sponsor-card, .ls-nav-brand, .ls-nav-parent, .ls-nav-sublink, .ls-doc-toc-link, .ls-doc-toc-back, .ls-doc-heading-anchor, .ls-footer a)):hover {
   color: var(--accent-hover);
 }
 
