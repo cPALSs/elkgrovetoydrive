@@ -1,5 +1,5 @@
 :root {
-  /* Bridged to LSDS tokens (/vendor/lsds/themes/elkgrovetoydrive.css) — light/dark handled via [data-ls-theme="elkgrovetoydrive"][data-ls-scheme] */
+  /* Bridged to LSDS tokens (/vendor/lsds/themes/verdant.css) — light/dark handled via [data-ls-theme="verdant"][data-ls-scheme] */
   --bg: var(--ls-background);
   --surface: var(--ls-card);
   --surface-raised: var(--ls-surface-raised);

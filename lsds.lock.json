@@ -1,9 +1,9 @@
 {
   "designSystem": "cPALSs/design-system",
-  "commit": "2636c23390d8fe0b379b8af06d0288e2bbf927ca",
-  "shortCommit": "2636c23",
-  "syncedAt": "2026-11-26T18:29:06.032Z",
-  "theme": "elkgrovetoydrive",
+  "commit": "b9d2013088b44237b79cf98d5b82287a6e00bb70",
+  "shortCommit": "b9d2013",
+  "syncedAt": "2026-11-26T18:36:24.738Z",
+  "theme": "verdant",
   "experimental": [
     "checklist",
     "collapsible",
@@ -18,7 +18,7 @@
     "lsds.css": "2920bbcf08595855",
     "lsds.js": "c058acf781e7c3f7",
     "lsds.iife.js": "a3acc767ca91633b",
-    "themes/elkgrovetoydrive.css": "e1f725ca040e4023",
+    "themes/verdant.css": "133b5ddd9b662130",
     "fonts/Metropolis-Bold.woff2": "11b188f6644cac12",
     "fonts/Metropolis-BoldItalic.woff2": "1f252e3c6a9ed31c",
     "fonts/Metropolis-Medium.woff2": "6a789410a07fb6ef",
