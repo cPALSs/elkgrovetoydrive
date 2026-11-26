@@ -17,6 +17,21 @@
     "attendanceNote": "Planning baseline ~500 guests (District 56 Main Hall capacity); mission goal 1,000+ toys. 2025 Eventbrite ~1,077 registered — not door attendance."
   },
   "hero": {
+    "hostsLabel": "Hosted by",
+    "hosts": [
+      {
+        "label": "cPALSs",
+        "name": "Community Partners Advocate of Little Saigon Sacramento",
+        "href": "https://www.cpalss.com/",
+        "logo": "/assets/hosts/cpalss.png"
+      },
+      {
+        "label": "NVCC",
+        "name": "NorCal Vietnamese Chamber of Commerce",
+        "href": "https://www.facebook.com/norcalvietnamesechamber/",
+        "logo": "/assets/hosts/nvcc.png"
+      }
+    ],
     "headline": "Help build the 10th Annual Toy Drive",
     "intro": "The Elk Grove Toy Drive Celebration gathers unwrapped toys for children served by local charities — and hosts a joyful evening with Santa photos, dinner, crafts, and entertainment. Sponsors fund the fete. Volunteers make the magic.",
     "subhead": "Meet the chairs and co-host — and join a director lane if you want to own a piece of the night.",
@@ -59,18 +74,21 @@
   },
   "volunteer": {
     "headline": "Volunteer for Toy Drive 2026",
-    "intro": "Interest sign-up for the Sunday, December 6 celebration at District 56. Everyone is waitlisted until we approve. Officer-led groups and individual volunteers are both welcome.",
+    "intro": "Help day-of or lead a lane at the event on Sunday, December 6 at District 56.",
+    "openTo": [
+      "Officer-led groups and individual volunteers",
+      "High school students and adults"
+    ],
     "bugleUrl": "https://bglvol.com/iwlnnquc",
     "bugleUrlLong": "https://app.buglevolunteers.com/registration?id=84687655-1894-4d1b-9f5a-b92a6a349bb8",
-    "ctaLabel": "Sign up for interest",
+    "ctaLabel": "Sign up to help day-of",
     "bullets": [
       "Pick one or more shifts: Pre (11:30 AM–3:30 PM setup, 4 hr), During (3:30–7:30 guest stations), Cleanup (7:30–9:00 teardown).",
       "Registration is interest only — you stay waitlisted until we approve.",
       "If approved, we email a digital waiver next; arrival and check-in details come closer to December 6.",
       "Unwrapped toys are welcome if you bring them — empty hands are fine too."
     ],
-    "contact": "Questions: contact@elkgrovetoydrive.com",
-    "directorsNote": "Looking to lead a lane instead? See Team — open director roles from Interested in joining."
+    "contactEmail": "contact@elkgrovetoydrive.com"
   },
   "apply": {
     "email": "contact@elkgrovetoydrive.com",

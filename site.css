@@ -644,6 +644,18 @@ body.ls-nav-open {
   border-radius: 0;
 }
 
+.content-section.volunteer-open-to {
+  padding: 1rem 0 1.5rem;
+}
+
+.content-section.volunteer-how {
+  padding-top: 1.5rem;
+}
+
+.volunteer-how .cta-row {
+  margin-top: 1.25rem;
+}
+
 .panel + .panel,
 .content-section + .content-section,
 .about-section + .about-section,
@@ -813,10 +825,23 @@ body.ls-nav-open {
   display: flex;
   flex-direction: column;
   margin: 0;
+  padding: 0;
   background: var(--surface-raised);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+
+.poster-card--interactive {
+  cursor: zoom-in;
+}
+
+.poster-card--interactive:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .poster-image {

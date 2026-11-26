@@ -535,9 +535,13 @@
   }
 
   function renderHostedBy(site) {
-    const hosts = site?.event?.hosts;
-    if (!Array.isArray(hosts) || !hosts.length) return "";
-    const hostsLabel = site?.hero?.hostedByLabel || "Hosted by";
+    const hosts = Array.isArray(site?.hero?.hosts)
+      ? site.hero.hosts
+      : Array.isArray(site?.event?.hosts)
+        ? site.event.hosts
+        : [];
+    if (!hosts.length) return "";
+    const hostsLabel = site?.hero?.hostsLabel || site?.hero?.hostedByLabel || "Hosted by";
     const items = hosts
       .map((host) => {
         const name = host?.name || host?.label || "";
@@ -843,17 +847,27 @@
     const cards = (posterWall.posters ?? [])
       .map((poster) => {
         const alt = `Toy Drive ${poster.year} — ${poster.venue}`;
-        const image = poster.image
-          ? `<img class="poster-image" src="${escapeHtml(prefix + poster.image)}" alt="${escapeHtml(alt)}" loading="lazy" />`
+        const src = poster.image ? prefix + poster.image : "";
+        const image = src
+          ? `<img class="poster-image" src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" />`
           : "";
-        return `
+        if (!src) {
+          return `
       <figure class="poster-card">
-        ${image}
         <figcaption class="poster-caption">
           <span class="poster-year">${escapeHtml(String(poster.year))}</span>
           <span class="poster-venue">${escapeHtml(poster.venue)}</span>
         </figcaption>
       </figure>`;
+        }
+        return `
+      <button type="button" class="poster-card poster-card--interactive" data-ls-lightbox data-ls-lightbox-group="celebration-fliers" data-ls-lightbox-src="${escapeHtml(src)}" data-ls-lightbox-alt="${escapeHtml(alt)}" data-ls-lightbox-caption="${escapeHtml(alt)}" aria-label="View ${escapeHtml(alt)}">
+        ${image}
+        <span class="poster-caption">
+          <span class="poster-year">${escapeHtml(String(poster.year))}</span>
+          <span class="poster-venue">${escapeHtml(poster.venue)}</span>
+        </span>
+      </button>`;
       })
       .join("");
 

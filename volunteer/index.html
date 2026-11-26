@@ -41,7 +41,7 @@
       <section class="hero">
         <h1>Volunteer for Toy Drive 2026</h1>
         <p>Interest sign-up — waitlisted until approved. Sunday, December 6 at District 56.</p>
-        <p><a href="https://bglvol.com/iwlnnquc">Sign up for interest</a></p>
+        <p><a href="https://bglvol.com/iwlnnquc">Sign up to help day-of</a></p>
       </section>
     </div>
   </main>
@@ -56,26 +56,34 @@
       try {
         const site = await loadSiteData();
         const v = site.volunteer || {};
-        const e = site.event || {};
         document.title = "Volunteer — Elk Grove Toy Drive Celebration";
+        const openToItems = (v.openTo || [])
+          .map((item) => `<li>${escapeHtml(item)}</li>`)
+          .join("");
+        const openToSection = openToItems
+          ? `<section class="content-section volunteer-open-to">
+            <h2>Open to</h2>
+            <ul>${openToItems}</ul>
+          </section>`
+          : "";
         const bullets = (v.bullets || [])
           .map((b) => `<li>${escapeHtml(b)}</li>`)
           .join("");
+        const contactEmail = v.contactEmail || "contact@elkgrovetoydrive.com";
         document.getElementById("main").innerHTML = `
           <section class="hero">
             <h1>${escapeHtml(v.headline || "Volunteer for Toy Drive 2026")}</h1>
             <p class="hero-lead">${escapeHtml(v.intro || "")}</p>
-            <p class="home-intro">${escapeHtml(e.dates || "")} · ${escapeHtml(e.venue || "District 56")}</p>
-            <div class="cta-row">
-              <a class="ls-btn ls-btn--primary" href="${escapeHtml(v.bugleUrl || "https://bglvol.com/iwlnnquc")}" rel="noopener">${escapeHtml(v.ctaLabel || "Sign up for interest")}</a>
-              <a class="ls-btn ls-btn--secondary" href="/team/">Director roles</a>
-            </div>
           </section>
-          <section class="content-section">
+          ${openToSection}
+          <section class="content-section volunteer-how">
             <h2>How sign-up works</h2>
             <ul>${bullets}</ul>
-            <p>${escapeHtml(v.contact || "Questions: contact@elkgrovetoydrive.com")}</p>
-            <p><a href="/team/">${escapeHtml(v.directorsNote || "Looking to lead a lane instead? See open director roles on Team.")}</a></p>
+            <p>Questions: <a href="mailto:${escapeHtml(contactEmail)}">${escapeHtml(contactEmail)}</a></p>
+            <div class="cta-row">
+              <a class="ls-btn ls-btn--primary" href="${escapeHtml(v.bugleUrl || "https://bglvol.com/iwlnnquc")}" rel="noopener">${escapeHtml(v.ctaLabel || "Sign up to help day-of")}</a>
+              <a class="ls-btn ls-btn--secondary" href="/team/">Director roles</a>
+            </div>
           </section>
         `;
         mountFooter(site);
