@@ -10,18 +10,19 @@ Wired onto `cPALSs/design-system@7a3cbdd` (`vendor/lsds/` + `lsds.lock.json`).
 - **Nav shell:** Migrated `.site-nav*` and `initNavMenu()` to LSDS `nav-shell` (`.ls-nav*` + `window.LSDS.initNavShell`).
 - **Doc layout & scroll-spy:** Migrated `.site-doc-*` to LSDS `doc-layout` (`.ls-doc-*`) and replaced `doc-scroll.js` with a 23-line delegation shim to `window.LSDS.initDocScroll` / `refreshTocPager`.
 - **Sponsor grid:** Migrated `.sponsor-tier` / `.sponsor-grid` / `.sponsor-card` to LSDS `sponsor-grid` (`.ls-sponsor-*`), mapping per-card `cardBg` overrides to `--ls-sponsor-card-bg` and `--ls-sponsor-opacity`.
+- **Lightbox:** Migrated the custom flyer modal (`.history-lightbox*`, `ensureHistoryLightbox` / `initHistoryLightbox`) to the LSDS lightbox primitive (`data-ls-lightbox` + `window.LSDS.initLightbox` with a Share `renderChrome` action).
 - **Hardcoded hex cleanup:** Replaced theme, heading-anchor copied/failed, sponsor card, host logo plate, charity logo slot, and error-panel hex literals with `--ls-*` tokens.
 
 ## Line & hex counts (before → after)
 
 | Metric | Before | After | Delta |
 |---|---:|---:|---:|
-| `site.css` | 2,795 | 1,988 | -807 (-28.9%) |
+| `site.css` | 2,795 | 1,902 | -893 (-31.9%) |
 | `doc-scroll.js` | 283 | 23 | -260 (-91.9%) |
-| `site.js` | 1,803 | 1,764 | -39 (-2.2%) |
-| Hex literals in `site.css` | 66 | 7 | -59 (-89.4%) |
+| `site.js` | 1,803 | 1,737 | -66 (-3.7%) |
+| Hex literals in `site.css` | 66 | 4 | -62 (-93.9%) |
 
-The 7 remaining hex literals in `site.css` are intentional media-chrome values: 3 white-on-black `#fff` rules in `.history-lightbox` and 4 YouTube player rules (`#111`, `#ff0000`, `#fff`) in `.video-embed` / `.video-play*`.
+The 4 remaining hex literals in `site.css` are intentional YouTube player chrome values (`#111`, `#ff0000`, `#fff`) in `.video-embed` / `.video-play*`.
 
 ## Remaining custom CSS / JS
 
@@ -32,5 +33,5 @@ The 7 remaining hex literals in `site.css` are intentional media-chrome values: 
 | **Two-column mobile nav drawer & tickets CTA** | `site.css` (`.site-nav-col*`, `.site-nav-tickets-cta`, `.site-nav-social*`, `.site-nav-symbol`), `site.js` (`renderNav`, `renderNavTicketsCta`) | Thin extension on LSDS `nav-shell`: left column stacks About + Resources, right column stacks Production + mobile-only Free tickets pill CTA; unwraps via `display: contents` at `>= 880px`. |
 | **4-column sponsor cap & text-only card captions** | `site.css` (`.ls-sponsor-grid`, `.sponsor-card-label` / `.sponsor-card-name` / `.sponsor-card-caption`) | Caps sponsor grids at 4 columns and styles text-only cards + captions using `--ls-sponsor-fg` / `--ls-sponsor-dark-fg`. |
 | **Doc-layout hero gutter alignment** | `site.css` (`.page-wrap--doc > .hero:has(+ .ls-doc-layout)`) | Aligns doc-page hero headings with the 200px TOC gutter on desktop `>= 1100px`. |
-| **Home hero, flyer, photo strip & lightbox** | `site.css`, `site.js` | Two-column home lead + flyer zoom modal (`<dialog class="history-lightbox">`), hosted-by badges, and photo strip cards. |
+| **Home hero, flyer & photo strip** | `site.css`, `site.js` | Two-column home lead, flyer trigger button (`.home-flyer-open`, backed by LSDS lightbox), hosted-by badges, and photo strip cards. |
 | **Charity, Team/Roster, Poster wall, Media, Season & Blog layouts** | `site.css`, `site.js` | Page-specific grids and modals (`.charity-grid`, `.roster-*`, `.lane-*`, `.poster-wall`, `.video-grid`, `.resources-season`, `.resource-card-grid`, `.blog-*`). |

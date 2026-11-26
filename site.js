@@ -650,7 +650,7 @@
     const alt = flyer.alt ?? "Celebration flier";
     return `
       <figure class="home-flyer">
-        <button type="button" class="history-poster-open home-flyer-open" data-lightbox-src="${escapeHtml(flyer.src)}" data-lightbox-alt="${escapeHtml(alt)}" aria-label="View ${escapeHtml(alt)}">
+        <button type="button" class="home-flyer-open" data-ls-lightbox data-ls-lightbox-src="${escapeHtml(flyer.src)}" data-ls-lightbox-alt="${escapeHtml(alt)}" aria-label="View ${escapeHtml(alt)}">
           <img src="${escapeHtml(flyer.src)}" alt="${escapeHtml(alt)}" width="603" height="875" decoding="async" />
         </button>
       </figure>`;
@@ -704,13 +704,9 @@
     );
   }
 
-  async function shareHistoryFlier(dialog) {
-    const img = dialog.querySelector(".history-lightbox-image");
-    const src = dialog.dataset.shareSrc || img?.getAttribute("src") || "";
-    const title =
-      dialog.dataset.shareTitle ||
-      img?.alt ||
-      "Elk Grove Toy Drive Celebration flier";
+  async function shareLightboxFlier(item) {
+    const src = item?.src || "";
+    const title = item?.alt || "Elk Grove Toy Drive Celebration flier";
     const imageUrl = absoluteFlierUrl(src);
     const pageUrl = window.location.href;
     const text = `${title} — Elk Grove Toy Drive Celebration`;
@@ -748,33 +744,18 @@
     return { mode: "copy" };
   }
 
-  function ensureHistoryLightbox() {
-    let dialog = document.getElementById("history-poster-lightbox");
-    if (dialog) return dialog;
-
-    dialog = document.createElement("dialog");
-    dialog.id = "history-poster-lightbox";
-    dialog.className = "history-lightbox";
-    dialog.setAttribute("aria-label", "Celebration flier");
-    dialog.innerHTML = `
-      <div class="history-lightbox-chrome">
-        <button type="button" class="history-lightbox-share" aria-label="Share flier">Share</button>
-        <button type="button" class="history-lightbox-close" aria-label="Close">&times;</button>
-      </div>
-      <img class="history-lightbox-image" alt="" />`;
-    document.body.appendChild(dialog);
-
-    const img = dialog.querySelector(".history-lightbox-image");
-    const shareButton = dialog.querySelector(".history-lightbox-share");
-    dialog.addEventListener("click", (event) => {
-      if (event.target === dialog) dialog.close();
-    });
-    dialog.querySelector(".history-lightbox-close")?.addEventListener("click", () => dialog.close());
-    shareButton?.addEventListener("click", async () => {
+  function renderFlierLightboxChrome(item, container) {
+    if (!item?.src) return;
+    const shareButton = document.createElement("button");
+    shareButton.type = "button";
+    shareButton.className = "ls-lightbox-action";
+    shareButton.setAttribute("aria-label", "Share flier");
+    shareButton.textContent = "Share";
+    shareButton.addEventListener("click", async () => {
       if (shareButton.dataset.sharing === "1") return;
       shareButton.dataset.sharing = "1";
       try {
-        const result = await shareHistoryFlier(dialog);
+        const result = await shareLightboxFlier(item);
         if (result?.mode === "copy") {
           setShareButtonFeedback(shareButton, "Copied!");
         }
@@ -782,8 +763,7 @@
         if (err && err.name === "AbortError") return;
         console.warn("Flier share failed", err);
         try {
-          const src = dialog.dataset.shareSrc || img?.getAttribute("src") || "";
-          await copyText(absoluteFlierUrl(src) || window.location.href);
+          await copyText(absoluteFlierUrl(item.src) || window.location.href);
           setShareButtonFeedback(shareButton, "Copied!");
         } catch (copyErr) {
           console.warn("Flier link copy failed", copyErr);
@@ -793,39 +773,12 @@
         delete shareButton.dataset.sharing;
       }
     });
-    dialog.addEventListener("close", () => {
-      if (img) {
-        img.removeAttribute("src");
-        img.alt = "";
-      }
-      delete dialog.dataset.shareSrc;
-      delete dialog.dataset.shareTitle;
-      if (shareButton) {
-        window.clearTimeout(Number(shareButton.dataset.shareFeedbackTimer || 0));
-        shareButton.textContent = shareButton.dataset.shareIdleLabel || "Share";
-        delete shareButton.dataset.shareFeedbackTimer;
-      }
-    });
-    return dialog;
+    container.appendChild(shareButton);
   }
 
-  function initHistoryLightbox(root = document) {
-    const dialog = ensureHistoryLightbox();
-    const img = dialog.querySelector(".history-lightbox-image");
-
-    root.querySelectorAll(".history-poster-open").forEach((button) => {
-      if (button.dataset.lightboxBound === "1") return;
-      button.dataset.lightboxBound = "1";
-      button.addEventListener("click", () => {
-        const src = button.getAttribute("data-lightbox-src");
-        const alt = button.getAttribute("data-lightbox-alt") || "Celebration flier";
-        if (!src || !img) return;
-        img.src = src;
-        img.alt = alt;
-        dialog.dataset.shareSrc = src;
-        dialog.dataset.shareTitle = alt;
-        dialog.showModal();
-      });
+  function initFlierLightbox() {
+    window.LSDS?.initLightbox?.(document, {
+      renderChrome: renderFlierLightboxChrome,
     });
   }
 
@@ -938,6 +891,7 @@
     mountNav(activePage);
     initTheme();
     initNavMenu();
+    initFlierLightbox();
     loadSiteData()
       .then((site) => {
         syncNavTickets(site);
@@ -1750,7 +1704,6 @@
     renderAboutSections,
     renderPhotoStrip,
     renderHomeFlyer,
-    initHistoryLightbox,
     renderPosterWall,
     renderApplyBlock,
     renderCoChairs,

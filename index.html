@@ -101,7 +101,6 @@
         renderPhotoStrip,
         renderHomeFlyer,
         renderHomeSponsors2026,
-        initHistoryLightbox,
       } = window.ToyDriveSite;
       initPageShell("home");
       try {
@@ -147,7 +146,6 @@
             ${renderHomeSponsors2026(site.sponsorship, sponsors2026Data, service2026Data)}
           </div>
         `;
-        initHistoryLightbox(main);
         mountFooter(site);
       } catch (err) {
         document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
