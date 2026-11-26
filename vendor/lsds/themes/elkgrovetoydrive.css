@@ -1,6 +1,8 @@
-/* src/themes/elkgrovetoydrive.css */
+/* src/themes/verdant.css */
 @layer lsds.tokens {
-  [data-ls-theme=elkgrovetoydrive] {
+  [data-ls-theme=verdant],
+  [data-ls-theme=elkgrovetoydrive],
+  [data-ls-theme=krewe] {
     color-scheme: dark;
     --ls-background: #0f1419;
     --ls-foreground: #e8edf4;
@@ -53,7 +55,9 @@
     --ls-sponsor-dark-fg: #e8edf4;
     --ls-sponsor-dark-border: color-mix(in srgb, #e8edf4 22%, transparent);
   }
-  [data-ls-theme=elkgrovetoydrive][data-ls-scheme=light] {
+  [data-ls-theme=verdant][data-ls-scheme=light],
+  [data-ls-theme=elkgrovetoydrive][data-ls-scheme=light],
+  [data-ls-theme=krewe][data-ls-scheme=light] {
     color-scheme: light;
     --ls-background: #ffffff;
     --ls-foreground: #1a2332;
@@ -99,7 +103,9 @@
     --ls-sponsor-border: color-mix(in srgb, #1a2332 14%, transparent);
   }
   @media (prefers-color-scheme: light) {
-    [data-ls-theme=elkgrovetoydrive][data-ls-scheme=auto] {
+    [data-ls-theme=verdant][data-ls-scheme=auto],
+    [data-ls-theme=elkgrovetoydrive][data-ls-scheme=auto],
+    [data-ls-theme=krewe][data-ls-scheme=auto] {
       color-scheme: light;
       --ls-background: #ffffff;
       --ls-foreground: #1a2332;
@@ -146,3 +152,5 @@
     }
   }
 }
+
+/* src/themes/elkgrovetoydrive.css */

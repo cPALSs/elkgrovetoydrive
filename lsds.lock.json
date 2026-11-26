@@ -1,8 +1,8 @@
 {
   "designSystem": "cPALSs/design-system",
-  "commit": "cf45363a474a4edc6994f9991fa4abb71d437a75",
-  "shortCommit": "cf45363",
-  "syncedAt": "2026-11-26T18:19:26.081Z",
+  "commit": "e9d560a3b8aff3cf5c36662246646f45f8b8f9d9",
+  "shortCommit": "e9d560a",
+  "syncedAt": "2026-11-26T18:26:36.749Z",
   "theme": "elkgrovetoydrive",
   "experimental": [
     "checklist",
@@ -14,10 +14,10 @@
     "toc-drawer"
   ],
   "files": {
-    "lsds.css": "0f926556733d2eb0",
+    "lsds.css": "310f87e586d4a529",
     "lsds.js": "7fe9d34bcdb1d04f",
     "lsds.iife.js": "b024d768d4f7d898",
-    "themes/elkgrovetoydrive.css": "e70a7eb9df861ffc",
+    "themes/elkgrovetoydrive.css": "e1f725ca040e4023",
     "fonts/Metropolis-Bold.woff2": "11b188f6644cac12",
     "fonts/Metropolis-BoldItalic.woff2": "1f252e3c6a9ed31c",
     "fonts/Metropolis-Medium.woff2": "6a789410a07fb6ef",
