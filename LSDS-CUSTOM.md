@@ -1,6 +1,6 @@
 # LSDS Adoption & Remaining Custom Code (`elkgrovetoydrive`)
 
-Wired onto `cPALSs/design-system@7a3cbdd` (`vendor/lsds/` + `lsds.lock.json`).
+Wired onto `cPALSs/design-system@d3a0f53` (`vendor/lsds/` + `lsds.lock.json`).
 
 ## What was wired
 
@@ -11,15 +11,16 @@ Wired onto `cPALSs/design-system@7a3cbdd` (`vendor/lsds/` + `lsds.lock.json`).
 - **Doc layout & scroll-spy:** Migrated `.site-doc-*` to LSDS `doc-layout` (`.ls-doc-*`) and replaced `doc-scroll.js` with a 23-line delegation shim to `window.LSDS.initDocScroll` / `refreshTocPager`.
 - **Sponsor grid:** Migrated `.sponsor-tier` / `.sponsor-grid` / `.sponsor-card` to LSDS `sponsor-grid` (`.ls-sponsor-*`), mapping per-card `cardBg` overrides to `--ls-sponsor-card-bg` and `--ls-sponsor-opacity`.
 - **Lightbox:** Migrated the custom flyer modal (`.history-lightbox*`, `ensureHistoryLightbox` / `initHistoryLightbox`) to the LSDS lightbox primitive (`data-ls-lightbox` + `window.LSDS.initLightbox` with a Share `renderChrome` action).
+- **Site footer:** Migrated `.site-footer*` CSS and `renderFooter*` markup to the LSDS `site-footer` pattern (`.ls-footer`, `.ls-footer-nav`, `.ls-footer-col`, `.ls-footer-parent`, `.ls-footer-sublinks`, `.ls-footer-social`, `.ls-footer-meta`).
 - **Hardcoded hex cleanup:** Replaced theme, heading-anchor copied/failed, sponsor card, host logo plate, charity logo slot, and error-panel hex literals with `--ls-*` tokens.
 
 ## Line & hex counts (before → after)
 
 | Metric | Before | After | Delta |
 |---|---:|---:|---:|
-| `site.css` | 2,795 | 1,902 | -893 (-31.9%) |
+| `site.css` | 2,795 | 1,869 | -926 (-33.1%) |
 | `doc-scroll.js` | 283 | 23 | -260 (-91.9%) |
-| `site.js` | 1,803 | 1,737 | -66 (-3.7%) |
+| `site.js` | 1,803 | 1,743 | -60 (-3.3%) |
 | Hex literals in `site.css` | 66 | 4 | -62 (-93.9%) |
 
 The 4 remaining hex literals in `site.css` are intentional YouTube player chrome values (`#111`, `#ff0000`, `#fff`) in `.video-embed` / `.video-play*`.

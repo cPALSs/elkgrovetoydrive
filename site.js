@@ -288,26 +288,32 @@
 
     for (const page of pages) {
       if (page.children?.length) {
-        const items = [
-          `<a class="site-footer-nav-parent" href="${page.href}">${escapeHtml(navLinkLabel(page))}</a>`,
-        ];
+        const parent = `<a class="ls-footer-parent" href="${page.href}">${escapeHtml(navLinkLabel(page))}</a>`;
+        const sublinks = [];
         for (const child of page.children) {
           const external = child.external ? ' target="_blank" rel="noopener"' : "";
-          items.push(`<a href="${child.href}"${external}>${escapeHtml(navLinkLabel(child))}</a>`);
+          sublinks.push(`<a href="${child.href}"${external}>${escapeHtml(navLinkLabel(child))}</a>`);
         }
-        columns.push(`<div class="site-footer-nav-col">${items.join("")}</div>`);
+        columns.push(
+          `<div class="ls-footer-col">${parent}<div class="ls-footer-sublinks">${sublinks.join("")}</div></div>`
+        );
       } else {
         leafItems.push({ href: page.href, label: navLinkLabel(page), external: Boolean(page.external) });
       }
     }
 
     if (leafItems.length) {
-      const links = leafItems.map((item, i) => {
-        const cls = i === 0 ? ' class="site-footer-nav-parent"' : "";
-        const external = item.external ? ' target="_blank" rel="noopener"' : "";
-        return `<a${cls} href="${item.href}"${external}>${escapeHtml(item.label)}</a>`;
-      });
-      columns.unshift(`<div class="site-footer-nav-col">${links.join("")}</div>`);
+      const [first, ...rest] = leafItems;
+      const firstExt = first.external ? ' target="_blank" rel="noopener"' : "";
+      const parent = `<a class="ls-footer-parent" href="${first.href}"${firstExt}>${escapeHtml(first.label)}</a>`;
+      const restHtml = rest
+        .map((item) => {
+          const external = item.external ? ' target="_blank" rel="noopener"' : "";
+          return `<a href="${item.href}"${external}>${escapeHtml(item.label)}</a>`;
+        })
+        .join("");
+      const sublinks = restHtml ? `<div class="ls-footer-sublinks">${restHtml}</div>` : "";
+      columns.unshift(`<div class="ls-footer-col">${parent}${sublinks}</div>`);
     }
     return columns.join("");
   }
@@ -345,7 +351,7 @@
 
   function renderFooterSocialLinks(links) {
     if (!links?.length) return "";
-    return `<nav class="site-footer-social" aria-label="Social media">${renderSocialLinkItems(links)}</nav>`;
+    return `<nav class="ls-footer-social" aria-label="Social media">${renderSocialLinkItems(links)}</nav>`;
   }
 
   function renderFooter(site) {
@@ -359,10 +365,10 @@
       .join("\u00a0+\u00a0");
 
     return `
-    <footer class="site-footer">
-      <nav class="site-footer-nav" aria-label="Footer">${navLinks}</nav>
+    <footer class="ls-footer">
+      <nav class="ls-footer-nav" aria-label="Footer">${navLinks}</nav>
       ${social}
-      <p class="site-footer-meta"><a href="mailto:${escapeHtml(contactEmail)}">${escapeHtml(contactEmail)}</a>${coalition ? ` · (${coalition})` : ""}</p>
+      <p class="ls-footer-meta"><a href="mailto:${escapeHtml(contactEmail)}">${escapeHtml(contactEmail)}</a>${coalition ? ` · (${coalition})` : ""}</p>
     </footer>
   `;
   }

@@ -44,11 +44,11 @@ body {
   line-height: 1.55;
 }
 
-a:not(.ls-btn, .ls-sponsor-card, .ls-nav-brand, .ls-nav-parent, .ls-nav-sublink, .ls-doc-toc-link, .ls-doc-toc-back, .ls-doc-heading-anchor) {
+a:not(.ls-btn, .ls-sponsor-card, .ls-nav-brand, .ls-nav-parent, .ls-nav-sublink, .ls-doc-toc-link, .ls-doc-toc-back, .ls-doc-heading-anchor, .ls-footer a) {
   color: var(--accent);
 }
 
-a:not(.ls-btn, .ls-sponsor-card, .ls-nav-brand, .ls-nav-parent, .ls-nav-sublink, .ls-doc-toc-link, .ls-doc-toc-back, .ls-doc-heading-anchor):hover {
+a:not(.ls-btn, .ls-sponsor-card, .ls-nav-brand, .ls-nav-parent, .ls-nav-sublink, .ls-doc-toc-link, .ls-doc-toc-back, .ls-doc-heading-anchor, .ls-footer a):hover {
   color: var(--accent-hover);
 }
 
@@ -1266,79 +1266,10 @@ a.co-chair-name {
   color: var(--muted);
 }
 
-.site-footer {
-  margin-top: 3rem;
-  padding: 1.5rem 1.25rem 2rem;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-.site-footer-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 1.5rem 2rem;
-  margin-bottom: 1rem;
-}
-
-.site-footer-nav-col {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.35rem;
-}
-
-.site-footer-nav-parent {
-  font-weight: 700;
-}
-
-.site-footer-social {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-.site-footer-social a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  color: var(--text);
-  text-decoration: none;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  transition: color 0.15s, border-color 0.15s;
-}
-
-.site-footer-social a:hover {
-  color: var(--gold);
-  border-color: var(--gold);
-}
-
-.footer-social-icon,
+/* Site footer (.ls-footer*) lives in /vendor/lsds/lsds.css. */
 .social-icon {
   width: 1.1rem;
   height: 1.1rem;
-}
-
-.site-footer-nav a,
-.site-footer-meta a {
-  color: var(--text);
-  text-decoration: none;
-}
-
-.site-footer-nav a:hover,
-.site-footer-meta a:hover {
-  color: var(--gold);
-}
-
-.site-footer-meta {
-  margin: 0;
 }
 
 /* Site-specific sponsor extensions on top of LSDS sponsor-grid (.ls-sponsor-*) */
