@@ -485,12 +485,32 @@
     return event.tagline || "";
   }
 
+  function preferredMapsUrl(address, fallbackUrl) {
+    const q = String(address || "").trim();
+    const googleUrl =
+      fallbackUrl ||
+      (q ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}` : "");
+    if (!q || typeof navigator === "undefined") return googleUrl;
+    const ua = navigator.userAgent || "";
+    const isAppleMobile =
+      /iPad|iPhone|iPod/.test(ua) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    if (isAppleMobile) {
+      return `https://maps.apple.com/?q=${encodeURIComponent(q)}`;
+    }
+    if (/Android/i.test(ua)) {
+      return `geo:0,0?q=${encodeURIComponent(q)}`;
+    }
+    return googleUrl;
+  }
+
   function renderEventSummary(site) {
     const e = site.event;
     const datesLine = eventMetaLine1(e);
     const venue = eventMetaLine2(e);
     const tagline = eventMetaLine3(e);
-    const mapsUrl = e.venueMapsUrl || "";
+    const mapsUrl = preferredMapsUrl(venue, e.venueMapsUrl || "");
+    const isGeo = mapsUrl.startsWith("geo:");
     const calendarIcs = e.calendarIcs || "";
     const eventName = e.name || "Elk Grove Toy Drive Celebration";
     const datesHtml = calendarIcs
@@ -498,7 +518,7 @@
       : escapeHtml(datesLine);
     const venueHtml = venue
       ? mapsUrl
-        ? `<p class="event-summary-meta"><a class="event-summary-venue-link" href="${escapeHtml(mapsUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(venue)}</a></p>`
+        ? `<p class="event-summary-meta"><a class="event-summary-venue-link" href="${escapeHtml(mapsUrl)}"${isGeo ? "" : ' target="_blank" rel="noopener noreferrer"'}>${escapeHtml(venue)}</a></p>`
         : `<p class="event-summary-meta">${escapeHtml(venue)}</p>`
       : "";
     return `<div class="event-summary">
