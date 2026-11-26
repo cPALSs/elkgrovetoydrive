@@ -1,0 +1,27 @@
+{
+  "designSystem": "cPALSs/design-system",
+  "commit": "7a3cbdd456752d0bd5c2474febc50548ccee6a21",
+  "shortCommit": "7a3cbdd",
+  "syncedAt": "2026-11-26T17:51:24.695Z",
+  "theme": "elkgrovetoydrive",
+  "experimental": [
+    "checklist",
+    "collapsible",
+    "data-table",
+    "sheet",
+    "toc-drawer"
+  ],
+  "files": {
+    "lsds.css": "8f32660f31db0a6d",
+    "lsds.js": "7fe9d34bcdb1d04f",
+    "lsds.iife.js": "b024d768d4f7d898",
+    "themes/elkgrovetoydrive.css": "e70a7eb9df861ffc",
+    "fonts/Metropolis-Bold.woff2": "11b188f6644cac12",
+    "fonts/Metropolis-BoldItalic.woff2": "1f252e3c6a9ed31c",
+    "fonts/Metropolis-Medium.woff2": "6a789410a07fb6ef",
+    "fonts/Metropolis-Regular.woff2": "92e2ea5818cd0b32",
+    "fonts/Metropolis-RegularItalic.woff2": "6d1d4305840a61ca",
+    "fonts/Metropolis-SemiBold.woff2": "625a5acbff09f910",
+    "fonts/metropolis.css": "eb0bc7bcb4458bf1"
+  }
+}
