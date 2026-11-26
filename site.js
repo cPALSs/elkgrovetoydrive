@@ -41,7 +41,7 @@
 
   function renderThemeControl() {
     return `
-      <button type="button" class="icon-btn theme-toggle" id="theme-toggle" aria-label="Color theme">
+      <button type="button" class="ls-icon-btn theme-toggle" id="theme-toggle" aria-label="Color theme">
         ${themeIconMarkup("light")}
       </button>`;
   }
@@ -49,11 +49,12 @@
   function applyTheme(theme) {
     const next = VALID_THEMES.has(theme) ? theme : "auto";
     document.documentElement.setAttribute("data-theme", next);
+    document.documentElement.setAttribute("data-ls-scheme", next);
 
     const toggle = document.getElementById("theme-toggle");
     if (toggle) {
       const appearance = resolvedAppearance(next);
-      toggle.innerHTML = `${themeIconMarkup(appearance)}<span class="sr-only">Color theme: ${themeLabel(next)}</span>`;
+      toggle.innerHTML = `${themeIconMarkup(appearance)}<span class="ls-sr-only">Color theme: ${themeLabel(next)}</span>`;
       toggle.setAttribute("aria-label", `Color theme: ${themeLabel(next)}`);
     }
   }
@@ -170,10 +171,10 @@
         .map((child) => {
           const childCurrent = child.id === activePage ? ' aria-current="page"' : "";
           const external = child.external ? ' target="_blank" rel="noopener"' : "";
-          return `<div class="site-nav-sublink-wrap"><a class="site-nav-sublink" href="${child.href}"${childCurrent}${external}>${escapeHtml(navLinkLabel(child))}</a></div>`;
+          return `<div class="ls-nav-sublink-wrap"><a class="ls-nav-sublink" href="${child.href}"${childCurrent}${external}>${escapeHtml(navLinkLabel(child))}</a></div>`;
         })
         .join("");
-      return `<div class="site-nav-group${childActive ? " is-active" : ""}" data-nav-section="${escapeHtml(page.id)}"><a class="site-nav-parent" href="${page.href}"${parentCurrent}>${escapeHtml(navLinkLabel(page))}</a><div class="site-nav-submenu">${sublinks}</div></div>`;
+      return `<div class="ls-nav-group${childActive ? " ls-is-active" : ""}" data-nav-section="${escapeHtml(page.id)}"><a class="ls-nav-parent" href="${page.href}"${parentCurrent}>${escapeHtml(navLinkLabel(page))}</a><div class="ls-nav-submenu">${sublinks}</div></div>`;
     }
     const current = page.id === activePage ? ' aria-current="page"' : "";
     const external = page.external ? ' target="_blank" rel="noopener"' : "";
@@ -189,7 +190,7 @@
     const label = cachedSite?.cta?.ticketsNavLabel || "Free tickets";
     const external = href ? ' target="_blank" rel="noopener"' : "";
     const disabled = href ? "" : ' aria-disabled="true"';
-    return `<a class="btn btn-primary site-nav-tickets-cta${href ? "" : " is-disabled"}" href="${href || "#"}" data-nav-id="tickets"${external}${disabled}>${escapeHtml(label)}</a>`;
+    return `<a class="ls-btn ls-btn--primary ls-btn--pill site-nav-tickets-cta${href ? "" : " is-disabled"}" href="${href || "#"}" data-nav-id="tickets"${external}${disabled}>${escapeHtml(label)}</a>`;
   }
 
   function renderNav(activePage) {
@@ -210,27 +211,27 @@
     `;
 
     return `
-    <nav class="site-nav" aria-label="Main">
-      <div class="site-nav-bar">
-        <a class="site-nav-brand" href="/">
+    <nav class="ls-nav site-nav" data-ls-nav aria-label="Main">
+      <div class="ls-nav-bar">
+        <a class="ls-nav-brand site-nav-brand" href="/">
           <span class="site-nav-symbol" aria-hidden="true">🎄</span>
           <span class="site-nav-brand-text">Elk Grove Toy Drive</span>
         </a>
-        <div class="site-nav-end">
+        <div class="ls-nav-end">
           ${renderThemeControl()}
-          <button type="button" class="icon-btn site-nav-toggle" aria-expanded="false" aria-controls="site-nav-drawer">
-            <span class="site-nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-            <span class="sr-only">Open menu</span>
+          <button type="button" class="ls-nav-toggle" data-ls-nav-toggle aria-expanded="false" aria-controls="site-nav-drawer">
+            <span class="ls-nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="ls-sr-only">Open menu</span>
           </button>
         </div>
       </div>
-      <div class="site-nav-backdrop" hidden aria-hidden="true"></div>
-      <div id="site-nav-drawer" class="site-nav-drawer" aria-hidden="true">
-        <div class="site-nav-drawer-tools">
+      <div class="ls-nav-backdrop" data-ls-nav-backdrop hidden aria-hidden="true"></div>
+      <div id="site-nav-drawer" class="ls-nav-drawer" data-ls-nav-drawer aria-hidden="true">
+        <div class="ls-nav-drawer-tools">
           <div class="site-nav-social-slot"></div>
         </div>
-        <div class="site-nav-links">${links}</div>
-        <div class="site-nav-drawer-footer">
+        <div class="ls-nav-links">${links}</div>
+        <div class="ls-nav-drawer-footer">
           <a class="site-nav-drawer-footer-email" href="mailto:contact@elkgrovetoydrive.com">contact@elkgrovetoydrive.com</a>
         </div>
       </div>
@@ -251,74 +252,34 @@
   }
 
   function initNavMenu() {
-    const nav = document.querySelector(".site-nav");
-    if (!nav) return;
+    const slot = document.getElementById("site-nav");
+    if (!slot) return;
+    const controllers =
+      window.LSDS && typeof window.LSDS.initNavShell === "function"
+        ? window.LSDS.initNavShell(slot)
+        : [];
+    const ctrl = controllers[0];
+    closeNavMenu = ctrl ? ctrl.close : () => {};
 
-    const toggle = nav.querySelector(".site-nav-toggle");
-    const drawer = nav.querySelector("#site-nav-drawer");
-    const backdrop = nav.querySelector(".site-nav-backdrop");
-    const srLabel = toggle?.querySelector(".sr-only");
-    if (!toggle || !drawer) return;
-
-    const desktopQuery = window.matchMedia("(min-width: 880px)");
-
-    function setOpen(open) {
-      if (desktopQuery.matches) {
-        nav.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
-        drawer.setAttribute("aria-hidden", "false");
-        if (backdrop) {
-          backdrop.hidden = true;
-          backdrop.setAttribute("aria-hidden", "true");
-        }
-        document.body.classList.remove("nav-open");
-        if (srLabel) srLabel.textContent = "Open menu";
-        return;
-      }
-      nav.classList.toggle("is-open", open);
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      drawer.setAttribute("aria-hidden", open ? "false" : "true");
-      if (backdrop) {
-        backdrop.hidden = !open;
-        backdrop.setAttribute("aria-hidden", open ? "false" : "true");
-      }
-      document.body.classList.toggle("nav-open", open);
-      if (srLabel) srLabel.textContent = open ? "Close menu" : "Open menu";
-    }
-
-    toggle.addEventListener("click", () => setOpen(!nav.classList.contains("is-open")));
-
-    if (backdrop) {
-      backdrop.addEventListener("click", () => setOpen(false));
-    }
-
-    nav.querySelectorAll(".site-nav-links a, .site-nav-tickets-cta").forEach((link) => {
-      link.addEventListener("click", (event) => {
-        if (link.classList.contains("is-disabled") || link.getAttribute("aria-disabled") === "true") {
+    const ticketsCta = slot.querySelector(".site-nav-tickets-cta");
+    if (ticketsCta) {
+      ticketsCta.addEventListener("click", (event) => {
+        if (
+          ticketsCta.classList.contains("is-disabled") ||
+          ticketsCta.getAttribute("aria-disabled") === "true"
+        ) {
           event.preventDefault();
         }
-        setOpen(false);
       });
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && nav.classList.contains("is-open")) setOpen(false);
-    });
-
-    desktopQuery.addEventListener("change", (event) => {
-      if (event.matches) setOpen(false);
-    });
-
-    closeNavMenu = () => setOpen(false);
-
-    if (desktopQuery.matches) {
-      drawer.setAttribute("aria-hidden", "false");
     }
   }
 
   function mountNav(activePage) {
     const slot = document.getElementById("site-nav");
-    if (slot) slot.innerHTML = renderNav(activePage);
+    if (slot) {
+      slot.classList.add("ls-nav-wrap");
+      slot.innerHTML = renderNav(activePage);
+    }
   }
 
   function renderFooterNavLinks(pages) {
@@ -476,15 +437,15 @@
     const apply = site.apply;
     const idealist = site.meta?.idealistUrl;
     const idealistBtn = idealist
-      ? `<a class="btn btn-primary" href="${escapeHtml(idealist)}" target="_blank" rel="noopener">Apply on Idealist</a>`
-      : `<span class="btn btn-primary" style="opacity:0.65;cursor:default" title="Idealist link coming soon">Apply on Idealist</span>`;
+      ? `<a class="ls-btn ls-btn--primary" href="${escapeHtml(idealist)}" target="_blank" rel="noopener">Apply on Idealist</a>`
+      : `<span class="ls-btn ls-btn--primary" style="opacity:0.65;cursor:default" title="Idealist link coming soon">Apply on Idealist</span>`;
 
     const mailto = `mailto:${apply.email}?subject=${encodeURIComponent(apply.emailSubject)}`;
 
     return `
     <div class="cta-row">
       ${idealistBtn}
-      <a class="btn btn-secondary" href="${mailto}">Email ${escapeHtml(apply.email)}</a>
+      <a class="ls-btn ls-btn--secondary" href="${mailto}">Email ${escapeHtml(apply.email)}</a>
     </div>
     <ol class="steps-list">
       ${apply.steps.map((s) => `<li>${escapeHtml(s)}</li>`).join("")}
@@ -593,18 +554,18 @@
     const links = (tocItems ?? [])
       .map((item) => {
         if (item?.type === "divider" || item?.divider) {
-          return `<p class="site-doc-toc-label site-doc-toc-label--section">${escapeHtml(
+          return `<p class="ls-doc-toc-label ls-doc-toc-label--section">${escapeHtml(
             item.label ?? "",
           )}</p>`;
         }
-        return `<a class="site-doc-toc-link" href="#${escapeHtml(item.id)}" data-toc-target="${escapeHtml(item.id)}">${escapeHtml(item.label)}</a>`;
+        return `<a class="ls-doc-toc-link" href="#${escapeHtml(item.id)}" data-toc-target="${escapeHtml(item.id)}">${escapeHtml(item.label)}</a>`;
       })
       .join("");
-    return `<nav class="site-doc-toc" aria-label="On this page"><p class="site-doc-toc-label">On this page</p>${links}</nav>`;
+    return `<nav class="ls-doc-toc" aria-label="On this page"><p class="ls-doc-toc-label">On this page</p>${links}</nav>`;
   }
 
   function wrapDocLayout(tocHtml, mainHtml) {
-    return `<div class="site-doc-layout">${tocHtml}<div class="site-doc-main">${mainHtml}</div></div>`;
+    return `<div class="ls-doc-layout">${tocHtml}<div class="ls-doc-main">${mainHtml}</div></div>`;
   }
 
   function buildAboutToc(about) {
@@ -886,7 +847,7 @@
               .filter(Boolean)
               .join("");
             return `
-      <section class="about-section site-doc-section" id="${escapeHtml(id)}" data-doc-section>
+      <section class="about-section ls-doc-section" id="${escapeHtml(id)}" data-doc-section>
         <h2>${escapeHtml(section.title)}</h2>
         ${body}
       </section>`;
@@ -918,7 +879,7 @@
       .join("");
 
     return `
-    <section class="poster-wall site-doc-section" id="posters" data-doc-section>
+    <section class="poster-wall ls-doc-section" id="posters" data-doc-section>
       <h2>${escapeHtml(posterWall.title ?? "Festival posters over the years")}</h2>
       ${posterWall.intro ? `<p class="muted">${escapeHtml(posterWall.intro)}</p>` : ""}
       <div class="poster-grid">${cards}</div>
@@ -1116,11 +1077,11 @@
     const logoPrefix = options.logoPrefix ?? "/sponsors/";
     const idPrefix = options.idPrefix ?? "";
     const docSections = options.docSections !== false;
-    const sectionClass = docSections ? "sponsor-tier site-doc-section" : "sponsor-tier";
+    const sectionClass = docSections ? "ls-sponsor-tier ls-doc-section" : "ls-sponsor-tier";
     const dataAttr = docSections ? " data-doc-section" : "";
     const gridClass = options.centerGrid
-      ? "sponsor-grid sponsor-grid--center"
-      : "sponsor-grid";
+      ? "ls-sponsor-grid ls-sponsor-grid--center"
+      : "ls-sponsor-grid";
     return sortedTiers
       .map((tier) => {
         const tierId = `${idPrefix}${slugifyHeading(tier)}`;
@@ -1144,7 +1105,7 @@
               : textOnly;
             const cardBg = resolveSponsorCardBg(s);
             const styleAttr = cardBg
-              ? ` style="--sponsor-card-bg:${cardBg};--sponsor-card-opacity:1"`
+              ? ` style="--ls-sponsor-card-bg:${cardBg};--ls-sponsor-opacity:1"`
               : "";
             const lum = cardBg ? sponsorCardBgLuminance(cardBg) : null;
             const onDark =
@@ -1152,15 +1113,15 @@
               s.darkBg === true ||
               (lum != null && lum < 0.25);
             const cardClass = onDark
-              ? "sponsor-card sponsor-card--on-dark"
-              : "sponsor-card";
+              ? "ls-sponsor-card ls-sponsor-card--on-dark"
+              : "ls-sponsor-card";
             if (s.url) {
               return `<a class="${cardClass}" href="${escapeHtml(s.url)}" target="_blank" rel="noopener"${styleAttr}>${inner}</a>`;
             }
             return `<div class="${cardClass}"${styleAttr}>${inner}</div>`;
           })
           .join("");
-        return `<section class="${sectionClass}" id="${escapeHtml(tierId)}"${dataAttr}><h2>${escapeHtml(tier)}</h2><div class="${gridClass}">${cards}</div></section>`;
+        return `<section class="${sectionClass}" id="${escapeHtml(tierId)}"${dataAttr}><h2 class="ls-sponsor-tier-heading">${escapeHtml(tier)}</h2><div class="${gridClass}">${cards}</div></section>`;
       })
       .join("");
   }
@@ -1271,18 +1232,18 @@
       : "";
 
     const mainHtml = `
-      <section class="content-section site-doc-section" id="partner" data-doc-section>
+      <section class="content-section ls-doc-section" id="partner" data-doc-section>
         <h2>${escapeHtml(sponsorship?.partnerTitle ?? "Partner with us")}</h2>
         ${sponsorship?.partnerIntro ? `<p>${escapeHtml(sponsorship.partnerIntro)}</p>` : ""}
         <div class="resource-card-grid">${partnerCards}</div>
         ${partnerContactNote}
       </section>
-      <section class="sponsorship-thank-you site-doc-section" id="thank-you-2026" data-doc-section>
+      <section class="sponsorship-thank-you ls-doc-section" id="thank-you-2026" data-doc-section>
         <h2 class="sponsorship-thank-you-title">${escapeHtml(thankYou2026Title)}</h2>
         <p>${escapeHtml(thankYou2026Lead)}</p>
       </section>
       ${tiers2026Html || ""}
-      <section class="sponsorship-thank-you site-doc-section" id="${escapeHtml(thankYou2025Id)}" data-doc-section>
+      <section class="sponsorship-thank-you ls-doc-section" id="${escapeHtml(thankYou2025Id)}" data-doc-section>
         <h2 class="sponsorship-thank-you-title">${escapeHtml(thankYou2025Title)}</h2>
         <p>${escapeHtml(thankYou2025Lead)}</p>
       </section>
@@ -1326,7 +1287,7 @@
       : "";
     const toc = [{ id: "season", label: seasonTitle }];
     const seasonSection = `
-      <section class="about-section resources-season site-doc-section" id="season" data-doc-section>
+      <section class="about-section resources-season ls-doc-section" id="season" data-doc-section>
         <h2>${escapeHtml(seasonTitle)}</h2>
         ${season?.intro ? `<p>${escapeHtml(season.intro)}</p>` : ""}
         ${events.length ? `<ul class="season-event-list">${listItems}</ul>` : `<p class="muted">Season events coming soon.</p>`}
@@ -1408,15 +1369,15 @@
       .join("");
 
     const becomeHtml = mailto
-      ? `<section class="content-section site-doc-section" id="become-a-recipient" data-doc-section>
+      ? `<section class="content-section ls-doc-section" id="become-a-recipient" data-doc-section>
           <h2>Become a recipient</h2>
           <p>${escapeHtml(become.prompt ?? "Interested in becoming a recipient charity?")}</p>
-          <p><a class="btn btn-primary" href="${escapeHtml(mailto)}">${escapeHtml(become.cta ?? "Email us")} →</a></p>
+          <p><a class="ls-btn ls-btn--primary" href="${escapeHtml(mailto)}">${escapeHtml(become.cta ?? "Email us")} →</a></p>
         </section>`
       : "";
 
     const mainHtml = `
-      <section class="content-section site-doc-section" id="partners" data-doc-section>
+      <section class="content-section ls-doc-section" id="partners" data-doc-section>
         <h2>${escapeHtml(charities?.seasonLabel ?? "Partners")}</h2>
         ${charities?.seasonNote ? `<p class="muted">${escapeHtml(charities.seasonNote)}</p>` : ""}
         <div class="charity-grid">${partnerCards || "<p>Partner charities will be listed here.</p>"}</div>
@@ -1484,7 +1445,7 @@
 
     const videosHtml = videos.length
       ? `
-      <section class="content-section site-doc-section" id="videos" data-doc-section>
+      <section class="content-section ls-doc-section" id="videos" data-doc-section>
         <h2>${escapeHtml(videosHeading)}</h2>
         ${yearBlocks}
       </section>`
@@ -1646,7 +1607,7 @@
         const cards = members.map(renderRosterMemberCard).join("");
         const grid = cards ? `<div class="co-chairs roster-grid">${cards}</div>` : "";
         return `
-          <section class="content-section site-doc-section" id="${escapeHtml(id)}" data-doc-section>
+          <section class="content-section ls-doc-section" id="${escapeHtml(id)}" data-doc-section>
             ${heading}
             ${blurb}
             ${grid}
@@ -1703,7 +1664,7 @@
   function renderTeamApplySection(site) {
     const join = site.teamPage?.join ?? {};
     return `
-          <section class="content-section site-doc-section" id="apply" data-doc-section>
+          <section class="content-section ls-doc-section" id="apply" data-doc-section>
             <h2>${escapeHtml(join.title ?? "Apply & get involved")}</h2>
             <h3>Apply to an open role</h3>
             <p>${escapeHtml(
@@ -1725,7 +1686,7 @@
       : "";
     const meetingsHtml = meetings
       ? `
-          <section class="content-section site-doc-section" id="production-meetings" data-doc-section>
+          <section class="content-section ls-doc-section" id="production-meetings" data-doc-section>
             <h2>${escapeHtml(meetings.title ?? "Production meetings")}</h2>
             ${meetings.intro ? `<p>${escapeHtml(meetings.intro)}</p>` : ""}
             <ul>
@@ -1752,7 +1713,7 @@
           ${meetingsHtml}
           ${renderRosterSection(site)}
           ${renderTeamApplySection(site)}
-          <section class="content-section site-doc-section" id="faq" data-doc-section>
+          <section class="content-section ls-doc-section" id="faq" data-doc-section>
             <h2>FAQ</h2>
             ${faqHtml}
           </section>`;
