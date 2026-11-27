@@ -56,7 +56,7 @@
   "cta": {
     "primaryLabel": "Join the team",
     "primaryHref": "/team/",
-    "volunteerLabel": "Volunteer interest sign-up",
+    "volunteerLabel": "Volunteer that day",
     "volunteerHref": "/volunteer/",
     "buildLabel": "Fund the Fete",
     "buildHref": "/fund-the-fete/",
@@ -83,7 +83,7 @@
     "bugleUrlLong": "https://app.buglevolunteers.com/registration?id=84687655-1894-4d1b-9f5a-b92a6a349bb8",
     "ctaLabel": "Sign up to help day-of",
     "bullets": [
-      "Pick one or more shifts: Pre (11:30 AM–3:30 PM setup, 4 hr), During (3:30–7:30 guest stations), Cleanup (7:30–9:00 teardown).",
+      "Pick one or more shifts: Pre (11:30 AM–3:30 PM setup, 4 hr), During (3:30–7:30 guest stations), Cleanup (7:00–9:00 PM teardown).",
       "Registration is interest only — you stay waitlisted until we approve.",
       "If approved, we email a digital waiver next; arrival and check-in details come closer to December 6.",
       "Unwrapped toys are welcome if you bring them — empty hands are fine too."
