@@ -1572,6 +1572,13 @@ a.co-chair-name {
   margin: 0;
 }
 
+.video-year {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
 .video-embed {
   position: relative;
   aspect-ratio: 16 / 9;

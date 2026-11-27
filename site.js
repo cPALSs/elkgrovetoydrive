@@ -1392,8 +1392,13 @@
     const watchUrl = `https://www.youtube.com/watch?v=${encodeURIComponent(id)}`;
     const embedSrc = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0`;
     const poster = `https://i.ytimg.com/vi/${encodeURIComponent(id)}/hqdefault.jpg`;
+    const yearHtml =
+      video.year !== undefined && video.year !== null && String(video.year).trim()
+        ? `<p class="video-year">${escapeHtml(String(video.year))}</p>`
+        : "";
     return `
       <figure class="video-card">
+        ${yearHtml}
         <div class="video-embed" data-youtube-id="${escapeHtml(id)}" data-embed-src="${escapeHtml(embedSrc)}">
           <button type="button" class="video-play" aria-label="Play ${escapeHtml(title)}">
             <img class="video-poster" src="${escapeHtml(poster)}" alt="" loading="lazy" width="480" height="360" />
@@ -1419,29 +1424,16 @@
       });
     }
 
-    const byYear = new Map();
-    for (const video of videos) {
-      const year = String(video.year ?? "Videos");
-      if (!byYear.has(year)) byYear.set(year, []);
-      byYear.get(year).push(video);
-    }
-    const years = [...byYear.keys()].sort((a, b) => String(b).localeCompare(String(a)));
-    const yearBlocks = years
-      .map((year) => {
-        const cards = byYear.get(year).map(renderMediaVideoCard).join("");
-        return `
-      <div class="media-year-section" aria-labelledby="media-year-${escapeHtml(year)}">
-        <h3 class="media-year-heading" id="media-year-${escapeHtml(year)}">${escapeHtml(year)}</h3>
-        <div class="video-grid">${cards}</div>
-      </div>`;
-      })
-      .join("");
+    const sortedVideos = [...videos].sort((a, b) =>
+      String(b.year ?? "").localeCompare(String(a.year ?? ""))
+    );
+    const videoCards = sortedVideos.map(renderMediaVideoCard).join("");
 
     const videosHtml = videos.length
       ? `
       <section class="content-section ls-doc-section" id="videos" data-doc-section>
         <h2>${escapeHtml(videosHeading)}</h2>
-        ${yearBlocks}
+        <div class="video-grid">${videoCards}</div>
       </section>`
       : "";
 
