@@ -66,8 +66,6 @@
     "sponsorsHref": "/sponsorship/#thank-you-2025",
     "sponsorLabel": "Sponsor the event",
     "sponsorHref": "/sponsorship/",
-    "archiveLabel": "2025 archive",
-    "archiveHref": "https://toydrive.cpalss.com/",
     "ticketsLabel": "Get free tickets",
     "ticketsNavLabel": "Free tickets",
     "ticketsHref": "/tickets/"
@@ -368,7 +366,7 @@
   },
   "resources": {
     "headline": "Resources",
-    "lead": "Celebration media, guest Santa photos, and the 2025 archive site.",
+    "lead": "Celebration media and guest Santa photos.",
     "links": [
       {
         "title": "Media",
@@ -379,12 +377,6 @@
         "title": "2025 Santa Photos",
         "body": "Guest Santa portraits from the 2025 celebration — look up and download your family’s photos (hosted by Knoxwood Productions).",
         "href": "https://knoxwood-productions.mypixhome.com/instant-gallery/santa-toy-drive-2025/",
-        "external": true
-      },
-      {
-        "title": "2025 archive",
-        "body": "Previous season site — tickets, raffles, and event pages from 2025.",
-        "href": "https://toydrive.cpalss.com/",
         "external": true
       }
     ]

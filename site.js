@@ -156,7 +156,6 @@
             href: "https://knoxwood-productions.mypixhome.com/instant-gallery/santa-toy-drive-2025/",
             external: true,
           },
-          { id: "archive2025", label: "2025 archive", href: "https://toydrive.cpalss.com/", external: true },
         ],
       },
     ];
