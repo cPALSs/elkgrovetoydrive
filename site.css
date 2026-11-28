@@ -500,6 +500,38 @@ body.ls-nav-open {
   margin-bottom: 0.75rem;
 }
 
+.home-sponsors-2026 .ls-sponsor-supercard-row {
+  --ls-sponsor-grid-gap: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: var(--ls-sponsor-grid-gap);
+  max-width: calc(4 * var(--ls-sponsor-min) + 3 * var(--ls-sponsor-grid-gap));
+  margin-inline: auto;
+}
+
+@media (min-width: 640px) {
+  .home-sponsors-2026 .ls-sponsor-supercard-row {
+    --ls-sponsor-grid-gap: 1rem;
+  }
+}
+
+.home-sponsors-2026 .ls-sponsor-supercard {
+  flex: 0 1 var(--ls-sponsor-min);
+  width: var(--ls-sponsor-min);
+  max-width: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-items: end;
+  margin: 0;
+}
+
+.home-sponsors-2026 .ls-sponsor-supercard .ls-sponsor-card {
+  width: 100%;
+  height: auto;
+}
+
 /* Standalone service strip: section title already names the tier */
 .home-volunteers-2026 .ls-sponsor-tier-heading {
   display: none;

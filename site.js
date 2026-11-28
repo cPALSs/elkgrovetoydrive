@@ -1076,48 +1076,82 @@
     const gridClass = options.centerGrid
       ? "ls-sponsor-grid ls-sponsor-grid--center"
       : "ls-sponsor-grid";
-    return sortedTiers
-      .map((tier) => {
-        const tierId = `${idPrefix}${slugifyHeading(tier)}`;
-        const cards = byTier
-          .get(tier)
-          .slice()
-          .sort(compareSponsorDisplayName)
-          .map((s) => {
-            const caption = s.caption
-              ? `<span class="sponsor-card-caption">${escapeHtml(s.caption)}</span>`
-              : "";
-            // Text-only name+caption must be one centered stack — sibling
-            // grid children stretch apart under aspect-ratio + align-content.
-            const textOnly =
-              !s.logo &&
-              `<span class="sponsor-card-label"><span class="sponsor-card-name">${escapeHtml(
-                s.name,
-              )}</span>${caption}</span>`;
-            const inner = s.logo
-              ? `<img src="${escapeHtml(logoPrefix)}${escapeHtml(s.logo)}" alt="${escapeHtml(s.name)}" />${caption}`
-              : textOnly;
-            const cardBg = resolveSponsorCardBg(s);
-            const styleAttr = cardBg
-              ? ` style="--ls-sponsor-card-bg:${cardBg};--ls-sponsor-opacity:1"`
-              : "";
-            const lum = cardBg ? sponsorCardBgLuminance(cardBg) : null;
-            const onDark =
-              s.logoOnDark === true ||
-              s.darkBg === true ||
-              (lum != null && lum < 0.25);
-            const cardClass = onDark
-              ? "ls-sponsor-card ls-sponsor-card--on-dark"
-              : "ls-sponsor-card";
-            if (s.url) {
-              return `<a class="${cardClass}" href="${escapeHtml(s.url)}" target="_blank" rel="noopener"${styleAttr}>${inner}</a>`;
-            }
-            return `<div class="${cardClass}"${styleAttr}>${inner}</div>`;
-          })
-          .join("");
-        return `<section class="${sectionClass}" id="${escapeHtml(tierId)}"${dataAttr}><h2 class="ls-sponsor-tier-heading">${escapeHtml(tier)}</h2><div class="${gridClass}">${cards}</div></section>`;
-      })
-      .join("");
+    const renderCard = (s) => {
+      const caption = s.caption
+        ? `<span class="sponsor-card-caption">${escapeHtml(s.caption)}</span>`
+        : "";
+      // Text-only name+caption must be one centered stack — sibling
+      // grid children stretch apart under aspect-ratio + align-content.
+      const textOnly =
+        !s.logo &&
+        `<span class="sponsor-card-label"><span class="sponsor-card-name">${escapeHtml(
+          s.name,
+        )}</span>${caption}</span>`;
+      const inner = s.logo
+        ? `<img src="${escapeHtml(logoPrefix)}${escapeHtml(s.logo)}" alt="${escapeHtml(s.name)}" />${caption}`
+        : textOnly;
+      const cardBg = resolveSponsorCardBg(s);
+      const styleAttr = cardBg
+        ? ` style="--ls-sponsor-card-bg:${cardBg};--ls-sponsor-opacity:1"`
+        : "";
+      const lum = cardBg ? sponsorCardBgLuminance(cardBg) : null;
+      const onDark =
+        s.logoOnDark === true ||
+        s.darkBg === true ||
+        (lum != null && lum < 0.25);
+      const cardClass = onDark
+        ? "ls-sponsor-card ls-sponsor-card--on-dark"
+        : "ls-sponsor-card";
+      if (s.url) {
+        return `<a class="${cardClass}" href="${escapeHtml(s.url)}" target="_blank" rel="noopener"${styleAttr}>${inner}</a>`;
+      }
+      return `<div class="${cardClass}"${styleAttr}>${inner}</div>`;
+    };
+
+    const renderTierSection = (tier) => {
+      const tierId = `${idPrefix}${slugifyHeading(tier)}`;
+      const cards = byTier
+        .get(tier)
+        .slice()
+        .sort(compareSponsorDisplayName)
+        .map(renderCard)
+        .join("");
+      return `<section class="${sectionClass}" id="${escapeHtml(tierId)}"${dataAttr}><h2 class="ls-sponsor-tier-heading">${escapeHtml(tier)}</h2><div class="${gridClass}">${cards}</div></section>`;
+    };
+
+    if (!options.groupSingleTiers) {
+      return sortedTiers.map(renderTierSection).join("");
+    }
+
+    // Group consecutive single-sponsor tiers onto one centered row of supercards
+    // (each supercard holds its tier heading directly above its single card).
+    const blocks = [];
+    for (let i = 0; i < sortedTiers.length; ) {
+      if (byTier.get(sortedTiers[i]).length === 1) {
+        let j = i;
+        while (j < sortedTiers.length && byTier.get(sortedTiers[j]).length === 1) {
+          j += 1;
+        }
+        if (j - i >= 2) {
+          const supercards = sortedTiers
+            .slice(i, j)
+            .map((tier) => {
+              const tierId = `${idPrefix}${slugifyHeading(tier)}`;
+              const card = renderCard(byTier.get(tier)[0]);
+              return `<section class="ls-sponsor-supercard" id="${escapeHtml(tierId)}"><h2 class="ls-sponsor-tier-heading">${escapeHtml(tier)}</h2>${card}</section>`;
+            })
+            .join("");
+          blocks.push(
+            `<div class="${sectionClass} ls-sponsor-supercard-row">${supercards}</div>`,
+          );
+          i = j;
+          continue;
+        }
+      }
+      blocks.push(renderTierSection(sortedTiers[i]));
+      i += 1;
+    }
+    return blocks.join("");
   }
 
   /** Homepage thank-you strip — same 2026 tiers as /sponsorship/ (incl. Service). */
@@ -1127,6 +1161,7 @@
       idPrefix: "home-2026-",
       docSections: false,
       centerGrid: true,
+      groupSingleTiers: true,
     });
     if (!tiersHtml) return "";
     const title = sponsorship?.thankYou2026Title ?? "2026 Sponsors";
