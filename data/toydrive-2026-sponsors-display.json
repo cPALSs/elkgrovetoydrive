@@ -2,7 +2,7 @@
   "eventYear": 2026,
   "source": "https://docs.google.com/spreadsheets/d/1fJLVVRiBgDUZSbyrXar15PGT3Vo-LgNLuv9B5wj3sEs/edit",
   "sourceTab": "Sponsors 26",
-  "sourceRows": "2-8",
+  "sourceRows": "2-8, 20",
   "tierOrder": [
     "Partner",
     "Presenting Sponsor",
@@ -11,7 +11,8 @@
     "Community Sponsor",
     "Chocolate Bar",
     "Friend Sponsor",
-    "Sponsor"
+    "Sponsor",
+    "In-Kind Donation"
   ],
   "sponsors": [
     {
@@ -69,6 +70,14 @@
       "logo": "",
       "trackerName": "Heidi & Karl",
       "trackerOrganization": "Property management group (+ friends)"
+    },
+    {
+      "name": "Celine",
+      "tier": "In-Kind Donation",
+      "url": "",
+      "logo": "",
+      "trackerName": "Celine",
+      "trackerOrganization": "In-kind: 10 cases of water (with delivery)"
     }
   ]
 }

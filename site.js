@@ -937,7 +937,7 @@
   }
 
   /** In-kind service attribution (formerly “Volunteers” display class). */
-  const SERVICE_IN_KIND_TIER = "In-Kind Donation (Service)";
+  const SERVICE_IN_KIND_TIER = "In-Kind Service";
   const LEGACY_VOLUNTEERS_TIER = "Volunteers";
 
   function normalizeSponsorTierName(tier) {
@@ -994,7 +994,7 @@
       .filter((t, i, arr) => arr.indexOf(t) === i);
     if (!hasService) return order.filter((t) => t !== SERVICE_IN_KIND_TIER);
     const withoutService = order.filter((t) => t !== SERVICE_IN_KIND_TIER);
-    const foodIdx = withoutService.indexOf("In-Kind Donation (Food)");
+    const foodIdx = withoutService.indexOf("In-Kind Donation");
     if (foodIdx >= 0) {
       withoutService.splice(foodIdx + 1, 0, SERVICE_IN_KIND_TIER);
       return withoutService;

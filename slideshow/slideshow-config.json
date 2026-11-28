@@ -17,8 +17,9 @@
     "Chocolate Bar": 2,
     "Friend": 1,
     "Friend Sponsor": 1,
-    "In-Kind Donation (Service)": 1,
-    "Sponsor": 1
+    "In-Kind Service": 1,
+    "Sponsor": 1,
+    "In-Kind Donation": 1
   },
   "tierLabels": {
     "Title": "Title Sponsor",
@@ -34,8 +35,9 @@
     "Chocolate Bar": "Hot Chocolate Bar Sponsor",
     "Friend": "Friend Sponsor",
     "Friend Sponsor": "Friend Sponsor",
-    "In-Kind Donation (Service)": "In-Kind Sponsor (Service)",
-    "Sponsor": "Sponsor"
+    "In-Kind Service": "In-Kind Service",
+    "Sponsor": "Sponsor",
+    "In-Kind Donation": "In-Kind Donation"
   },
   "recognitions": {
     "American Furniture Galleries": "Jimmy Phan & Aaron Copeland"

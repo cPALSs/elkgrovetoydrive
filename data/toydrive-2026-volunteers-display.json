@@ -1,14 +1,14 @@
 {
   "eventYear": 2026,
-  "title": "In-Kind Donation (Service)",
+  "title": "In-Kind Service",
   "lead": "Thank you to these teams for supporting the 2026 Toy Drive with volunteer service.",
   "tierOrder": [
-    "In-Kind Donation (Service)"
+    "In-Kind Service"
   ],
   "volunteers": [
     {
       "name": "Bao Productions",
-      "tier": "In-Kind Donation (Service)",
+      "tier": "In-Kind Service",
       "url": null,
       "logo": null,
       "caption": "events + automation",
@@ -16,7 +16,7 @@
     },
     {
       "name": "CrossCountry Mortgage (Kevin P. Nguyen Team)",
-      "tier": "In-Kind Donation (Service)",
+      "tier": "In-Kind Service",
       "url": "https://ccm.com/phuong-nguyen",
       "logo": "2026/crosscountry-mortgage.png",
       "trackerOrganization": "CrossCountry Mortgage (Kevin P. Nguyen Team)",
@@ -24,7 +24,7 @@
     },
     {
       "name": "Curriculum Vitae Staffing Solutions",
-      "tier": "In-Kind Donation (Service)",
+      "tier": "In-Kind Service",
       "url": null,
       "logo": "2025/curriculum-vitae-staffing.jpg",
       "cardBg": "#05032B",
@@ -32,7 +32,7 @@
     },
     {
       "name": "HEART",
-      "tier": "In-Kind Donation (Service)",
+      "tier": "In-Kind Service",
       "url": null,
       "logo": "2025/heart.jpg",
       "cardBg": "#E4CEB7",
@@ -40,14 +40,14 @@
     },
     {
       "name": "Lazzarini, Whiteford & Young, LLP",
-      "tier": "In-Kind Donation (Service)",
+      "tier": "In-Kind Service",
       "url": null,
       "logo": "2025/lw-y.svg",
       "notes": "Shared with 2025 sponsors display — /sponsors/2025/lw-y.svg (LW&Y)"
     },
     {
       "name": "Nikki Win Team",
-      "tier": "In-Kind Donation (Service)",
+      "tier": "In-Kind Service",
       "url": null,
       "logo": "2026/nikki-win.png",
       "trackerOrganization": "Nikki Win Team - Keller Williams",
@@ -55,7 +55,7 @@
     },
     {
       "name": "TotalCare Property Services",
-      "tier": "In-Kind Donation (Service)",
+      "tier": "In-Kind Service",
       "url": null,
       "logo": "2026/totalcare-property-services.png",
       "notes": "Transparent PNG (white background removed) for the slideshow. Original: /sponsors/2025/totalcare-property-services.png"
