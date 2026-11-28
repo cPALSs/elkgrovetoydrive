@@ -6,7 +6,9 @@
   "tierOrder": [
     "Partner",
     "Presenting Sponsor",
+    "Celebration Sponsor",
     "Volunteers Sponsor",
+    "Community Sponsor",
     "Sponsor"
   ],
   "sponsors": [
@@ -28,7 +30,7 @@
     },
     {
       "name": "Rod Brewer",
-      "tier": "Volunteers Sponsor",
+      "tier": "Celebration Sponsor",
       "url": "https://elkgrove.gov/city-council/district-2-rod-brewer",
       "logo": "2026/rod-brewer.png",
       "trackerName": "Rod Brewer",
@@ -36,7 +38,7 @@
     },
     {
       "name": "Parkwest Casino Lotus",
-      "tier": "Sponsor",
+      "tier": "Community Sponsor",
       "url": "https://parkwestcasinolotus.com/",
       "logo": "2026/parkwest-casino-lotus.png",
       "trackerName": "Manny Perez / Jinky Dolar",
@@ -44,7 +46,7 @@
     },
     {
       "name": "VACOS",
-      "tier": "Sponsor",
+      "tier": "Community Sponsor",
       "url": "https://vacos.org/",
       "logo": "2026/vacos.png",
       "trackerName": "VACOS",
