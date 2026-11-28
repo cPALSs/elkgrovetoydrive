@@ -1087,8 +1087,11 @@
         `<span class="sponsor-card-label"><span class="sponsor-card-name">${escapeHtml(
           s.name,
         )}</span>${caption}</span>`;
+      const isBleed = s.cardBleed === true;
       const inner = s.logo
-        ? `<img src="${escapeHtml(logoPrefix)}${escapeHtml(s.logo)}" alt="${escapeHtml(s.name)}" />${caption}`
+        ? `<img src="${escapeHtml(logoPrefix)}${escapeHtml(s.logo)}" alt="${escapeHtml(s.name)}"${
+            isBleed ? ' style="height:100%;width:auto"' : ""
+          } />${caption}`
         : textOnly;
       const cardBg = resolveSponsorCardBg(s);
       const styleAttr = cardBg
@@ -1099,9 +1102,13 @@
         s.logoOnDark === true ||
         s.darkBg === true ||
         (lum != null && lum < 0.25);
-      const cardClass = onDark
-        ? "ls-sponsor-card ls-sponsor-card--on-dark"
-        : "ls-sponsor-card";
+      const cardClass = [
+        "ls-sponsor-card",
+        onDark ? "ls-sponsor-card--on-dark" : "",
+        isBleed ? "ls-sponsor-card--bleed" : "",
+      ]
+        .filter(Boolean)
+        .join(" ");
       if (s.url) {
         return `<a class="${cardClass}" href="${escapeHtml(s.url)}" target="_blank" rel="noopener"${styleAttr}>${inner}</a>`;
       }

@@ -36,7 +36,8 @@
       "url": null,
       "logo": "2025/heart.jpg",
       "cardBg": "#E4CEB7",
-      "notes": "Shared with 2025 sponsors display — /sponsors/2025/heart.jpg"
+      "notes": "Shared with 2025 sponsors display — /sponsors/2025/heart.jpg",
+      "cardBleed": true
     },
     {
       "name": "Lazzarini, Whiteford & Young, LLP",
