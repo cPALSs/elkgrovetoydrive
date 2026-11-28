@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Sponsor Slideshow — 10th Annual Elk Grove Toy Drive Celebration</title>
+  <link rel="stylesheet" href="../vendor/lsds/fonts/metropolis.css" />
+  <link rel="stylesheet" href="slideshow.css" />
+</head>
+<body>
+  <main id="viewport" class="viewport" aria-live="polite" aria-label="Toy Drive 2026 Sponsor Slideshow">
+    <div id="frame" class="frame">
+      <img
+        class="template-bg"
+        src="sponsor-slide-template.png"
+        alt=""
+        aria-hidden="true"
+      />
+
+      <!-- Circular host logos centered below "TOY DRIVE" -->
+      <div id="host-badges" class="host-badges" aria-label="Hosted by cPALSs and NVCC">
+        <div class="host-circle">
+          <img src="../assets/hosts/cpalss.png" alt="Community Partners Advocate of Little Saigon Sacramento (cPALSs)" />
+        </div>
+        <div class="host-circle">
+          <img src="../assets/hosts/nvcc.png" alt="NorCal Vietnamese Chamber of Commerce (NVCC)" />
+        </div>
+      </div>
+
+      <!-- Crossfading sponsor content inside the white ornament circle -->
+      <div id="slide-layer-a" class="ornament-layer" aria-hidden="true"></div>
+      <div id="slide-layer-b" class="ornament-layer" aria-hidden="true"></div>
+
+      <div id="loading" class="loading-overlay">
+        <div class="loading-text">Loading 2026 sponsors…</div>
+      </div>
+
+      <div id="error-banner" class="error-overlay" hidden>
+        <div class="error-card">
+          <h1>Unable to load slideshow</h1>
+          <p id="error-message">Check that you are running from a local HTTP server (e.g. <code>python3 -m http.server 8080</code>) or the hosted site.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="progress-track" class="progress-track" aria-hidden="true">
+    <div id="progress-bar" class="progress-bar"></div>
+  </div>
+
+  <!-- Left slide-out drawer listing the entire slide cycle -->
+  <div id="drawer-backdrop" class="drawer-backdrop" hidden></div>
+  <nav id="slide-drawer" class="slide-drawer" aria-label="Slide list" aria-hidden="true">
+    <div class="drawer-header">
+      <div>
+        <h2 class="drawer-title">Slide Rotation</h2>
+        <p id="drawer-subtitle" class="drawer-subtitle">0 slides in cycle</p>
+      </div>
+      <button id="btn-drawer-close" type="button" class="drawer-close" aria-label="Close slide list">&times;</button>
+    </div>
+    <ol id="drawer-list" class="drawer-list"></ol>
+  </nav>
+
+  <aside id="hud" class="hud" aria-label="Slideshow controls">
+    <div class="hud-left">
+      <button id="btn-prev" type="button" class="hud-btn" title="Previous slide (Left Arrow)">Prev</button>
+      <button id="btn-play" type="button" class="hud-btn hud-btn--primary" title="Pause / Resume (Space)">Pause</button>
+      <button id="btn-next" type="button" class="hud-btn" title="Next slide (Right Arrow)">Next</button>
+    </div>
+    <div class="hud-center">
+      <button id="hud-counter" type="button" class="hud-btn hud-btn--counter" title="Open slide list" aria-expanded="false" aria-controls="slide-drawer">0 / 0</button>
+      <span id="hud-label" class="hud-meta hud-meta--dim"></span>
+    </div>
+    <div class="hud-right">
+      <button id="btn-reload" type="button" class="hud-btn" title="Reload sponsor data (R)">Reload</button>
+      <button id="btn-fullscreen" type="button" class="hud-btn" title="Toggle Fullscreen (F)">Fullscreen</button>
+    </div>
+  </aside>
+
+  <script src="slideshow.js" defer></script>
+</body>
+</html>

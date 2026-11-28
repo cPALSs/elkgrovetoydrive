@@ -2,13 +2,15 @@
   "eventYear": 2026,
   "source": "https://docs.google.com/spreadsheets/d/1fJLVVRiBgDUZSbyrXar15PGT3Vo-LgNLuv9B5wj3sEs/edit",
   "sourceTab": "Sponsors 26",
-  "sourceRows": "2-5",
+  "sourceRows": "2-8",
   "tierOrder": [
     "Partner",
     "Presenting Sponsor",
     "Celebration Sponsor",
     "Volunteers Sponsor",
     "Community Sponsor",
+    "Chocolate Bar",
+    "Friend Sponsor",
     "Sponsor"
   ],
   "sponsors": [
@@ -51,6 +53,22 @@
       "logo": "2026/vacos.png",
       "trackerName": "VACOS",
       "trackerOrganization": "Vietnamese American Community of Sacramento"
+    },
+    {
+      "name": "The AnnaLee Project",
+      "tier": "Chocolate Bar",
+      "url": "",
+      "logo": "",
+      "trackerName": "AnnaLee",
+      "trackerOrganization": "The AnnaLee Project"
+    },
+    {
+      "name": "Heidi & Karl",
+      "tier": "Friend Sponsor",
+      "url": "",
+      "logo": "",
+      "trackerName": "Heidi & Karl",
+      "trackerOrganization": "Property management group (+ friends)"
     }
   ]
 }
